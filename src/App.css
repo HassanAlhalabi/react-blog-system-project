@@ -1,37 +1,341 @@
+/* Global style */
+
+html {
+    --main-color: #f2561a;
+    --sec-color: #f58634; 
+    --dark-color: #555;
+    
+}
+
+body {
+    font-family: 'Overpass', sans-serif !important;
+}
+
+/* headers */
+
+h1,h2,h3,h4,h5,h6 {
+    color: var(--dark-color);
+    background-color: #EEE;
+    border-left: 5px solid var(--main-color);
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+h1,h2 {
+    color: #FFF;
+    background-color: var(--dark-color);
+}
+
+h2 {
+    margin-bottom: 25px;
+    padding: 15px 15px 10px;
+}
+
+/* Paragraph */
+
+p {
+    color: #555;
+}
+
+/* link */
+
+a {
+    transition: .6s;
+    font-weight: bold;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+
+/* inputs */
+
+input,
+.form-group input,
+.form-group textarea {
+    border-radius: 0;  
+    transition: .4s;
+    border: none;
+    box-shadow: 0px 0px 0px 1px var(--main-color) !important;
+} 
+
+input:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: none !important;
+    border: none;
+    border-bottom: 1px solid var(--main-color);
+    background-color: #f2561a22;
+}
+
+textarea.form-control {
+    min-height: 100px;
+    height: 200px;
+}
+
+input[type='checkbox'] {
+    margin: 5px 0px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+label {
+    margin: 15px 0px 10px 0px;
+    font-weight: bold;
+    color: #FFF;
+    background-color: var(--main-color);
+    padding: 5px 10px;
+}
+
+
 /* ******************** Framework ******************** */
 
-::-webkit-scrollbar {width: 1px;background-color: #c5f0f4;}
+.row {
+    width: -webkit-fill-available;
+    width: -moz-fill-available;
+    width: -o-fill-available;
+    width: -ms-fill-available;
+}
 
-::-webkit-scrollbar-track { box-shadow: inset 1px 2px 5px #0A79DF; }
+.flag {
+    width: max-content;
+    padding-right: 25px;
+}
 
-::-webkit-scrollbar-thumb { background-color: #3fcbd8;border-radius: 5px; }
+.alert {
+    border-radius: 0;
+}
+
+.shaking-message {
+    position: relative;
+    animation-name: shaking-message;
+    animation-duration: .3s;
+}
 
 /* ****************** App style ****************** */
 
-
-.article {
-    height: 455px;
+::-webkit-scrollbar {
+    width:10px;
 }
 
-.card-header h5 {
-    height: 120px;
-    overflow: hidden;
-    white-space: pre-line;
-    text-overflow: ellipsis;
+/* ::-webkit-scrollbar-track { } */
+
+::-webkit-scrollbar-thumb { 
+    background-color: var(--main-color);
+    border-radius: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: .7;
 }
 
-.card,.card-body{
-    height: 100%;
+/* Main */
+
+/* main {
+    height: 100vh;
+} */
+
+/* navbar */
+
+nav.navbar {
+    padding: 0;
 }
 
-.img-holder {
-    height: 200px;
-    background-color: blueviolet;
+nav.navbar .upper-nav {
+    background-color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
 }
 
-.img-holder img {
-    height: -webkit-fill-available;
-    height: -o-fill-available;
-    object-fit: cover;
+nav.navbar .logo {
+    font-weight: bolder;
+    font-size: 34px;
+    color: #FFF;
+}
+
+.upper-nav .navbar-social a {
+    color: #FFF ;
+}
+
+.upper-nav .search-box-icon button {
+    padding: 8px 12px 4px;
+    background-color: #EEE;
+    border-radius: 5px 0px 0px 5px;
+    border: none;
+    color: #888;
+}
+
+.upper-nav .search-box-icon button:focus {
+    border: none;
+    outline: none;
+}
+
+.upper-nav .search-box input[type='search'] {
+    border-radius: 0px 5px 5px 0px;
+    border: none;
+    box-shadow: none !important;
+}
+
+.upper-nav .search-box input[type='search']:focus::placeholder {
+    opacity: 0;
+}
+
+nav.navbar .lower-nav {
+    border-bottom: 2px solid var(--main-color);
+    padding: 12px 0px;
+    background-color: #EEE;
+}
+
+nav.navbar .lower-nav ul li {
+ padding-right: 15px;
+}
+
+nav.navbar .lower-nav a {
+    color: var(--dark-color);
+    font-size: 18px;
+}
+
+nav.navbar .lower-nav a:hover,
+nav.navbar .lower-nav a:focus {
+    color: var(--main-color) !important;
+}
+
+/* My Artiles  */
+
+.articles .article-image img {
     width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+/* add article form */
+
+.categories-input {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+}
+
+.categories-input span {
+    padding: 5px 15px 5px 0px;
+    margin: 5px;
+}
+
+#add-category-btn,
+#add-tag-btn {
+    min-width: fit-content;
+}
+
+.tag,
+.category {
+    background-color: #f58634;
+    color: #FFF;
+    border-radius: 3px;
+}
+
+.category {
+    background-color: #f5b134;
+}
+
+.remove-tag,
+.remove-category {
+    border-radius: 50%;
+    border: 1px solid rgb(255, 48, 48);
+    color: rgb(255, 48, 48);
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.remove-tag:hover,
+.remove-category:hover {
+    color: #FFF;
+    background-color: rgb(255, 48, 48);
+}
+
+.publish-btn {
+    width: 50%;
+    display: flex;
+    margin: auto;
+    border: none;
+    background-color: var(--main-color);
+    text-align: center !important;
+    color: #FFF;
+    padding: 16px 25px 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.publish-btn:focus {
+    border: none;
+    outline: none;
+    background-color: var(--main-color);
+    opacity: .8;
+}
+
+.post-preview-panel {
+    padding: 25px;
+    border: 4px solid var(--main-color);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.post-preview-panel h1 {
+    font-size: 24px !important;
+}
+
+.post-preview-panel .article-meta {
+    background-color: #EEE;
+    padding: 0px 4px;
+}
+
+.post-preview-panel .article-author {
+    font-size: 13px;
+    padding: 5px;
+    color: #666;
+}
+
+.post-preview-panel .article-date time {
+    font-size: 8px;
+    color: #888888;
+    padding: 4px 4px 2px;
+}
+
+.post-preview-panel p {
+    font-size: 12px;
+    padding: 0px 4px;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: var(--main-color);
+    padding: 15px 0px;
+}
+
+footer p {
+    color: #FFF;
+    margin: 0;
+}
+
+/* Animations */
+
+@keyframes shaking-message {
+    0% {
+        transform: translateX(10px);
+    } 20% {
+        transform: translateX(-20px);
+    } 40% {
+        transform: translateX(20px);
+    } 60% {
+        transform: translateX(-20px);
+    } 80% {
+        transform: translateX(20px);
+    } 100% {
+        transform: translateX(-10px);
+    }
 }
