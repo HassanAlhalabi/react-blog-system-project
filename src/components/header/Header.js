@@ -1,20 +1,23 @@
-import React , {useState} from 'react';
+import React from 'react';
+import Typorgaphy from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom';
-import AdminNavLinks from './AdminNavLinks';
 import VisitorNavLinks from './VisitorNavLinks';
+import Search from '@material-ui/icons/Search'
 
-const Header = () => {
-
-  const [user,setUser] = useState('admin');
+const Header = ({user}) => {
 
   return(
     <nav className='navbar d-block'>
       <div className='upper-nav d-flex pb-2 pt-2'>
-        <div className='container-fluid'>
+        <div className={user === 'admin' ? 'container-fluid' : 'container' }>
           <div className='row'>
             <div className='col col-md-4'>
-              <div className="logo-holder pb-2 pt-2 text-center text-sm-left">
-                <Link to='/' className="logo">Blogger</Link>
+              <div className="logo-holder text-center text-sm-left">
+                <Link to='/' className="logo">
+                  <Typorgaphy className='pl-0' variant='h4' component='h1'>
+                    Blogger
+                  </Typorgaphy>  
+                </Link>
               </div>
             </div>
             <div className='col col-md-4'>
@@ -34,7 +37,7 @@ const Header = () => {
               <div className='search-box d-flex h-100 align-items-center'>
                 <div className='d-flex w-100'>
                   <div className='d-flex search-box-icon text-center'>
-                    <button><i className='fa fa-search m-auto'></i></button>
+                    <button><Search /></button>
                   </div>
                   <input 
                         type='search' 
@@ -47,9 +50,8 @@ const Header = () => {
         </div>
       </div>      
       <div className='lower-nav'>
-        <div className='container-fluid'>
-          { user === 'admin' && <AdminNavLinks />}
-          { user === 'visitor' && <VisitorNavLinks />}
+        <div className={user === 'admin' ? 'container-fluid' : 'container' }>
+          { user === 'admin' ? 'admin is logged in' : <VisitorNavLinks />}
         </div>  
       </div>   
     </nav>        

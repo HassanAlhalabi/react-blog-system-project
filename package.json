@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "bootstrap": "^4.5.3",
     "fa-icons": "^0.2.0",
     "Faker": "^0.7.2",
     "jquery": "^3.5.1",
-    "materialize-css": "^1.0.0",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^16.14.0",

@@ -4,6 +4,7 @@ import Article from '../Article'
 
 const MyArticles = () => {
     const articles = useState(store.getState())[0]
+    console.log(articles)
     return (
         <div className='my-articles'>
             <div className='container'>

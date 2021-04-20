@@ -16,7 +16,6 @@ const LatestNews = () => {
         APISortBy   : 'popularity',
     })
     
-    // const url = `https://newsapi.org/v2/everything?q=${APISearch}&country=${APICountrey}&category=${APICategory}&from=2021-03-16&sortBy=${APISortBy}&apiKey=3b54875dae4b44999ae09e5eee0f098c`
     const url = `https://newsapi.org/v2/everything?`+
                 `q=${APIParams.APISearch}`+
                 `&sortBy=${APIParams.APISortBy}`+
@@ -50,7 +49,7 @@ const LatestNews = () => {
     let articlesTemplate =
         <div className='row'>
             {articles.map(article => 
-                <Article />
+                <Article articleProps={article}/>
             )}
         </div>
          

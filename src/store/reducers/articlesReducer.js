@@ -4,6 +4,7 @@ const articles = [
     {
         id: 1,
         title: 'title 1',
+        urlToImage: '',
         author: 'hassan',
         content: 'lorem ipsum dolor sit amet',
         categories: ['uncategorized'],
