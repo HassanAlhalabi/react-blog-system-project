@@ -9,6 +9,7 @@ import './App.css';
 import Header from './components/header/Header';
 import Home from './components/Home';
 import SignInForm from './components/auth/SignInForm';
+import SignUpForm from './components/auth/SignUpForm';
 import AdminPanel from './components/Admin/AdminPanel';
 import Articles from './components/Articles';
 import ContactUs from './components/ContactUs';
@@ -19,12 +20,12 @@ import NotFound404 from './components/404/404';
 
 const App = () => {
 
-  const [user,setUser] = useState('user');
+  const [user,setUser] = useState('admin');
 
     return(
       <BrowserRouter>
         <Header user={user}/>
-        <main className='mt-5 mb-5'>
+        <main className=''>
           {
             user === 'admin' ?
             <Switch>
@@ -39,8 +40,9 @@ const App = () => {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/home' component={Home} />
-              <Route path='/sign-in' component={SignInForm} />
-              <Route path='/admin-panel' component={SignInForm} />
+              <Route path='/signin' component={SignInForm} />
+              <Route path='/signup' component={SignUpForm} />
+              {/* <Route path='/admin-panel' component={SignInForm} /> */}
               <Route path='/articles' component={Articles} />
               <Route path='/contact-us' component={ContactUs} />
               <Route path='*' component={NotFound404} />

@@ -10,9 +10,9 @@ const LatestNews = () => {
     // const { id } = useParams()
     const [APIParams,setAPIParams] = useState({
         APIKey      : '3b54875dae4b44999ae09e5eee0f098c',
-        APICountry : 'us',
+        APICountry  : 'us',
         APICategory : 'general',
-        APISearch   : 'japan',
+        APISearch   : 'syria',
         APISortBy   : 'popularity',
     })
     
@@ -27,6 +27,7 @@ const LatestNews = () => {
             url,
             {signal: abortCont.signal})
         .then(response => {
+            console.log(response)
             if(response.ok) { 
                 setIsLoading(false)
                 return response.json()
@@ -34,13 +35,13 @@ const LatestNews = () => {
                 throw Error('Error fetching data from server')
             }
         })
-        .then(data => 
-            setArticles(data.articles)
-        )
+        .then(data => {
+            setArticles(data.articles);
+        })
         .catch(error => { 
-            console.log('here:',error)
-            // setConnectionError(true)
-            setIsLoading(false) 
+            console.log('here:',error);
+            // setConnectionError(true);
+            setIsLoading(false) ;
         })
         
         return () => abortCont.abort()
@@ -56,7 +57,7 @@ const LatestNews = () => {
         return(
             <div className='articles'>
                 <div className='container'>
-                    {connectionError && <div><span className='alert alert-warning'>Unable to connetct to the server !! Check your internet connection</span></div>}
+                    {connectionError && <div><span className='alert alert-warning'>Unable to connect to the server !! Check your internet connection</span></div>}
                     {isLoading && <div className='text-center'><img src={loader} alt='loader'/></div> }
                     {articlesTemplate}
                 </div>

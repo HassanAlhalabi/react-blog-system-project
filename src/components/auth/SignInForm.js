@@ -7,23 +7,31 @@ import Facebook from '@material-ui/icons/Facebook'
 import Twitter from '@material-ui/icons/Twitter'
 
 const SignInForm = () => {
+    
     const [inputs , setInputs] = useState({
         email: null,
         password: null,
     })
+    
     const handleFormChange = e => {
         setInputs({
             ...inputs,
             [e.target.name] : e.target.value
         })
     }
-    console.log(inputs)
+
+    const handleSignin = e => {
+        e.preventDefault();
+        console.log('sing in ....')
+    }
+    
+
     return ( 
         <div className='signin'>
             <div className='container'>
                 <div className='row'>
                     <div className='col-12 col-sm-10 col-md-6 m-auto'>
-                        <form className='signin-form'>
+                        <form className='signin-form mt-5'>
                             <Typography variant='h4' align='center'>
                                 Sign In
                             </Typography>
@@ -56,39 +64,35 @@ const SignInForm = () => {
                                     type='submit'
                                     size='large'
                                     startIcon={<ExitToAppIcon/>}
+                                    onClick={handleSignin}
                                 >
                                     Sign In
                                 </Button>
                             </div>    
                             <div className='divider signin-divider'></div>
-                            <Typography variant='h4' align='center'>
-                                Sign In With
+                            <Typography variant='h5' align='center'>
+                                Continue With
                             </Typography>
                             <div className='d-flex justify-content-center'>
                                 <ButtonGroup>
                                     <Button
-                                        className='m-auto d-inline-block'
                                         variant='contained' 
                                         color='primary'
                                         type='submit'
                                         size='large'
                                         startIcon={<Facebook />}
-                                    >Facebook</Button>
+                                    >
+                                        Facebook
+                                    </Button>
                                     <Button
-                                        className='m-auto d-inline-block'
                                         variant='contained' 
                                         color='primary'
                                         type='submit'
                                         size='large'
                                         startIcon={<Twitter />}
-                                    >Twitter</Button>
-                                {/* <Button
-                                    className='m-auto d-inline-block'
-                                    variant='contained' 
-                                    color='primary'
-                                    type='submit'
-                                    size='large'
-                                >btn1</Button> */}
+                                    >
+                                        Twitter
+                                    </Button>
                                 </ButtonGroup>
                             </div>    
                         </form>

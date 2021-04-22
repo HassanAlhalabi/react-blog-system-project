@@ -137,7 +137,7 @@ const  AddArticleForm = () => {
                 tags: inputs.tags
             }
             store.dispatch(addNewArtice(newArticle))
-            history.push('/my-articles')
+            history.push('/admin-panel/my-articles')
         }
     }
 

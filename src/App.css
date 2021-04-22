@@ -48,6 +48,7 @@ a:focus {
 }
 
 
+
 /* inputs */
 
 label {
@@ -103,12 +104,6 @@ button:focus {
     opacity: .7;
 }
 
-/* Main */
-
-/* main {
-    height: 100vh;
-} */
-
 /* navbar */
 
 nav.navbar {
@@ -120,9 +115,10 @@ nav.navbar .upper-nav {
     /* border-bottom: 1px solid var(--third-color); */
 }
 
-nav.navbar .logo {
+nav.navbar .logo h1 {
     font-weight: bolder;
     font-size: 34px;
+    color: var(--third-color)
 }
 
 nav.navbar .logo h1 {
@@ -130,30 +126,12 @@ nav.navbar .logo h1 {
 }
 
 .upper-nav .navbar-social a {
-    color: #FFF ;
+    color: #EEE ;
+    padding: 0px 5px;
 }
 
-.upper-nav .search-box-icon button {
-    padding: 8px 12px 4px;
-    background-color: var(--third-color);
-    border-radius: 5px 0px 0px 5px;
-    border: none;
-    color: #888;
-}
-
-.upper-nav .search-box-icon button:focus {
-    border: none;
-    outline: none;
-}
-
-.upper-nav .search-box input[type='search'] {
-    border-radius: 0px 5px 5px 0px;
-    border: none;
-    box-shadow: none !important;
-}
-
-.upper-nav .search-box input[type='search']:focus::placeholder {
-    opacity: 0;
+.upper-nav button a {
+    color: #EEE
 }
 
 nav.navbar .lower-nav {
@@ -173,7 +151,83 @@ nav.navbar .lower-nav a {
 
 nav.navbar .lower-nav a:hover,
 nav.navbar .lower-nav a:focus {
-    color: var(--main-color) !important;
+    color: var(--third-color) !important;
+}
+
+.lower-nav .search-box input[type='search'] {
+    border-radius: 0px 5px 5px 0px;
+    border: none;
+    box-shadow: none !important;
+    border: 1px solid #e3cdb3;
+}
+
+.lower-nav .search-box input[type='search']:focus::placeholder {
+    opacity: 0;
+}
+
+.lower-nav .search-box-icon button {
+    padding: 8px 12px 4px;
+    background-color: var(--third-color);
+    border-radius: 5px 0px 0px 5px;
+    border: none;
+    color: #888;
+}
+
+.lower-nav .search-box-icon button:focus {
+    border: none;
+    outline: none;
+}
+
+/* Admin Panel Style */
+
+.admin-panel-content {
+    /* left: auto; */
+    transition: .8s;
+}
+
+.drawer {
+    background-color: var(--second-color);
+    flex: .25;
+    min-width: 250px;
+    height: 100vh;
+    transition: .7s;
+    left: 0;
+    top: 0;
+    z-index: 100
+}
+
+.drawer .upper-drawer {
+    border-left: 1px solid var(--third-color)
+}
+
+.drawer .upper-drawer button {
+    color: var(--third-color);
+    height: fit-content;
+}
+
+.drawer-closed {
+    position: absolute;
+    left: -185px;
+    top: 0;
+}
+
+.drawer-open {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.drawer-replace {
+    width: 65px;
+}
+
+/* .drawer-open {
+
+} */
+
+.drawer ul a,
+.drawer ul svg {
+    color: var(--third-color)
 }
 
 /* My Artiles  */
@@ -283,9 +337,10 @@ nav.navbar .lower-nav a:focus {
     padding: 0px 4px;
 }
 
-/* Sign In Form */
+/* Sign In , Sign Up Form */
 
-.signin-form {
+.signin-form,
+.signup-form {
     box-shadow: 0px 3px 7px 1px #969696;
     border-radius: 10px;
     padding: 25px;
@@ -316,6 +371,7 @@ nav.navbar .lower-nav a:focus {
 
 footer {
     background-color: var(--second-color);
+    border-top: 3px solid var(--third-color);
     padding: 15px 0px;
 }
 
