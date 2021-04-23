@@ -1,5 +1,5 @@
 import React from 'react';
-import Typorgaphy from '@material-ui/core/Typography'
+import Typorgaphy from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import VisitorNavLinks from './VisitorNavLinks';
 import Search from '@material-ui/icons/Search';
@@ -9,13 +9,16 @@ import Facebook from '@material-ui/icons/Facebook';
 import Twitter from '@material-ui/icons/Twitter';
 import Instagram from '@material-ui/icons/Instagram';
 import YouTube from '@material-ui/icons/YouTube';
+import { useLocation } from 'react-router-dom';
 
 const Header = ({user}) => {
+
+  const pathName = useLocation().pathname;
 
   return(
     <nav className='navbar d-block'>
       <div className='upper-nav d-flex pb-2 pt-2'>
-        <div className={user === 'admin' ? 'container-fluid' : 'container' }>
+        <div className={ pathName.slice(0,12) === '/admin-panel' ? 'container-fluid' : 'container'}>
           <div className='row'>
             <div className='col col-sm-6 col-md-4'>
               <div className="logo-holder text-center text-sm-left">
@@ -38,30 +41,35 @@ const Header = ({user}) => {
               </div>
             </div>
             <div className='col-12 col-sm-6 col-md-4 d-flex order-2 order-md-3 justify-content-center justify-content-sm-end align-items-center'>
-              {user === 'admin' || user === 'registerdClient' ? <RegisterdLinks /> :
+              {user === 'admin' || user === 'registerdClient' ? <RegisterdLinks user={user}/> :
               <UnRegisteredLinks /> }
             </div>
           </div>  
         </div>
-      </div>      
-      <div className='lower-nav'>
-        <div className={user === 'admin' ? 
-          'container-fluid justify-content-center justify-content-sm-between' :
-          'container justify-content-center justify-content-sm-between' }>
-          { user === 'admin' ? 'admin is logged in' : <VisitorNavLinks />}
-          <div className='search-box d-flex h-100 align-items-center'>
-              <div className='d-flex w-100'>
-                <div className='d-flex search-box-icon text-center'>
-                  <button><Search /></button>
-                </div>
-                <input 
-                      type='search' 
-                      className='form-control h-auto pt-2'
-                      placeholder='Search Articles...' />
-              </div>  
-            </div>
-        </div>  
-      </div>   
+      </div> 
+      {pathName.slice(0,12) === '/admin-panel' ? 
+        null
+      :
+        <div className='lower-nav'>
+          <div className={pathName.slice(0,12) === '/admin-panel' ? 
+            'container-fluid justify-content-center justify-content-sm-between' :
+            'container justify-content-center justify-content-sm-between' }>
+            { <VisitorNavLinks />}
+            <div className='search-box d-flex h-100 align-items-center'>
+                <div className='d-flex w-100'>
+                  <div className='d-flex search-box-icon text-center'>
+                    <button><Search /></button>
+                  </div>
+                  <input 
+                        type='search' 
+                        className='form-control h-auto pt-2'
+                        placeholder='Search Articles...' />
+                </div>  
+              </div>
+          </div>  
+        </div>
+      }     
+        <div className='nav-bottom-border'></div>
     </nav>        
   )    
 }

@@ -61,6 +61,30 @@ button:focus {
 
 /* ******************** Framework ******************** */
 
+.bg-main {
+    background-color: var(--main-color) !important;
+}
+
+.bg-second {
+    background-color: var(--second-color) !important;
+}
+
+.bg-third {
+    background-color: var(--third-color) !important;
+}
+
+.color-main {
+    color: var(--main-color) !important;
+}
+
+.color-second {
+    color: var(--second-color) !important;
+}
+
+.color-third {
+    color: var(--third-color) !important;
+}
+
 .row {
     width: -webkit-fill-available;
     width: -moz-fill-available;
@@ -86,6 +110,10 @@ button:focus {
 .divider {
     border-bottom: 1px solid #EEE;
     margin: 20px auto;
+}
+
+.clickable {
+    cursor: pointer !important
 }
 
 /* ****************** App style ****************** */
@@ -134,8 +162,13 @@ nav.navbar .logo h1 {
     color: #EEE
 }
 
+.user-dropdown-menu {
+    top: 100%;
+    right: 0;
+    min-width: 200px
+}
+
 nav.navbar .lower-nav {
-    border-bottom: 3px solid var(--third-color);
     padding: 12px 0px;
     background-color: #EEE;
 }
@@ -178,6 +211,10 @@ nav.navbar .lower-nav a:focus {
     outline: none;
 }
 
+.nav-bottom-border {
+    border-bottom: 3px solid var(--third-color);
+}
+
 /* Admin Panel Style */
 
 .admin-panel-content {
@@ -189,7 +226,7 @@ nav.navbar .lower-nav a:focus {
     background-color: var(--second-color);
     flex: .25;
     min-width: 250px;
-    height: 100vh;
+    min-height: 100vh;
     transition: .7s;
     left: 0;
     top: 0;
@@ -257,13 +294,9 @@ nav.navbar .lower-nav a:focus {
 
 .tag,
 .category {
-    background-color: #f58634;
+    background-color: var(--second-color);
     color: #FFF;
     border-radius: 3px;
-}
-
-.category {
-    background-color: #f5b134;
 }
 
 .remove-tag,

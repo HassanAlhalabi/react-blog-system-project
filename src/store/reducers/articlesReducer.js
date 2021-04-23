@@ -9,6 +9,24 @@ const articles = [
         content: 'lorem ipsum dolor sit amet',
         categories: ['uncategorized'],
         tags: ['tag1','tag2']
+    },
+    {
+        id: 2,
+        title: 'title 2',
+        urlToImage: '',
+        author: 'Temothy',
+        content: 'lorem ipsum dolor sit amet',
+        categories: ['uncategorized'],
+        tags: ['tag1','tag2']
+    },
+    {
+        id: 3,
+        title: 'title 3',
+        urlToImage: '',
+        author: 'Belal',
+        content: 'lorem ipsum dolor sit amet',
+        categories: ['uncategorized'],
+        tags: ['tag1','tag2']
     }
 ]
 
@@ -21,7 +39,7 @@ export const articlesReducer = (state = articles, action) => {
                 ...state,
                action.article
             ] 
-        case actionTypes.REMOVE_ARTICLE:
+        case actionTypes.DELETE_ARTICLE:
             console.log('Article Removed')
             return state.filter(article => article.id !== action.id)
         case actionTypes.UPDATE_ARTICLE:

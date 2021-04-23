@@ -1,13 +1,17 @@
 import React , {useContext, useState } from 'react';
 import {useHistory} from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 import AddArticleFormTemplate from './AddArticleFormTemplate';
 import AddArticleFormPreview from './AddArticleFormPreview';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
-import store from '../../../store/store';
-import { addArticle as addNewArtice } from '../../../store/actions/actions'
-import { process } from 'uniqid'
+import { connect } from 'react-redux';
+import { addArticle as addNewArticle } from '../../../store/actions/actions';
+// import Button from '@material-ui/core/Button';
+import { process } from 'uniqid';
 
-const  AddArticleForm = () => {
+const  AddArticleForm = (props) => {
+
+    console.log(props)
     
     const [categories , setCategories] = useContext(CategoriesContext);
     const [inputs,setInputs] = useState({
@@ -136,8 +140,8 @@ const  AddArticleForm = () => {
                 categories: inputs.categories.filter(category => category.isChecked === true),
                 tags: inputs.tags
             }
-            store.dispatch(addNewArtice(newArticle))
-            history.push('/admin-panel/my-articles')
+            props.addNewArticle(newArticle);
+            history.push('/admin-panel/my-articles');
         }
     }
 
@@ -147,8 +151,12 @@ const  AddArticleForm = () => {
 
     return(
         <div className='add-article-form'>
+            {/* <div className='add-article-options d-flex justify-content-end pt-1 pb-1'>
+                <Button variant='contained' color='primary' size='large'>Preview</Button>
+                <Button variant='contained' color='primary' size='large'>Publish</Button>
+            </div> */}
             <div className='container-fluid'>
-                <h2 className=''>Add a new Article</h2>
+                <Typography variant='h4'>Add a new article</Typography>
                 <div className='row'>
                     <div className='col-12 col-md-6'>
                         <AddArticleFormTemplate formTemplateProps={
@@ -174,4 +182,10 @@ const  AddArticleForm = () => {
     );
 }
 
-export default AddArticleForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        addNewArticle: article => dispatch(addNewArticle(article))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(AddArticleForm);
