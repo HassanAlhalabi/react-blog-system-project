@@ -116,6 +116,10 @@ button:focus {
     cursor: pointer !important
 }
 
+.pagination button {
+    color: var(--third-color)
+}
+
 /* ****************** App style ****************** */
 
 ::-webkit-scrollbar {
@@ -125,7 +129,7 @@ button:focus {
 /* ::-webkit-scrollbar-track { } */
 
 ::-webkit-scrollbar-thumb { 
-    background-color: var(--second-color);
+    background-color: #EEE;
     border-radius: 1px;
     border-radius: 5px;
     cursor: pointer;
@@ -244,8 +248,24 @@ nav.navbar .lower-nav a:focus {
 
 .drawer-closed {
     position: absolute;
+    height: 100%;
     left: -185px;
     top: 0;
+}
+
+@media(max-width: 991px) {
+    .drawer-closed {
+        position: relative;
+        height: 48px;
+        overflow: hidden;
+        flex: none;
+        left: 0;
+        min-height: auto;
+    }
+
+    .drawer-open {
+        min-height: auto
+    }
 }
 
 .drawer-open {
@@ -269,10 +289,65 @@ nav.navbar .lower-nav a:focus {
 
 /* My Artiles  */
 
-.articles .article-image img {
-    width: 100%;
-    height: 230px;
+@media(max-width: 767px) {
+    .all-articles .article-item {
+        flex-flow: column;
+        padding-right: 48px;
+    }
+}
+
+.all-articles li img {
     object-fit: cover;
+}
+
+.all-articles .MuiListItemText-primary {
+    font-size: 21px !important;
+}
+
+.MuiListItemText-secondary {
+    color: var(--third-color) !important;
+}
+
+@media(max-width: 767px) {
+    .all-articles .MuiListItemSecondaryAction-root {
+        display: flex;
+        flex-flow: column;
+    }
+}
+
+.article-body {
+    background-color: #FFF;
+}
+
+.article-body .article-image {
+    border-bottom: 3px solid var(--third-color);
+}
+
+.article-body h1 {
+    color: var(--second-color);
+    font-weight: bold;
+}
+
+.article-meta {
+    background-color: var(--third-color);
+    color: var(--second-color);
+    font-weight: bold;
+}
+
+.article-content pre {
+    color: var(--second-color);
+    font-family: sans-serif;
+    white-space: pre-line;
+}
+
+.article-tag {
+    padding: 8px 15px;
+    background-color: var(--third-color);
+    color: var(--second-color)
+}
+
+.article-options {
+    background-color: var(--second-color);
 }
 
 /* add article form */
@@ -301,19 +376,10 @@ nav.navbar .lower-nav a:focus {
 
 .remove-tag,
 .remove-category {
-    border-radius: 50%;
-    border: 1px solid rgb(255, 48, 48);
-    color: rgb(255, 48, 48);
     width: 25px;
     height: 25px;
     cursor: pointer;
     transition: .4s;
-}
-
-.remove-tag:hover,
-.remove-category:hover {
-    color: #FFF;
-    background-color: rgb(255, 48, 48);
 }
 
 .publish-btn {
@@ -338,6 +404,7 @@ nav.navbar .lower-nav a:focus {
 }
 
 .post-preview-panel {
+    background-color: #FFF;
     padding: 25px;
     border: 4px solid var(--main-color);
     max-height: 500px;
@@ -346,6 +413,7 @@ nav.navbar .lower-nav a:focus {
 
 .post-preview-panel h1 {
     font-size: 24px !important;
+    color: var(--second-color)
 }
 
 .post-preview-panel .article-meta {
@@ -365,9 +433,11 @@ nav.navbar .lower-nav a:focus {
     padding: 4px 4px 2px;
 }
 
-.post-preview-panel p {
+.post-preview-panel pre p {
+    font-family: sans-serif;
     font-size: 12px;
     padding: 0px 4px;
+    white-space: pre-line
 }
 
 /* Sign In , Sign Up Form */

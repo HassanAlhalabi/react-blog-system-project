@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Article from './Article'
-import loader from './imgs/loader.svg'
+import ArticleCard from './ArticleCard';
+import loader from './imgs/loader.svg';
 
 const LatestNews = () => {
     
@@ -50,7 +50,7 @@ const LatestNews = () => {
     let articlesTemplate =
         <div className='row'>
             {articles.map(article => 
-                <Article articleProps={article}/>
+                <ArticleCard articleCardProps={article}/>
             )}
         </div>
          

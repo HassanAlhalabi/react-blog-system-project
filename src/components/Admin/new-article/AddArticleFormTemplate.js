@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import DeleteRounded from '@material-ui/icons/DeleteRounded';
 
 const AddArticleFormTemplate = ({formTemplateProps}) => {
     return(
-    <form className='mt-3' onSubmit={formTemplateProps.addArticle}>
+    <form className='mt-3' onSubmit={formTemplateProps.handleFormSubmit}>
         <div className='form-group'>
             <label htmlFor='article-title'>Title:</label>
             <input 
@@ -20,7 +21,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                 type='text' 
                 className='form-control w-100 mb-3'
                 onChange={formTemplateProps.handleChange}
-                value={formTemplateProps.inputs.autohor}
+                value={formTemplateProps.inputs.author}
                 name="author"
                 autoComplete='off'
                 />
@@ -31,9 +32,11 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                 onChange={formTemplateProps.handleChange}
                 value={formTemplateProps.inputs.content}
                 name='content'
+                rows='15'
                 />
             <label htmlFor='article-category'>Categories:</label><br />    
             <div className='categories-input'> 
+                {                    console.log(formTemplateProps.inputs.categories)}
                 {
                    formTemplateProps.inputs.categories.map(
                        category => 
@@ -46,11 +49,10 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                                 checked={category.isChecked}/>
                             <span>{category.value}</span>
                             <div 
-                                className='remove-category text-center d-inline-block'
-                                id='remove-category'
-                                onClick={() => formTemplateProps.handleRemoveCategory(category.id)}
-                            >
-                                <span className='p-0'>x</span>
+                                className='remove-category text-center d-inline-block'>
+                                <DeleteRounded
+                                    color='secondary'
+                                    onClick={() => formTemplateProps.handleRemoveCategory(category.id)}/>
                             </div>
                         </div>
                    ) 
@@ -86,12 +88,8 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                                     key={formTemplateProps.inputs.tags.indexOf(tag)} 
                                     className='tag p-2 mr-2 mb-2 d-flex align-items-center'>
                                     {tag}
-                                    <div 
-                                        className='remove-tag text-center ml-2 d-inline-block'
-                                        id='remove-tag'
-                                        onClick={() => formTemplateProps.handleRemoveTag(tag)}
-                                    >
-                                        <span>x</span>
+                                    <div className='remove-tag text-center ml-2 d-inline-block' >
+                                        <DeleteRounded variant='filled' color='secondary' onClick={() => formTemplateProps.handleRemoveTag(tag)}/>
                                     </div>
                                 </div>
                         )

@@ -1,31 +1,36 @@
-import React , {useContext, useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import React , { useContext, useState } from 'react';
+import { useHistory , useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import AddArticleFormTemplate from './AddArticleFormTemplate';
-import AddArticleFormPreview from './AddArticleFormPreview';
+import AddArticleFormTemplate from '../new-article/AddArticleFormTemplate';
+import AddArticleFormPreview from '../new-article/AddArticleFormPreview';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
 import { addArticle as addNewArticle } from '../../../store/actions/actions';
-// import Button from '@material-ui/core/Button';
-import { process } from 'uniqid';
 
-const  AddArticleForm = (props) => {
+const EditArticle = ({ updateArticle , articles }) => {
 
-    console.log(props)
-    
+    const articleId = useParams('id').id * 1;
+    const article = articles.filter(article => article.id === articleId)[0];
     const [categories , setCategories] = useContext(CategoriesContext);
     const [inputs,setInputs] = useState({
-        title: '',
-        author: '',
-        content: '',
-        categories: categories,
+        title:       article.title,
+        author:      article.author,
+        content:     article.content,
+        categories:  categories.map(category => {
+                        if(article.categories.includes(category.value.toLowerCase())){
+                            category.isChecked = true
+                        } else {
+                            category.isChecked = false
+                        }
+                        return category
+        }),
         newCategory: '',
-        tags: [],
-        newTag: ''
+        tags:        article.tags,
+        newTag:      ''
     })
-    // const [date,setDate] = useState('')
+    const [date,setDate] = useState('')
     const [error,setError] = useState('')
-    const history = useHistory()    
+    // const history = useHistory()    
 
     const handleAddCategory = e => {
         e.preventDefault()
@@ -130,18 +135,18 @@ const  AddArticleForm = (props) => {
         } else if( inputs.content === '' || inputs.content === undefined ) {
             setError('There is No Content!!')
         } else {
-            const newArticle = {
-                id: process(),
+            const updatedArticle = {
+                id: articleId,
                 title: inputs.title,
                 author: inputs.author,
                 content: inputs.content,
                 urlToImage: '',
                 date: '',
-                categories: inputs.categories.filter(category => category.isChecked === true),
+                categories: categories,
                 tags: inputs.tags
             }
-            props.addNewArticle(newArticle);
-            history.push('/admin-panel/my-articles');
+            updateArticle(updatedArticle);
+            // history.push('/admin-panel/my-articles');
         }
     }
 
@@ -151,12 +156,8 @@ const  AddArticleForm = (props) => {
 
     return(
         <div className='add-article-form'>
-            {/* <div className='add-article-options d-flex justify-content-end pt-1 pb-1'>
-                <Button variant='contained' color='primary' size='large'>Preview</Button>
-                <Button variant='contained' color='primary' size='large'>Publish</Button>
-            </div> */}
             <div className='container-fluid'>
-                <Typography variant='h4'>Add a new article</Typography>
+                <Typography variant='h4'>Edit article</Typography>
                 <div className='row'>
                     <div className='col-12 col-md-6'>
                         <AddArticleFormTemplate formTemplateProps={
@@ -182,10 +183,16 @@ const  AddArticleForm = (props) => {
     );
 }
 
+const mapStateToProps = state => {
+    return ({
+        articles: state.articles
+    })
+}
+
 const mapDispatchToProps = dispatch => {
     return {
-        addNewArticle: article => dispatch(addNewArticle(article))
+        updateArticle: article => dispatch(addNewArticle(article))
     }
 }
 
-export default connect(null,mapDispatchToProps)(AddArticleForm);
+export default connect(mapStateToProps,mapDispatchToProps)(EditArticle);

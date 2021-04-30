@@ -2,6 +2,7 @@
 // Articles Actions
 export const ADD_ARTICLE    = 'ADD_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+export const PUBLISH_UPDATE = 'PUBLISH_UPDATE';
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
 
 // Users Actions

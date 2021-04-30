@@ -1,51 +1,55 @@
-import * as actionTypes from './actionsTypes';
+import * as actionsTypes from './actionsTypes';
 
 export const addArticle = article => (
     {
-        type: actionTypes.ADD_ARTICLE,
+        type: actionsTypes.ADD_ARTICLE,
         article,
     }
 )
 
-export const removeArticle = id => (
+export const deleteArticle = id => (
     {
-        type: actionTypes.DELETE_ARTICLE,
+        type: actionsTypes.DELETE_ARTICLE,
         id,
     }
 )
 
+export const publishUpdate = id => ({
+    type: actionsTypes.PUBLISH_UPDATE,
+    id
+})
 
 export const updateArticle = article => (
     {
-        type: actionTypes.UPDATE_ARTICLE,
+        type: actionsTypes.UPDATE_ARTICLE,
         article,
     }
 )
 
 export const addUser = user => (
     {
-        type: actionTypes.ADD_USER,
+        type: actionsTypes.ADD_USER,
         user
     }
 )
 
 export const deleteUser = id => (
     {
-        type: actionTypes.DELETE_USER,
+        type: actionsTypes.DELETE_USER,
         id
     }
 )
 
 export const updateUser = user => (
     {
-        type: actionTypes.UPDATE_USER,
+        type: actionsTypes.UPDATE_USER,
         user
     }
 )
 
 export const suspendUser = id => (
     {
-        type: actionTypes.SUSPEND_USER,
+        type: actionsTypes.SUSPEND_USER,
         id
     }
 )
