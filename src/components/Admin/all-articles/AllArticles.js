@@ -15,10 +15,6 @@ import Edit from '@material-ui/icons/Edit';
 import Pagination from '@material-ui/lab/Pagination';
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import { useMediaQuery } from '@material-ui/core';
-
-// import articleImg from '../../imgs/article-img.jpg';
-
 
 const useStyle = makeStyles({
     textColor: {
@@ -34,8 +30,8 @@ const useStyle = makeStyles({
 })
 
 const AllArticles = ({articles, deleteArticle}) => {
-
-    const classes = useStyle();
+    
+    const classes = useStyle();    
     
     const handleArticleDelete = index => {   
         const deleteConfirmation = window.confirm('Are You Sure You Want to Delete The Article!!');   
@@ -46,8 +42,10 @@ const AllArticles = ({articles, deleteArticle}) => {
     page = page === undefined ? 1 : page * 1 ;
 
     const [selectedPage,setSelectedPage] = useState(page);
-
-    const articlesList = articles.slice( (page * 10 - 10) , (10 * page) );
+    
+    const pageSize = 10;
+    
+    const articlesList = articles.slice( (page * pageSize - pageSize) , (pageSize * page) );
 
     const history = useHistory();
 
@@ -105,9 +103,10 @@ const AllArticles = ({articles, deleteArticle}) => {
                         </div>
                         <div className='pagination d-flex justify-content-center'> 
                             <Pagination 
-                                page={selectedPage} 
+                                page={page} 
                                 onChange={handlePagination} 
-                                count={articles.length % 10 + 1} size='large'/>
+                                count={Math.ceil(articles.length/10)} 
+                                size='large'/>
                         </div>
                     </div>      
                 }          

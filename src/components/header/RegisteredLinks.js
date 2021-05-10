@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import Person from '@material-ui/icons/Person';
 import LocalPostOfficeRounded from '@material-ui/icons/LocalPostOfficeRounded';
-import PlusOneRounded from '@material-ui/icons/PlusOneRounded';
+import FavoriteRounded from '@material-ui/icons/FavoriteRounded';
 import { makeStyles } from '@material-ui/core';
 
 const useStyle = makeStyles({
@@ -56,14 +56,14 @@ const RegisteredLinks = ({user}) => {
                             </ListItemIcon>
                         </ListItem>
                     </Link>  
-                    <Link to='/favorates'>
+                    <Link to='/favorite-articles'>
                         <ListItem button className='color-third'>
                             <ListItemText
                                 button 
                                 primary='Favorate List'
                             />
                             <ListItemIcon className='justify-content-end'>
-                                <PlusOneRounded className='color-third'/>
+                                <FavoriteRounded className='color-third'/>
                             </ListItemIcon>
                         </ListItem>
                     </Link>  

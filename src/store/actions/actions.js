@@ -1,5 +1,7 @@
 import * as actionsTypes from './actionsTypes';
 
+// Article Actions
+
 export const addArticle = article => (
     {
         type: actionsTypes.ADD_ARTICLE,
@@ -24,7 +26,18 @@ export const updateArticle = article => (
         type: actionsTypes.UPDATE_ARTICLE,
         article,
     }
-)
+);
+
+// Favorite Articles Actions
+
+export const toggleFavoriteArticle = id => (
+    {
+        type: actionsTypes.TOGGLE_FAVORITE_ARTICLE,
+        id
+    }
+);
+
+// Users Actions
 
 export const addUser = user => (
     {

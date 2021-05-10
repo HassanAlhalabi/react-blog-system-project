@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deleteArticle, publishUpdate } from '../../../store/actions/actions';
 import { useParams , Link , useHistory } from 'react-router-dom';
@@ -9,6 +9,7 @@ import Edit from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PublishRounded from '@material-ui/icons/PublishRounded';
 import ArticleBody from '../../ArticleBody';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyle = makeStyles({
     articleOptions: {
@@ -24,27 +25,37 @@ const ArticleOptions = ({articles,deleteArticle,publishUpdate}) => {
     const articleId = useParams('id').id;
     const article   = articles.filter(article => article.id == articleId )[0] 
     const history   = useHistory();
+    const [successMessage,setSuccessMessage] = useState(null)
 
     const handleArticleDelete = index => {   
         const deleteConfirmation = window.confirm('Are You Sure You Want to Delete The Article!!');   
         if(deleteConfirmation) {
             deleteArticle(index);
-            history.push('/admin-panel/my-articles') 
+            history.push('/admin-panel/all-articles') 
         } else {
             console.log('');
         }
     }
 
-    const handlePublish = () => publishUpdate(articleId * 1);
+    const handlePublish = () => {
+        publishUpdate(articleId);
+        article.isPublished === true ?
+            setSuccessMessage('Article Has Been Published Successfully')
+        :
+            setSuccessMessage('Article Has Been UnPublished Successfully')
+    };
 
     return ( 
         <div>
             <div className='row'>
-                <div className='col col-md-9'>
+                <div className='col-12 col-md-9'>
                         <ArticleBody articleProps={article} />
                 </div>
-                <div className='col col-md-3'>
+                <div className='col-12 col-md-3'>
                     <div className={`article-options ${classes.articleOptions}`}>
+                        <div className='mb-2'>
+                            {successMessage && <Alert severity='success' variant='filled'>{successMessage}</Alert>}
+                        </div>
                         <div className='mb-2'>
                             <Link to={`/admin-panel/edit-article/${article.id}`}>
                                 <Button variant='contained' color='primary' startIcon={<Edit />}>

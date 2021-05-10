@@ -28,11 +28,11 @@ const SignUpForm = () => {
     }
 
     return ( 
-        <div className='signup'>
+        <div className='signup pt-5 pb-5'>
             <div className='container'>
                 <div className='row'>
-                    <div className='col-12 col-sm-10 col-md-6 m-auto'>
-                        <form className='signup-form mt-5'>
+                    <div className='col-12 col-sm-10 col-md-5 m-auto'>
+                        <form className='signup-form'>
                             <Typography variant='h4' align='center'>
                                 Sign Up
                             </Typography>

@@ -21,14 +21,18 @@ const  AddArticleForm = (props) => {
         categories: categories,
         newCategory: '',
         tags: [],
-        newTag: ''
-    })
-    // const [date,setDate] = useState('')
-    const [error,setError] = useState('')
-    const history = useHistory()    
+        newTag: '',
+        urlToImage: ''
+    });
+    const [date,setDate] = useState(new Date())
+    const [titleError,setTitleError]         = useState(false);
+    const [authorError,setAuthorError]       = useState(false); 
+    const [contentError,setContentError]     = useState(false);
+    const [errorMessage,setErrorMessage]     = useState(null); 
+    const history = useHistory();    
 
     const handleAddCategory = e => {
-        e.preventDefault()
+        e.preventDefault();
         if(inputs.newCategory !== '' && inputs.newCategory !== undefined) {
             let categoryIsExisted = false;
             categories.map(category => {
@@ -57,17 +61,6 @@ const  AddArticleForm = (props) => {
             }    
         }
     }
-
-    const handleRemoveCategory = (id) => {
-        let newCategoryList = categories.filter(
-            category => category.id !== id
-        )
-        setCategories(newCategoryList)
-        setInputs({
-            ...inputs,
-            categories: newCategoryList
-        })
-    } 
 
     const handleAddTag = e => {
         e.preventDefault()
@@ -121,36 +114,53 @@ const  AddArticleForm = (props) => {
     console.log('inputs:',inputs)
     console.log('categories in context:',categories)
 
-    const handleFormSubmit = e => {
-        e.preventDefault();
-        if( inputs.title === '' || inputs.title === undefined ) {
-            setError('Title is Missing!!')
-        } else if( inputs.author === '' || inputs.author === undefined ) {
-            setError('Author name is required!!') 
-        } else if( inputs.content === '' || inputs.content === undefined ) {
-            setError('There is No Content!!')
+    const handleFormSubmit = (event , action) => {
+        event.preventDefault();
+        let noErrors = true;
+        console.log(inputs.title)
+        if(inputs.title === '' || inputs.title === undefined ) {
+            setTitleError(true);
+            setErrorMessage('Required Fields are Missing');
+            noErrors = false;
         } else {
+            setTitleError(false);
+        }
+        if(inputs.author === '') {
+            setAuthorError(true);
+            setErrorMessage('Required Fields are Missing');
+            noErrors = false;
+        } else {
+            setAuthorError(false);
+        }
+        if(inputs.content === '') {
+            setContentError(true);
+            setErrorMessage('Required Fields are Missing');
+            noErrors = false;
+        } else {
+            setContentError(false);
+        }
+        if(noErrors) {
+            setErrorMessage(false)
             const newArticle = {
                 id: process(),
                 title: inputs.title,
                 author: inputs.author,
                 content: inputs.content,
                 urlToImage: '',
-                date: '',
-                categories: inputs.categories.filter(category => category.isChecked === true),
-                tags: inputs.tags
+                date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
+                categories: inputs.categories.filter(
+                    category => category.isChecked === true).map(
+                        category => category.value),
+                tags: inputs.tags,
+                isPublished: action === 'publish' ? true : false
             }
             props.addNewArticle(newArticle);
-            history.push('/admin-panel/my-articles');
+            history.push('/admin-panel/all-articles');
         }
     }
 
-    // Error Message
-    let errorMessage = error === '' ? '' :
-    <span className='shaking-message alert alert-danger d-block text-center'>{error}</span>
-
     return(
-        <div className='add-article-form'>
+        <div className='add-article-form pt-4 pb-4'>
             {/* <div className='add-article-options d-flex justify-content-end pt-1 pb-1'>
                 <Button variant='contained' color='primary' size='large'>Preview</Button>
                 <Button variant='contained' color='primary' size='large'>Publish</Button>
@@ -164,9 +174,11 @@ const  AddArticleForm = (props) => {
                                 handleChange,
                                 inputs,
                                 handleAddCategory,
-                                handleRemoveCategory,
                                 handleAddTag,
                                 handleRemoveTag,
+                                titleError,
+                                authorError,
+                                contentError,
                                 errorMessage,
                                 handleFormSubmit,   
                             }

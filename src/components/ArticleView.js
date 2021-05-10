@@ -6,7 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 
 const ArticleView = ({articles}) => {
 
-    const articleId = useParams('id').id * 1;
+    const articleId = useParams('id').id;
     const article = articles.filter(article => article.id === articleId)[0];
 
     return ( 
@@ -34,7 +34,7 @@ const ArticleView = ({articles}) => {
 
 const mapStateToProps = state => {
     return({
-        articles: state.articles
+        articles: state.articles,
     })
 }
  

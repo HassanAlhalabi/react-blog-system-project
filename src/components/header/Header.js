@@ -24,7 +24,7 @@ const Header = ({user}) => {
               <div className="logo-holder text-center text-sm-left">
                 <Link to='/' className="logo">
                   <Typorgaphy className='pl-0' variant='h4' component='h1'>
-                    Blogger
+                    BlogPost
                   </Typorgaphy>  
                 </Link>
               </div>

@@ -52,7 +52,8 @@ a:focus {
 /* inputs */
 
 label {
-    color: #EEE;
+    color: var(--third-color);
+    font-size: 18px;
 }
 
 button:focus {
@@ -120,6 +121,10 @@ button:focus {
     color: var(--third-color)
 }
 
+.MuiPaginationItem-page.Mui-selected {
+    background-color: rgb(255 255 255 / 10%) !important;
+}
+
 /* ****************** App style ****************** */
 
 ::-webkit-scrollbar {
@@ -129,7 +134,7 @@ button:focus {
 /* ::-webkit-scrollbar-track { } */
 
 ::-webkit-scrollbar-thumb { 
-    background-color: #EEE;
+    background-color: var(--third-color);
     border-radius: 1px;
     border-radius: 5px;
     cursor: pointer;
@@ -219,6 +224,41 @@ nav.navbar .lower-nav a:focus {
     border-bottom: 3px solid var(--third-color);
 }
 
+/* Articles Page Style */
+
+.article-card {
+    border: 1px solid var(--third-color);
+}
+
+.MuiCard-root {
+    min-height: 100%
+}
+
+.article-title h2 {
+    color: var(--second-color);
+    padding: 0;
+    font-weight: bold
+}
+
+/* Article Body Style */
+
+.article-body .article-categories {
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.article-body .article-categories span {
+    color: var(--second-color);
+    background-color: #FFF;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-right: 5px;
+    border: 1px solid var(--third-color);
+    text-transform: capitalize;
+}
+
 /* Admin Panel Style */
 
 .admin-panel-content {
@@ -287,7 +327,7 @@ nav.navbar .lower-nav a:focus {
     color: var(--third-color)
 }
 
-/* My Artiles  */
+/* all Artiles  */
 
 @media(max-width: 767px) {
     .all-articles .article-item {
@@ -313,6 +353,10 @@ nav.navbar .lower-nav a:focus {
         display: flex;
         flex-flow: column;
     }
+}
+
+.article-is-published .MuiAlert-root {
+    padding: 0px 15px
 }
 
 .article-body {
@@ -352,14 +396,40 @@ nav.navbar .lower-nav a:focus {
 
 /* add article form */
 
+.add-article-form {
+    background-color: var(--second-color);
+}
+
+.add-article-form .MuiFilledInput-input {
+    background-color: #FFF !important;
+    color: var(--second-color) 
+}
+
+.add-article-form .MuiInputLabel-filled,
+.add-article-form .MuiFormLabel-root.Mui-focused {
+    color: #d3b48e 
+}
+
+.add-article-form .MuiFilledInput-underline:before {
+    border-bottom-color: var(--third-color) 
+}
+
+.add-article-form .MuiFilledInput-underline:after {
+    border-bottom-color: var(--third-color)
+}
+
+.add-article-form .MuiFilledInput-multiline {
+    background-color: #FFF !important;
+    border-radius: 0;
+}
+
 .categories-input {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
 }
 
-.categories-input span {
-    padding: 5px 15px 5px 0px;
-    margin: 5px;
+.MuiCheckbox-colorPrimary.Mui-checked {
+    color: var(--third-color) !important;
 }
 
 #add-category-btn,
@@ -369,9 +439,10 @@ nav.navbar .lower-nav a:focus {
 
 .tag,
 .category {
-    background-color: var(--second-color);
+    background-color: var(--main-color);
     color: #FFF;
     border-radius: 3px;
+    font-weight: bold;
 }
 
 .remove-tag,
@@ -382,33 +453,16 @@ nav.navbar .lower-nav a:focus {
     transition: .4s;
 }
 
-.publish-btn {
-    width: 50%;
-    display: flex;
-    margin: auto;
-    border: none;
-    background-color: var(--main-color);
-    text-align: center !important;
-    color: #FFF;
-    padding: 16px 25px 10px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.publish-btn:focus {
-    border: none;
-    outline: none;
-    background-color: var(--main-color);
-    opacity: .8;
-}
-
 .post-preview-panel {
     background-color: #FFF;
     padding: 25px;
-    border: 4px solid var(--main-color);
-    max-height: 500px;
+    /* border: 2px solid var(--third-color); */
+    min-height: 500px;
     overflow-y: auto;
+}
+
+.post-preview-panel .post-image-holder-preview {
+    border-bottom: 3px solid var(--third-color);
 }
 
 .post-preview-panel h1 {
@@ -417,20 +471,21 @@ nav.navbar .lower-nav a:focus {
 }
 
 .post-preview-panel .article-meta {
-    background-color: #EEE;
-    padding: 0px 4px;
+    background-color: var(--third-color);
+    color: var(--second-color);
+    font-weight: bold;
 }
 
 .post-preview-panel .article-author {
-    font-size: 13px;
+    font-size: 12px;
     padding: 5px;
-    color: #666;
+    color: var(--second-color);
 }
 
-.post-preview-panel .article-date time {
-    font-size: 8px;
-    color: #888888;
-    padding: 4px 4px 2px;
+.post-preview-panel .article-date {
+    font-size: 12px;
+    color: var(--second-color);
+    padding: 4px
 }
 
 .post-preview-panel pre p {
@@ -438,6 +493,13 @@ nav.navbar .lower-nav a:focus {
     font-size: 12px;
     padding: 0px 4px;
     white-space: pre-line
+}
+
+.article-tag-preview {
+    padding: 4px 8px;
+    font-size: 12px;
+    background-color: var(--third-color);
+    color: var(--second-color)
 }
 
 /* Sign In , Sign Up Form */

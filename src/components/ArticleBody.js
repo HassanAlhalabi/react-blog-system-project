@@ -1,14 +1,23 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import articleImg from './imgs/article-img.jpg';
+import articleImg from './imgs/article-image-placeholder.png';
 
 const ArticleBody = ({articleProps}) => {
     return ( 
         <div className='article-body p-2 p-md-4'>
-            <div className='article-image text-center'>
+            <div className='article-image text-center position-relative'>
                 {/* <img src={articleProps.urlToImage} className='img-fluid' alt='article-img'/> */}
                 <img src={articleImg} alt='article-img' className='img-fluid'/>
-                {/* <img src="https://placeimg.com/640/480/any" className='m-auto w-100 img-fluid'/> */}
+                <div className='article-categories position-absolute'>
+                    {
+                        articleProps.categories.map(category => {
+                            if(category === 'uncategorized'){
+                                return null
+                            } 
+                            return <span>{category}</span>
+                        })
+                    }
+                </div>
             </div> 
             <div className='article-title'>
                 <Typography variant='h4' component='h1'>

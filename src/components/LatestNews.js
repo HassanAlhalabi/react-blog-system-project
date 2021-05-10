@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ArticleCard from './ArticleCard';
-import loader from './imgs/loader.svg';
 
 const LatestNews = () => {
     
@@ -58,7 +57,7 @@ const LatestNews = () => {
             <div className='articles'>
                 <div className='container'>
                     {connectionError && <div><span className='alert alert-warning'>Unable to connect to the server !! Check your internet connection</span></div>}
-                    {isLoading && <div className='text-center'><img src={loader} alt='loader'/></div> }
+                    {isLoading && <div className='text-center'>Loading....</div> }
                     {articlesTemplate}
                 </div>
             </div>

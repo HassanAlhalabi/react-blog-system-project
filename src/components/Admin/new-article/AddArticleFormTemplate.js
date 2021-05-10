@@ -1,82 +1,88 @@
 import React from 'react';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import Alert from '@material-ui/lab/Alert';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const AddArticleFormTemplate = ({formTemplateProps}) => {
     return(
-    <form className='mt-3' onSubmit={formTemplateProps.handleFormSubmit}>
+    <form className='mt-3'>
+        <TextField
+            type='text' 
+            name='title'
+            variant='filled' 
+            label='Title' 
+            className='w-100 mb-4'
+            value={formTemplateProps.inputs.title}
+            onChange={formTemplateProps.handleChange}
+            autoComplete='off'
+            required
+            error={formTemplateProps.titleError} />
+        <TextField
+            type='text' 
+            name='author'
+            variant='filled' 
+            label='Author' 
+            className='w-100 mb-4'
+            value={formTemplateProps.inputs.author}
+            onChange={formTemplateProps.handleChange}
+            required
+            error={formTemplateProps.authorError}
+            />
+        <TextField    
+            type='text' 
+            name='content'
+            variant='filled' 
+            label='Content' 
+            className='w-100 mb-4'
+            value={formTemplateProps.inputs.content}
+            onChange={formTemplateProps.handleChange}
+            autoComplete='off'
+            multiline
+            rows='20'
+            required
+            error={formTemplateProps.contentError}
+            />    
         <div className='form-group'>
-            <label htmlFor='article-title'>Title:</label>
-            <input 
-                id='article-title'
-                type='text' 
-                className='form-control w-100 mb-3'
-                onChange={formTemplateProps.handleChange}
-                value={formTemplateProps.inputs.title}
-                name="title"
-                autoComplete='off'
-                />
-            <label htmlFor='article-author'>Author:</label>
-            <input 
-                id='article-author'
-                type='text' 
-                className='form-control w-100 mb-3'
-                onChange={formTemplateProps.handleChange}
-                value={formTemplateProps.inputs.author}
-                name="author"
-                autoComplete='off'
-                />
-            <label htmlFor='article-content'>Content:</label>
-            <textarea
-                id='article-content'
-                className='form-control w-100'
-                onChange={formTemplateProps.handleChange}
-                value={formTemplateProps.inputs.content}
-                name='content'
-                rows='15'
-                />
-            <label htmlFor='article-category'>Categories:</label><br />    
+            <label htmlFor='article-category'>Categories:</label><br />  
             <div className='categories-input'> 
-                {                    console.log(formTemplateProps.inputs.categories)}
                 {
                    formTemplateProps.inputs.categories.map(
                        category => 
-                        <div className='category mr-1 d-flex justify-content-between align-items-center pl-2 pr-2 mb-2' key={category.id}>
-                            <input
-                                type='checkbox'
+                        <div className='category mr-1 pl-2 pr-2 mb-2' key={category.id}>
+                            <Checkbox 
+                                value={category.value} 
+                                color='primary' 
                                 name='category'
-                                value={category.value}
                                 onChange={formTemplateProps.handleChange}
-                                checked={category.isChecked}/>
+                                checked={category.isChecked}/>      
                             <span>{category.value}</span>
-                            <div 
-                                className='remove-category text-center d-inline-block'>
-                                <DeleteRounded
-                                    color='secondary'
-                                    onClick={() => formTemplateProps.handleRemoveCategory(category.id)}/>
-                            </div>
                         </div>
                    ) 
                 }  
             </div>
-            <div className=
-                'd-flex mt-2 align-items-center flex-wrap flex-sm-nowrap justify-content-center'>
-                <input 
+            <div className='mt-2 mb-2'>
+                <TextField
                     type='text' 
-                    name='newCategory' 
-                    className='form-control mb-2 mt-2'
-                    placeholder='Add New Category'
+                    name='newCategory'
+                    variant='filled' 
+                    label='Add New Category' 
+                    className='w-100 mb-2'
                     value={formTemplateProps.inputs.newCategory}
                     onChange={formTemplateProps.handleChange}/>
-                <button 
-                    id='add-category-btn'
-                    className='btn btn-primary ml-2 p-2'
+                <Button 
+                    variant='contained'
+                    color='primary'
+                    size='small'
                     onClick={formTemplateProps.handleAddCategory}
                     disabled={
                         formTemplateProps.inputs.newCategory === undefined ||
                         formTemplateProps.inputs.newCategory === '' ? true : false } 
                     >
                     Add Category
-                </button>    
+                </Button>  
             </div> 
             <label htmlFor='article-category'>Tags:</label><br />
             <div className='tags-input'>
@@ -95,35 +101,77 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                         )
                     }
                 </div>
-                <div className=
-                'd-flex mt-2 align-items-center flex-wrap flex-sm-nowrap justify-content-center'>
-                    <input 
-                        type='text'
+                <div className='mt-2 mb-2'>
+                    <TextField
+                        type='text' 
                         name='newTag'
-                        className='form-control mb-2'
-                        placeholder='Add Article Tags' 
+                        variant='filled' 
+                        label='Add Article Tags' 
+                        className='w-100 mb-2'
                         value={formTemplateProps.inputs.newTag}
                         onChange={formTemplateProps.handleChange}/>
-                    <button 
+                    <Button 
                         id='add-tag-btn'
-                        className='btn btn-primary ml-2 p-2'
+                        variant='contained'
+                        size='small'
+                        color='primary'
                         onClick={formTemplateProps.handleAddTag}
                         disabled={
                             formTemplateProps.inputs.newTag === undefined ||
                             formTemplateProps.inputs.newTag === '' ? true : false }
                         >
                         Add Tag
-                    </button>
+                    </Button>
                 </div>
             </div>            
         </div>
-        <div>
-            {formTemplateProps.errorMessage}
+        <div className='mb-3'>
+            {formTemplateProps.successMessage && 
+                <Alert 
+                    severity='success' 
+                    variant='filled'
+                    className='shaking-message'>
+                        {formTemplateProps.successMessage}
+                </Alert>}
+            {formTemplateProps.errorMessage && 
+                <Alert 
+                    variant='filled' 
+                    severity='error' 
+                    className='shaking-message'>
+                        {formTemplateProps.errorMessage}
+                </Alert>}
         </div>
-        <div>
-            <button className='publish-btn'>
-                <span className='w-100'>Publish <i className='fa fa-plus'></i></span>
-            </button>
+        <div className='text-center mb-5'>
+            <ButtonGroup>
+                <Button 
+                    type='submit' 
+                    variant='contained' 
+                    color='primary' 
+                    size='large'
+                    onClick={ event => formTemplateProps.handleFormSubmit(event , 'publish') }
+                    disabled={
+                        (formTemplateProps.inputs.title === '' || formTemplateProps.inputs.title === undefined) 
+                        ||
+                        (formTemplateProps.inputs.author === '' || formTemplateProps.inputs.author === undefined) 
+                        ||
+                        (formTemplateProps.inputs.content === '' || formTemplateProps.inputs.content === undefined) }>
+                        Publish
+                </Button>
+                <Button 
+                    type='submit' 
+                    variant='contained' 
+                    color='primary' 
+                    size='large'
+                    onClick={ event => formTemplateProps.handleFormSubmit(event , 'save') }
+                    disabled={
+                        (formTemplateProps.inputs.title === '' || formTemplateProps.inputs.title === undefined) 
+                        ||
+                        (formTemplateProps.inputs.author === '' || formTemplateProps.inputs.author === undefined) 
+                        ||
+                        (formTemplateProps.inputs.content === '' || formTemplateProps.inputs.content === undefined) }>
+                        Save
+                </Button>
+            </ButtonGroup>   
         </div>
     </form>
     )}
