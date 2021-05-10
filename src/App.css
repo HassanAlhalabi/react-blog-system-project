@@ -117,8 +117,25 @@ button:focus {
     cursor: pointer !important
 }
 
-.pagination button {
-    color: var(--third-color)
+.page-header {
+    font-weight: bold !important;
+    position: relative;
+    margin-top: 20px !important;
+    margin-bottom: 70px !important;
+}
+
+.page-header:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    border-bottom: 4px solid var(--third-color);
+}
+
+.MuiPaginationItem-root {
+    color: var(--third-color) !important;
 }
 
 .MuiPaginationItem-page.Mui-selected {
@@ -234,9 +251,9 @@ nav.navbar .lower-nav a:focus {
     min-height: 100%
 }
 
-.article-title h2 {
+.article-card .MuiCardHeader-title  {
     color: var(--second-color);
-    padding: 0;
+    padding: 10px 0px;
     font-weight: bold
 }
 
@@ -257,6 +274,32 @@ nav.navbar .lower-nav a:focus {
     margin-right: 5px;
     border: 1px solid var(--third-color);
     text-transform: capitalize;
+}
+
+/* Contact Us Page */
+
+.contact-us input,
+.contact-us .MuiInputBase-multiline,
+.contact-us .MuiFilledInput-root:hover,
+.contact-us .MuiTextField-root {
+    background-color: var(--second-color);
+    color: #FFF;
+    border-radius: 0;
+    font-size: 21px
+}
+
+.contact-us .MuiFilledInput-input {
+    padding: 40px 12px 10px !important
+}
+
+.contact-us input:before,
+.contact-us input:after,
+.contact-us label {
+    color: var(--third-color) !important;
+}
+
+.contact-us .MuiFilledInput-underline:after {
+    border-color: var(--third-color) !important;
 }
 
 /* Admin Panel Style */
@@ -372,19 +415,19 @@ nav.navbar .lower-nav a:focus {
     font-weight: bold;
 }
 
-.article-meta {
+.article-body .article-meta {
     background-color: var(--third-color);
     color: var(--second-color);
     font-weight: bold;
 }
 
-.article-content pre {
+.article-body .article-content pre {
     color: var(--second-color);
     font-family: sans-serif;
     white-space: pre-line;
 }
 
-.article-tag {
+.article-body .article-tag {
     padding: 8px 15px;
     background-color: var(--third-color);
     color: var(--second-color)

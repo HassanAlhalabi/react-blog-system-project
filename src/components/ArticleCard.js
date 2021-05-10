@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import Favorite from '@material-ui/icons/Favorite';
 import Share from '@material-ui/icons/Share';
@@ -37,20 +38,10 @@ const Article = ({articleCardProps,toggleFavoriteArticle,isFavorite}) => {
                                 <img src={articleCardProps.urlToImage} alt='article-img' className='img-fluid'/>
                             }
                         </div>
-                    </CardMedia>   
-                    <CardContent>    
-                        <div className='article-title' >
-                            <Typography variant='h6' component='h2'>{articleCardProps.title}</Typography>
-                        </div>
-                        <div className='article-meta p-2'>
-                            <div className='article-author'>
-                                <span>{articleCardProps.author}</span>
-                            </div>
-                            <div className='article-date'>
-                                <span>{articleCardProps.date}</span>
-                            </div>
-                        </div>
-                    </CardContent> 
+                    </CardMedia> 
+                    <CardHeader title={articleCardProps.title} 
+                                subheader={articleCardProps.date}
+                    /> 
                 </Link>    
                 <CardActions>
                     {isFavorite === true ?

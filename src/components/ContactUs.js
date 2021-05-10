@@ -1,15 +1,15 @@
 import React , {useState} from 'react';
-import Typography from '@material-ui/core/Typography';
+import PageHeader from './layout/PageHeader';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const ContactUs = () => {
     
     const [inputs , setInputs] = useState({
         name:    null,
         email:   null,
+        phone:   null,
         message: null
     })
     
@@ -29,12 +29,10 @@ const ContactUs = () => {
     return ( 
         <div className='contact-us pt-5 pb-5'>
             <div className='container'>
-                <div className='row'>
-                    <div className='col-12 col-sm-10 col-md-5 m-auto'>
-                        <form className='contact-us-form'>
-                            <Typography variant='h4' align='center'>
-                                Contact Us
-                            </Typography>
+                <form className='contact-us-form'>
+                    <PageHeader title='Contact Us'/>  
+                    <div className='row'>   
+                        <div className='col-12 col-md-6 d-flex flex-column justify-content-between'>
                             <TextField
                                 type='text'
                                 label='Your Name'
@@ -43,6 +41,7 @@ const ContactUs = () => {
                                 variant='filled'
                                 name='name'
                                 id='name'
+                                required
                                 onChange={handleFormChange}
                                 value={inputs.name}
                             />
@@ -54,37 +53,52 @@ const ContactUs = () => {
                                 variant='filled'
                                 name='email'
                                 id='email'
+                                required
                                 onChange={handleFormChange}
                                 value={inputs.email}
                             />
+                            <TextField
+                                type='phone'
+                                label='Your Phone Number'
+                                fullWidth 
+                                className='mb-4'
+                                variant='filled'
+                                name='phone-number'
+                                id='phone-number'
+                                onChange={handleFormChange}
+                                value={inputs.phone}
+                            />
+                        </div>
+                        <div className='col-12 col-md-6'>    
                             <TextField
                                 type='text'
                                 label='Your Message'
                                 fullWidth
                                 multiline
-                                rows='5' 
+                                rows='10' 
                                 className='mb-4'
                                 variant='filled'
                                 name='message'
                                 id='message'
+                                required
                                 onChange={handleFormChange}
                                 value={inputs.message}
                             />
-                            <div className='d-flex justify-content-center'>
-                                <Button
-                                    variant='contained' 
-                                    color='primary'
-                                    type='submit'
-                                    size='large'
-                                    startIcon={<ExitToAppIcon/>}
-                                    onClick={handleFormSubmit}
-                                >
-                                    Submit
-                                </Button>
-                            </div>      
-                        </form>
-                    </div>
-                </div>
+                        </div>
+                    </div>     
+                    <div className='d-flex justify-content-center'>
+                        <Button
+                            variant='contained' 
+                            color='primary'
+                            type='submit'
+                            size='large'
+                            startIcon={<ExitToAppIcon/>}
+                            onClick={handleFormSubmit}
+                        >
+                            Submit
+                        </Button>
+                    </div>      
+                </form>
             </div>
         </div>
      );
