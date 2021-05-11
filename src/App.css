@@ -561,6 +561,19 @@ nav.navbar .lower-nav a:focus {
     transition: .4s;
 }
 
+.add-image-button {
+    width: 100%;
+    color: var(--second-color);
+    background-color: rgb(238, 238, 238);
+    font-size: 24px;
+    border-radius: 0px;
+    border: 3px dashed var(--third-color);
+}
+
+.add-image-button svg {
+    font-size: 54px
+}
+
 .post-preview-panel {
     background-color: #FFF;
     padding: 25px;

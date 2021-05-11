@@ -1,16 +1,15 @@
 import React from 'react';
 import ArticleImage from '../../imgs/article-image-placeholder.png';
 
-const AddArticleFormPreview = ({previewProps}) => {
-    console.log('img article: ', previewProps.urlToImage)
+const AddArticleFormPreview = ({previewProps,articleImage}) => {
     return ( 
         <div>
             <h3 className=''>Article Preview</h3>
             <div className='post-preview-panel'>
                 <div className='post-image-holder-preview text-center'>
-                    { previewProps.urlToImage === '' ?
+                    { articleImage === '' ?
                         <img src={ArticleImage} className='img-fluid' alt='post-img'/> :
-                        <img src={previewProps.urlToImage} className='img-fluid' alt='post-img'/>
+                        <img src={articleImage} className='img-fluid' alt='post-img'/>                    
                     }
                 </div>
                 { previewProps.title && 

@@ -22,14 +22,15 @@ const  AddArticleForm = (props) => {
         newCategory: '',
         tags: [],
         newTag: '',
-        urlToImage: ''
+        urlToImage: '',
     });
-    const [date,setDate] = useState(new Date())
-    const [titleError,setTitleError]         = useState(false);
-    const [authorError,setAuthorError]       = useState(false); 
-    const [contentError,setContentError]     = useState(false);
-    const [errorMessage,setErrorMessage]     = useState(null); 
-    const history = useHistory();    
+    const [articleImage , setArticleImage] = useState('')
+    const [date,setDate]                   = useState(new Date())
+    const [titleError,setTitleError]       = useState(false);
+    const [authorError,setAuthorError]     = useState(false); 
+    const [contentError,setContentError]   = useState(false);
+    const [errorMessage,setErrorMessage]   = useState(null); 
+    const history = useHistory();  
 
     const handleAddCategory = e => {
         e.preventDefault();
@@ -92,6 +93,8 @@ const  AddArticleForm = (props) => {
         })
     }
 
+    const handleImageUpload = (imageList) => setArticleImage(imageList[0].data_url);
+
     const handleChange = e =>  { 
         let newCats = [];
         newCats = categories.map(n => {
@@ -111,8 +114,8 @@ const  AddArticleForm = (props) => {
                 [e.target.name] : e.target.value})
     }
 
-    console.log('inputs:',inputs)
-    console.log('categories in context:',categories)
+    // console.log('inputs:',inputs)
+    // console.log('categories in context:',categories)
 
     const handleFormSubmit = (event , action) => {
         event.preventDefault();
@@ -176,6 +179,7 @@ const  AddArticleForm = (props) => {
                                 handleAddCategory,
                                 handleAddTag,
                                 handleRemoveTag,
+                                handleImageUpload,
                                 titleError,
                                 authorError,
                                 contentError,
@@ -185,7 +189,7 @@ const  AddArticleForm = (props) => {
                         }/>
                     </div>
                     <div className='col-12 col-md-6'>
-                        <AddArticleFormPreview previewProps={inputs} />
+                        <AddArticleFormPreview previewProps={inputs} articleImage={articleImage} />
                     </div>
                 </div>
             </div>    

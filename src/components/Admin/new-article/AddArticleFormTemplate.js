@@ -1,10 +1,12 @@
 import React from 'react';
+import ImageUploading from 'react-images-uploading';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Alert from '@material-ui/lab/Alert';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
 const AddArticleFormTemplate = ({formTemplateProps}) => {
     return(
@@ -123,6 +125,33 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                         Add Tag
                     </Button>
                 </div>
+            </div>
+            <div className='mt-2 mb-2'>
+                <label htmlFor='article-image'>Article Image:</label><br />
+                <ImageUploading
+                    value={formTemplateProps.articleImage}
+                    onChange={formTemplateProps.handleImageUpload}
+                    dataURLKey="data_url">
+                    {({
+                        onImageUpload,
+                        isDragging,
+                        dragProps
+                    }) => (
+                        // write your building UI
+                        <div className="upload__image-wrapper">
+                            <button
+                                className='add-image-button pt-4 pb-4'
+                                style={isDragging ? { color: 'red !important' } : null}
+                                onClick={onImageUpload}
+                                {...dragProps}>
+                                    Click or Drop image here
+                                    <div className='pt-3'>
+                                        <AddAPhoto fontSize='large'/>
+                                    </div>
+                            </button>
+                        </div>
+                    )}
+                </ImageUploading>
             </div>            
         </div>
         <div className='mb-3'>
