@@ -10,8 +10,8 @@ const Sidebar = ({articles}) => {
         <div className='sidebar h-100'>
             <div className='p-2 p-md-4'>
                 <div className='sidebar-latest-articles'>
-                    <Typography variant='h5'>
-                        Latest Aricles:
+                    <Typography variant='h5' className='pl-0'>
+                        Latest Articles:
                     </Typography>
                     <div>
                         {

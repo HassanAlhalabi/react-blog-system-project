@@ -60,7 +60,7 @@ const RegisteredLinks = ({user}) => {
                         <ListItem button className='color-third'>
                             <ListItemText
                                 button 
-                                primary='Favorate List'
+                                primary='Favorates List'
                             />
                             <ListItemIcon className='justify-content-end'>
                                 <FavoriteRounded className='color-third'/>

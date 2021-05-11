@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams,useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PageHeader from './layout/PageHeader';
 import ArticleCard from './ArticleCard';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -29,6 +30,7 @@ const Articles = ({articles,favorites}) => {
     return ( 
         <div className='articles pt-5 pb-5'>
             <div className='container'>
+                <PageHeader title='Articles' />
                 <div className='row'>
                     {
                         slicedArticles.map(article => {
