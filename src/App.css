@@ -124,6 +124,12 @@ button:focus {
     margin-bottom: 70px !important;
 }
 
+@media(max-width: 576px) {
+    .page-header {
+        font-size: 44px !important
+    }
+}
+
 .page-header:after {
     content: '';
     position: absolute;
@@ -214,7 +220,7 @@ nav.navbar .lower-nav a:focus {
 }
 
 .lower-nav .search-box input[type='search'] {
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0;
     border: none;
     box-shadow: none !important;
     border: 1px solid #e3cdb3;
@@ -227,7 +233,7 @@ nav.navbar .lower-nav a:focus {
 .lower-nav .search-box-icon button {
     padding: 8px 12px 4px;
     background-color: var(--third-color);
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0;
     border: none;
     color: #888;
 }
@@ -276,7 +282,38 @@ nav.navbar .lower-nav a:focus {
     text-transform: capitalize;
 }
 
-/* Contact Us Page */
+/* Sidebar Style */
+
+.sidebar {
+    background-color: #FFF;
+}
+
+.sidebar h5 {
+    color: var(--second-color);
+    font-weight: bold;
+}
+
+/* Latest Article Card Style */
+
+.latest-article-card {
+    box-shadow: 0px 0px 1px 1px var(--third-color);
+    background-color: #EEE;
+}
+
+.latest-article-card img {
+    width: 75px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.latest-article-card h6 {
+    color: var(--second-color);
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Contact Us Page Style */
 
 .contact-us input,
 .contact-us .MuiInputBase-multiline,
@@ -300,6 +337,21 @@ nav.navbar .lower-nav a:focus {
 
 .contact-us .MuiFilledInput-underline:after {
     border-color: var(--third-color) !important;
+}
+
+.contact-us button {
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 0;
+    color: var(--second-color);
+    background-color: var(--third-color);
+    border: 1px solid var(--third-color);
+}
+
+.contact-us button:hover,
+.contact-us button:focus {
+    background-color: transparent;
+    color: var(--third-color)
 }
 
 /* Admin Panel Style */

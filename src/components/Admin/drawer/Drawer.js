@@ -83,9 +83,9 @@ const Drawer = ({drawerIsClosed , handleDrawerClose}) => {
                         index={5}
                         handleListItemClick={handleListItemClick}
                         selectedIndex={selectedIndex}
-                        text={'Bin'}
+                        text={'Trash'}
                         icon={<DeleteRounded/>}
-                        to={'/admin-panel/bin'}
+                        to={'/admin-panel/trash'}
                     />     
                 </List>
             </div>

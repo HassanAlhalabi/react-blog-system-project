@@ -86,7 +86,7 @@ const ContactUs = () => {
                             />
                         </div>
                     </div>     
-                    <div className='d-flex justify-content-center'>
+                    <div className=''>
                         <Button
                             variant='contained' 
                             color='primary'

@@ -1,6 +1,7 @@
 import React from 'react';
 import ArticleBody from './ArticleBody';
-import { useParams , useHistory } from 'react-router-dom';
+import Sidebar from './layout/Sidebar';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Alert from '@material-ui/lab/Alert';
 
@@ -13,7 +14,7 @@ const ArticleView = ({articles}) => {
         <div className='article-view pt-5 pb-5'>
             <div className='container'>
                 <div className='row'>
-                    <div className='col-12 col-md-9'>
+                    <div className='col-12 col-lg-8'>
                         {
                             article !== undefined ?
                                 <ArticleBody articleProps={article} />
@@ -23,8 +24,8 @@ const ArticleView = ({articles}) => {
                             </Alert>
                         }
                     </div>
-                    <div className='col-12 col-md-3'>
-                        SIDEBAR
+                    <div className='col-12 col-lg-4'>
+                        <Sidebar />
                     </div>
                 </div>
             </div>

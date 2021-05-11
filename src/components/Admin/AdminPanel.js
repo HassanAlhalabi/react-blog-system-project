@@ -8,6 +8,7 @@ import Users from './users/users';
 import NotFound404 from '../404/404';
 import Drawer from './drawer/Drawer';
 import EditArticle from './all-articles/EditArticle';
+import Trash from './Trash';
 import { CategoriesProvider } from '../../contexts/categoriesContext';
 
 const AdminPanel = () => {
@@ -35,6 +36,7 @@ const AdminPanel = () => {
                                 <Route exact path='/admin-panel/all-articles/:id' component={ArticleOptions} />
                                 <Route exact path='/admin-panel/edit-article/:id' component={EditArticle} />
                                 <Route exact path='/admin-panel/users' component={Users} />
+                                <Route exact path='/admin-panel/trash' component={Trash} />
                                 <Route path='*' component={NotFound404} />
                             </Switch>   
                         </CategoriesProvider>

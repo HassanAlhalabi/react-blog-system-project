@@ -20,7 +20,7 @@ const ArticleBody = ({articleProps}) => {
                 </div>
             </div> 
             <div className='article-title'>
-                <Typography variant='h4' component='h1'>
+                <Typography variant='h4' component='h1' className='pl-0 pr-0'>
                     {articleProps.title}
                 </Typography>
             </div>
