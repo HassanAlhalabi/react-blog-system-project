@@ -40,7 +40,7 @@ const RegisteredLinks = ({user}) => {
                             User Name
                         </Typography>
                     </div>
-                    <div className='user-avatar'>
+                    <div className='user-avatar ml-2'>
                         <Avatar />
                     </div>
                 </div>    

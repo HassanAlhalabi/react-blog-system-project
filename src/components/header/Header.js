@@ -45,7 +45,7 @@ const Header = ({user}) => {
               </div>
             }
             <div className='col-12 col-sm-6 col-md-4 d-flex order-2 order-md-3 justify-content-center justify-content-sm-end align-items-center'>
-              {user === 'admin' || user === 'registerdClient' ? <RegisterdLinks user={user}/> :
+              {user === 'admin' || user === 'editor' || user === 'registerdClient' ? <RegisterdLinks user={user}/> :
               <UnRegisteredLinks /> }
             </div>
           </div>  

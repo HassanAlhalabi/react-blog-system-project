@@ -1,5 +1,7 @@
 import React , {useState} from 'react';
+import PageHeader from '../../components/layout/PageHeader';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -29,35 +31,29 @@ const SignInForm = () => {
     return ( 
         <div className='signin pt-5 pb-5'>
             <div className='container'>
+                <PageHeader title='Sign In' />
                 <div className='row'>
-                    <div className='col-12 col-sm-10 col-md-5 m-auto'>
+                    <div className='col-12 col-sm-10 col-md-6 m-auto'>
                         <form className='signin-form'>
-                            <Typography variant='h4' align='center'>
-                                Sign In
-                            </Typography>
-                            <div className='form-group'>
-                                <label htmlFor='email'>Email:</label>
-                                <input
-                                    type='email' 
-                                    className='form-control'
-                                    name='email'
-                                    id='email'
-                                    onChange={handleFormChange}
-                                    value={inputs.email}
-                                    />
-                            </div>
-                            <div className='form-group'>
-                                <label htmlFor='password'>Password:</label>
-                                <input
-                                    type='password' 
-                                    className='form-control'
-                                    name='password'
-                                    id='password'
-                                    onChange={handleFormChange}
-                                    value={inputs.password}
-                                    />
-                            </div>
-                            <div className='d-flex justify-content-center'>
+                            <TextField 
+                                label='Email:'
+                                variant='filled'
+                                type='email' 
+                                className='w-100 mb-3'
+                                name='email'
+                                id='email'
+                                onChange={handleFormChange}
+                                value={inputs.email}/>
+                            <TextField 
+                                label='Password:'
+                                variant='filled'
+                                type='password' 
+                                className='w-100 mb-3'
+                                name='password'
+                                id='password'
+                                onChange={handleFormChange}
+                                value={inputs.password}/>
+                            <div className='d-flex'>
                                 <Button
                                     variant='contained' 
                                     color='primary'
@@ -69,7 +65,7 @@ const SignInForm = () => {
                                     Sign In
                                 </Button>
                             </div>    
-                            <div className='divider signin-divider'></div>
+                            {/* <div className='divider signin-divider'></div>
                             <Typography variant='h5' align='center'>
                                 Continue With
                             </Typography>
@@ -94,7 +90,7 @@ const SignInForm = () => {
                                         Twitter
                                     </Button>
                                 </ButtonGroup>
-                            </div>    
+                            </div>     */}
                         </form>
                     </div>
                 </div>

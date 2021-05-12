@@ -119,6 +119,7 @@ button:focus {
 
 .page-header {
     font-weight: bold !important;
+    font-size: 44px !important;
     position: relative;
     margin-top: 20px !important;
     margin-bottom: 70px !important;
@@ -127,7 +128,7 @@ button:focus {
 
 @media(max-width: 576px) {
     .page-header {
-        font-size: 44px !important
+        font-size: 34px !important
     }
 }
 
@@ -331,33 +332,57 @@ nav.navbar .lower-nav a:focus {
     margin: 0;
 }
 
-/* Contact Us Page Style */
+/* Contact Us , SignIn and SignUp Pages Style */
 
 .contact-us input,
 .contact-us .MuiInputBase-multiline,
 .contact-us .MuiFilledInput-root:hover,
-.contact-us .MuiTextField-root {
+.contact-us .MuiTextField-root,
+.signin input,
+.signin .MuiInputBase-multiline,
+.signin .MuiFilledInput-root:hover,
+.signin .MuiTextField-root,
+.signup input,
+.signup .MuiInputBase-multiline,
+.signup .MuiFilledInput-root:hover,
+.signup .MuiTextField-root {
     background-color: var(--second-color);
     color: #FFF;
     border-radius: 0;
     font-size: 21px
 }
 
-.contact-us .MuiFilledInput-input {
+.contact-us .MuiFilledInput-input,
+.signin .MuiFilledInput-input,
+.signup .MuiFilledInput-input {
     padding: 40px 12px 10px !important
 }
 
 .contact-us input:before,
 .contact-us input:after,
-.contact-us label {
+.contact-us label,
+.signin input:before,
+.signin input:after,
+.signin label,
+.signup input:before,
+.signup input:after,
+.signup label {
     color: var(--third-color) !important;
 }
 
-.contact-us .MuiFilledInput-underline:after {
+.contact-us .MuiFilledInput-underline:after,
+.signin .MuiFilledInput-underline:after,
+.signup .MuiFilledInput-underline:after {
     border-color: var(--third-color) !important;
 }
 
-.contact-us button {
+.MuiFilledInput-underline:before {
+    border: none !important;
+}
+
+.contact-us button,
+.signin button,
+.signup button {
     font-size: 18px;
     font-weight: 600;
     border-radius: 0;
@@ -367,9 +392,33 @@ nav.navbar .lower-nav a:focus {
 }
 
 .contact-us button:hover,
-.contact-us button:focus {
+.contact-us button:focus,
+.signin button:hover,
+.signin button:focus,
+.signup button:hover,
+.signup button:focus {
     background-color: transparent;
     color: var(--third-color)
+}
+
+.signin-divider {
+    position: relative;
+    margin: 35px auto;
+    border-color: var(--third-color);
+}
+
+.signin-divider::after {
+    content: 'or';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: var(--third-color);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* Admin Panel Style */
@@ -650,36 +699,6 @@ nav.navbar .lower-nav a:focus {
     font-size: 12px;
     background-color: var(--third-color);
     color: var(--second-color)
-}
-
-/* Sign In , Sign Up Form */
-
-.signin-form,
-.signup-form {
-    box-shadow: 0px 3px 7px 1px #969696;
-    border-radius: 10px;
-    padding: 25px;
-    background-color: var(--second-color);
-}
-
-.signin-divider {
-    position: relative;
-    margin: 35px auto;
-    border-color: var(--third-color);
-}
-
-.signin-divider::after {
-    content: 'or';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    background-color: var(--third-color);
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    vertical-align: middle;
 }
 
 /* Footer */

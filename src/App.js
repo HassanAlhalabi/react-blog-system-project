@@ -22,14 +22,14 @@ import NotFound404 from './components/404/404';
 
 const App = () => {
 
-  const [user,setUser] = useState('admin');
+  const [user,setUser] = useState('visitor');
 
     return(
       <BrowserRouter>
         <Header user={user}/>
         <main>
           {
-            user === 'admin' ?
+            user === 'admin' || user === 'editor' ?
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/home' component={Home} />
