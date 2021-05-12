@@ -20,7 +20,7 @@ main {
 
 h1,h2,h3,h4,h5,h6 {
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 10px 0px;
     color: #EEE;
 }
 
@@ -139,6 +139,11 @@ button:focus {
     transform: translateX(-50%);
     width: 200px;
     border-bottom: 4px solid var(--third-color);
+}
+
+.MuiTypography-root {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .MuiPaginationItem-root {
@@ -582,8 +587,32 @@ nav.navbar .lower-nav a:focus {
     overflow-y: auto;
 }
 
+@media(max-width: 768px ) {
+    .post-preview-panel {
+        padding: 15px;
+    }
+}
+
 .post-preview-panel .post-image-holder-preview {
     border-bottom: 3px solid var(--third-color);
+}
+
+.post-preview-panel .article-categories {
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.post-preview-panel .article-categories span {
+    color: var(--second-color);
+    background-color: #FFF;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 4px 8px;
+    margin-right: 5px;
+    border: 1px solid var(--third-color);
+    text-transform: capitalize;
 }
 
 .post-preview-panel h1 {
@@ -598,13 +627,13 @@ nav.navbar .lower-nav a:focus {
 }
 
 .post-preview-panel .article-author {
-    font-size: 12px;
+    font-size: .7rem;
     padding: 5px;
     color: var(--second-color);
 }
 
 .post-preview-panel .article-date {
-    font-size: 12px;
+    font-size: .7rem;
     color: var(--second-color);
     padding: 4px
 }

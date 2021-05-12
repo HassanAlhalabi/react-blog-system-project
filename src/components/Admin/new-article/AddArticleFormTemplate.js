@@ -65,7 +65,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                    ) 
                 }  
             </div>
-            <div className='mt-2 mb-2'>
+            <div className='mb-4'>
                 <TextField
                     type='text' 
                     name='newCategory'
@@ -87,7 +87,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                 </Button>  
             </div> 
             <label htmlFor='article-category'>Tags:</label><br />
-            <div className='tags-input'>
+            <div className='tags-input mb-4'>
                 <div className='tags-holder d-flex flex-wrap'>
                     {
                         formTemplateProps.inputs.tags.map(
@@ -103,7 +103,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                         )
                     }
                 </div>
-                <div className='mt-2 mb-2'>
+                <div className=''>
                     <TextField
                         type='text' 
                         name='newTag'
@@ -126,7 +126,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                     </Button>
                 </div>
             </div>
-            <div className='mt-2 mb-2'>
+            <div className='mb-4'>
                 <label htmlFor='article-image'>Article Image:</label><br />
                 <ImageUploading
                     value={formTemplateProps.articleImage}
@@ -141,6 +141,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                         <div className="upload__image-wrapper">
                             <button
                                 className='add-image-button pt-4 pb-4'
+                                type='button'
                                 style={isDragging ? { color: 'red !important' } : null}
                                 onClick={onImageUpload}
                                 {...dragProps}>

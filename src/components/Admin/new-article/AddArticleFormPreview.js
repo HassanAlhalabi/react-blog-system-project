@@ -6,11 +6,18 @@ const AddArticleFormPreview = ({previewProps,articleImage}) => {
         <div>
             <h3 className=''>Article Preview</h3>
             <div className='post-preview-panel'>
-                <div className='post-image-holder-preview text-center'>
+                <div className='position-relative post-image-holder-preview text-center'>
                     { articleImage === '' ?
                         <img src={ArticleImage} className='img-fluid' alt='post-img'/> :
                         <img src={articleImage} className='img-fluid' alt='post-img'/>                    
                     }
+                    <div className='article-categories position-absolute'>
+                    {
+                        previewProps.categories.filter(category => {
+                            return category.isChecked === true && category.value.toLowerCase() !== 'uncategorized';
+                        }).map(category => <span>{category.value}</span>)
+                    }
+                </div>
                 </div>
                 { previewProps.title && 
                     <h1 className='mt-3 mb-0'>{previewProps.title}</h1>
