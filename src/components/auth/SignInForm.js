@@ -43,7 +43,8 @@ const SignInForm = () => {
                                 name='email'
                                 id='email'
                                 onChange={handleFormChange}
-                                value={inputs.email}/>
+                                value={inputs.email}
+                                autoComplete='off'/>
                             <TextField 
                                 label='Password:'
                                 variant='filled'
@@ -52,7 +53,8 @@ const SignInForm = () => {
                                 name='password'
                                 id='password'
                                 onChange={handleFormChange}
-                                value={inputs.password}/>
+                                value={inputs.password}
+                                autoComplete='off'/>
                             <div className='d-flex'>
                                 <Button
                                     variant='contained' 

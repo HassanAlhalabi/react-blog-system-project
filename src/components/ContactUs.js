@@ -44,6 +44,7 @@ const ContactUs = () => {
                                 required
                                 onChange={handleFormChange}
                                 value={inputs.name}
+                                autoComplete='off'
                             />
                             <TextField
                                 type='email'
@@ -56,6 +57,7 @@ const ContactUs = () => {
                                 required
                                 onChange={handleFormChange}
                                 value={inputs.email}
+                                autoComplete='off'
                             />
                             <TextField
                                 type='phone'
@@ -67,6 +69,7 @@ const ContactUs = () => {
                                 id='phone-number'
                                 onChange={handleFormChange}
                                 value={inputs.phone}
+                                autoComplete='off'
                             />
                         </div>
                         <div className='col-12 col-md-6'>    
@@ -83,6 +86,7 @@ const ContactUs = () => {
                                 required
                                 onChange={handleFormChange}
                                 value={inputs.message}
+                                autoComplete='off'
                             />
                         </div>
                     </div>     

@@ -45,7 +45,8 @@ const SignUpForm = () => {
                                     name='f_name'
                                     id='f_name'
                                     onChange={handleFormChange}
-                                    value={inputs.f_name} />     
+                                    value={inputs.f_name}
+                                    autoComplete='off'/>     
                                 <TextField
                                     label='Last Name:'
                                     variant='filled'
@@ -54,7 +55,8 @@ const SignUpForm = () => {
                                     name='l_name'
                                     id='l_name'
                                     onChange={handleFormChange}
-                                    value={inputs.l_name} /> 
+                                    value={inputs.l_name}
+                                    autoComplete='off'/> 
                             </div>    
                             <TextField
                                 label='Email:'
@@ -64,7 +66,8 @@ const SignUpForm = () => {
                                 name='email'
                                 id='email'
                                 onChange={handleFormChange}
-                                value={inputs.email} />
+                                value={inputs.email}
+                                autoComplete='off'/>
                             <TextField
                                 label='Password:'
                                 variant='filled'
@@ -73,7 +76,8 @@ const SignUpForm = () => {
                                 name='password'
                                 id='password'
                                 onChange={handleFormChange}
-                                value={inputs.password} />
+                                value={inputs.password}
+                                autoComplete='off'/>
                             <div className='d-flex'>
                                 <Button
                                     variant='contained' 
