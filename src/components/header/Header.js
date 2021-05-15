@@ -1,26 +1,29 @@
-import React from 'react';
+import React , { useState } from 'react';
 import Typorgaphy from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import VisitorNavLinks from './VisitorNavLinks';
-import Search from '@material-ui/icons/Search';
 import RegisterdLinks from './RegisteredLinks';
 import UnRegisteredLinks from './UnRegisterdLinks';
 import Facebook from '@material-ui/icons/Facebook';
 import Twitter from '@material-ui/icons/Twitter';
 import Instagram from '@material-ui/icons/Instagram';
 import YouTube from '@material-ui/icons/YouTube';
+import SearchBox from '../../components/layout/SearchBox';
 import { useLocation } from 'react-router-dom';
 
 const Header = ({user}) => {
 
   const pathName = useLocation().pathname;
+  const [searchTerm,setSearchTerm] = useState('')
+  const handleSearchTerm = e => console.log(setSearchTerm(e.target.value));
+  const handleSearchSubmit = () => console.log('Searcb submit');
 
   return(
     <nav className='navbar d-block'>
       <div className='upper-nav d-flex pb-2 pt-2'>
         <div className={ pathName.slice(0,12) === '/admin-panel' ? 'container-fluid' : 'container'}>
-          <div className='row justify-content-between'>
-            <div className='col col-sm-6 col-md-4'>
+          <div className='row justify-content-center justify-content-lg-between'>
+            <div className='col col-sm-6 col-md-4 d-flex align-items-center'>
               <div className="logo-holder text-center text-sm-left">
                 <Link to='/' className="logo">
                   <Typorgaphy className='pl-0' variant='h4' component='h1'>
@@ -32,7 +35,7 @@ const Header = ({user}) => {
             {
               pathName.slice(0,12) === '/admin-panel' ? ''
                 :
-              <div className='col col-md-4 order-3 order-md-2'>
+              <div className='col col-md-4'>
                 <div className='navbar-social
                                 d-flex align-items-center 
                                 justify-content-center
@@ -44,7 +47,7 @@ const Header = ({user}) => {
                 </div>
               </div>
             }
-            <div className='col-12 col-sm-6 col-md-4 d-flex order-2 order-md-3 justify-content-center justify-content-sm-end align-items-center'>
+            <div className='col-12 mb-3 mt-3 col-sm-6 col-lg-4 d-flex justify-content-center justify-content-lg-end align-items-center'>
               {user === 'admin' || user === 'editor' || user === 'registerdClient' ? <RegisterdLinks user={user}/> :
               <UnRegisteredLinks /> }
             </div>
@@ -59,17 +62,27 @@ const Header = ({user}) => {
             'container-fluid justify-content-center justify-content-sm-between' :
             'container justify-content-center justify-content-sm-between' }>
             { <VisitorNavLinks />}
-            <div className='search-box d-flex h-100 align-items-center'>
+            <SearchBox
+              handleSearchTerm={handleSearchTerm}
+              handleSearchSubmit={handleSearchSubmit} 
+            />
+            {/* <div className='search-box d-flex h-100 align-items-center'>
                 <div className='d-flex w-100'>
                   <div className='d-flex search-box-icon text-center'>
-                    <button><Search /></button>
+                    <Button
+                      color='primary'
+                      variant='contained'
+                      startIcon={<Search />}
+                    />
                   </div>
-                  <input 
+                  <TextField 
+                        variant='filled'
                         type='search' 
-                        className='form-control h-auto pt-2'
-                        placeholder='Search Articles...' />
+                        className=' h-auto pt-2'
+                        placeholder='Search Articles...' 
+                  />
                 </div>  
-              </div>
+              </div> */}
           </div>  
         </div>
       }     

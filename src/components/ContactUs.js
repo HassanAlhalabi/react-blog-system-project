@@ -29,7 +29,7 @@ const ContactUs = () => {
     return ( 
         <div className='contact-us pt-5 pb-5'>
             <div className='container'>
-                <form className='contact-us-form'>
+                <form className='contact-us-form mb-5'>
                     <PageHeader title='Contact Us'/>  
                     <div className='row'>   
                         <div className='col-12 col-md-6 d-flex flex-column justify-content-between'>

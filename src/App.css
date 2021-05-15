@@ -3,7 +3,7 @@
 html {
     --main-color:#111f28;
     --second-color: #484e52;
-    --third-color: #e3cdb3;
+    --third-color: #e4caab;
     min-height: 100vh;
 }
 
@@ -155,6 +155,75 @@ button:focus {
     background-color: rgb(255 255 255 / 10%) !important;
 }
 
+.MuiButton-containedPrimary {
+    background-color: var(--third-color) !important;
+    color: #FFF !important;
+    font-weight: bold !important;
+    border-radius: 0 !important;
+}
+
+button.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26) !important;
+    background-color: rgba(102, 102, 102, 0.12) !important;
+}
+
+.MuiFilledInput-underline:before {
+    border: none !important;
+}
+
+.search-box label {
+    font-size: 14px;
+}
+
+.search-box input,
+.search-box .MuiInputBase-multiline,
+.search-box .MuiFilledInput-root:hover,
+.search-box .MuiTextField-root {
+    background-color: var(--second-color);
+    color: #FFF;
+    border-radius: 0;
+    min-width: 200px;
+}
+
+.search-box .MuiButtonBase-root {
+    box-shadow: none !important;
+}
+
+.search-box .MuiButton-iconSizeLarge > *:first-child {
+    font-size: 1.8rem;
+} 
+
+.search-box .MuiButton-startIcon {
+    margin: 0;
+}
+
+.search-box input:before,
+.search-box input:after,
+.search-box label {
+    color: var(--third-color) !important;
+}
+
+.search-box .MuiFilledInput-underline:after {
+    border-color: var(--third-color) !important;
+}
+
+.lower-nav .search-box input[type='search']:focus::placeholder {
+    opacity: 0;
+}
+
+.lower-nav .search-box-icon button {
+    padding: 8px 12px 4px;
+    background-color: var(--third-color);
+    border-radius: 0;
+    border: none;
+    color: #888;
+}
+
+.lower-nav .search-box-icon button:focus {
+    border: none;
+    outline: none;
+}
+
 /* ****************** App style ****************** */
 
 ::-webkit-scrollbar {
@@ -224,30 +293,6 @@ nav.navbar .lower-nav a {
 nav.navbar .lower-nav a:hover,
 nav.navbar .lower-nav a:focus {
     color: var(--third-color) !important;
-}
-
-.lower-nav .search-box input[type='search'] {
-    border-radius: 0;
-    border: none;
-    box-shadow: none !important;
-    border: 1px solid #e3cdb3;
-}
-
-.lower-nav .search-box input[type='search']:focus::placeholder {
-    opacity: 0;
-}
-
-.lower-nav .search-box-icon button {
-    padding: 8px 12px 4px;
-    background-color: var(--third-color);
-    border-radius: 0;
-    border: none;
-    color: #888;
-}
-
-.lower-nav .search-box-icon button:focus {
-    border: none;
-    outline: none;
 }
 
 .nav-bottom-border {
@@ -374,31 +419,6 @@ nav.navbar .lower-nav a:focus {
 .signin .MuiFilledInput-underline:after,
 .signup .MuiFilledInput-underline:after {
     border-color: var(--third-color) !important;
-}
-
-.MuiFilledInput-underline:before {
-    border: none !important;
-}
-
-.contact-us button,
-.signin button,
-.signup button {
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 0;
-    color: var(--second-color);
-    background-color: var(--third-color);
-    border: 1px solid var(--third-color);
-}
-
-.contact-us button:hover,
-.contact-us button:focus,
-.signin button:hover,
-.signin button:focus,
-.signup button:hover,
-.signup button:focus {
-    background-color: transparent;
-    color: var(--third-color)
 }
 
 .signin-divider {

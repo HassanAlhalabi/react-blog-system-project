@@ -31,7 +31,7 @@ const SignUpForm = () => {
 
     return ( 
         <div className='signup pt-5 pb-5'>
-            <div className='container'>
+            <div className='container mb-5'>
                 <PageHeader title='Sign Up' />
                 <div className='row'>
                     <div className='col-12 col-sm-10 col-md-6 m-auto'>
@@ -46,7 +46,8 @@ const SignUpForm = () => {
                                     id='f_name'
                                     onChange={handleFormChange}
                                     value={inputs.f_name}
-                                    autoComplete='off'/>     
+                                    autoComplete='off'
+                                />     
                                 <TextField
                                     label='Last Name:'
                                     variant='filled'
@@ -56,7 +57,8 @@ const SignUpForm = () => {
                                     id='l_name'
                                     onChange={handleFormChange}
                                     value={inputs.l_name}
-                                    autoComplete='off'/> 
+                                    autoComplete='off'
+                                /> 
                             </div>    
                             <TextField
                                 label='Email:'
@@ -67,7 +69,8 @@ const SignUpForm = () => {
                                 id='email'
                                 onChange={handleFormChange}
                                 value={inputs.email}
-                                autoComplete='off'/>
+                                autoComplete='off'
+                            />
                             <TextField
                                 label='Password:'
                                 variant='filled'
@@ -77,7 +80,8 @@ const SignUpForm = () => {
                                 id='password'
                                 onChange={handleFormChange}
                                 value={inputs.password}
-                                autoComplete='off'/>
+                                autoComplete='off'
+                            />
                             <div className='d-flex'>
                                 <Button
                                     variant='contained' 
@@ -85,8 +89,7 @@ const SignUpForm = () => {
                                     type='submit'
                                     size='large'
                                     startIcon={<PersonAdd />}
-                                    onClick={handleSignup}
-                                >
+                                    onClick={handleSignup}>
                                     Sign Up
                                 </Button>
                             </div>    

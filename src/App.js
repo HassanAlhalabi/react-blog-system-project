@@ -7,7 +7,7 @@ import './App.css';
 
 // Components
 import Header from './components/header/Header';
-import Home from './components/Home';
+import Landing from './components/Landing';
 import SignInForm from './components/auth/SignInForm';
 import SignUpForm from './components/auth/SignUpForm';
 import AdminPanel from './components/Admin/AdminPanel';
@@ -22,7 +22,7 @@ import NotFound404 from './components/404/404';
 
 const App = () => {
 
-  const [user,setUser] = useState('visitor');
+  const [user,setUser] = useState('admin');
 
     return(
       <BrowserRouter>
@@ -31,8 +31,8 @@ const App = () => {
           {
             user === 'admin' || user === 'editor' ?
             <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/home' component={Home} />
+              <Route exact path='/' component={Landing} />
+              <Route path='/home' component={Landing} />
               <Route path='/admin-panel' component={AdminPanel} />
               <Route exact path='/articles' component={Articles} />
               <Route exact path='/articles/page/:page?' component={Articles} />
@@ -43,8 +43,8 @@ const App = () => {
             </Switch>
             :
             <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/home' component={Home} />
+              <Route exact path='/' component={Landing} />
+              <Route path='/home' component={Landing} />
               <Route path='/signin' component={SignInForm} />
               <Route path='/signup' component={SignUpForm} />
               {/* <Route path='/admin-panel' component={SignInForm} /> */}

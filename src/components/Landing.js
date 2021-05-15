@@ -2,7 +2,7 @@ import React from 'react';
 import LatestNews from './LatestNews'
 
 
-const Home = () =>
+const Landing = () =>
 
     <div className='home'>
         <div className='latest-news'>
@@ -11,4 +11,4 @@ const Home = () =>
         </div>
     </div>
 
-export default Home;    
+export default Landing;    

@@ -30,7 +30,7 @@ const SignInForm = () => {
 
     return ( 
         <div className='signin pt-5 pb-5'>
-            <div className='container'>
+            <div className='container mb-5'>
                 <PageHeader title='Sign In' />
                 <div className='row'>
                     <div className='col-12 col-sm-10 col-md-6 m-auto'>
@@ -44,7 +44,8 @@ const SignInForm = () => {
                                 id='email'
                                 onChange={handleFormChange}
                                 value={inputs.email}
-                                autoComplete='off'/>
+                                autoComplete='off'
+                            />
                             <TextField 
                                 label='Password:'
                                 variant='filled'
@@ -54,7 +55,8 @@ const SignInForm = () => {
                                 id='password'
                                 onChange={handleFormChange}
                                 value={inputs.password}
-                                autoComplete='off'/>
+                                autoComplete='off'
+                            />
                             <div className='d-flex'>
                                 <Button
                                     variant='contained' 
@@ -62,8 +64,7 @@ const SignInForm = () => {
                                     type='submit'
                                     size='large'
                                     startIcon={<ExitToAppIcon/>}
-                                    onClick={handleSignin}
-                                >
+                                    onClick={handleSignin}>
                                     Sign In
                                 </Button>
                             </div>    
