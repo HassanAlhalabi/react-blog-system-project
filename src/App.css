@@ -182,7 +182,7 @@ button.Mui-disabled {
     background-color: var(--second-color);
     color: #FFF;
     border-radius: 0;
-    min-width: 200px;
+    width: -webkit-fill-available;
 }
 
 .search-box .MuiButtonBase-root {

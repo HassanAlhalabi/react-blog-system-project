@@ -22,9 +22,9 @@ const Header = ({user}) => {
     <nav className='navbar d-block'>
       <div className='upper-nav d-flex pb-2 pt-2'>
         <div className={ pathName.slice(0,12) === '/admin-panel' ? 'container-fluid' : 'container'}>
-          <div className='row justify-content-center justify-content-lg-between'>
-            <div className='col col-sm-6 col-md-4 d-flex align-items-center'>
-              <div className="logo-holder text-center text-sm-left">
+          <div className='row justify-content-between'>
+            <div className='col-12 col-sm-6 d-flex align-items-center'>
+              <div className="logo-holder text-center text-sm-left w-100">
                 <Link to='/' className="logo">
                   <Typorgaphy className='pl-0' variant='h4' component='h1'>
                     BlogPost
@@ -32,40 +32,46 @@ const Header = ({user}) => {
                 </Link>
               </div>
             </div>
-            {
-              pathName.slice(0,12) === '/admin-panel' ? ''
-                :
-              <div className='col col-md-4'>
-                <div className='navbar-social
-                                d-flex align-items-center 
-                                justify-content-center
-                                h-100 mb-3 pt-1'>
-                  <a href='#'><Facebook fontSize='large' /></a>
-                  <a href='#'><Twitter fontSize='large' /></a>
-                  <a href='#'><Instagram fontSize='large' /></a>
-                  <a href='#'><YouTube fontSize='large' /></a>
-                </div>
-              </div>
-            }
-            <div className='col-12 mb-3 mt-3 col-sm-6 col-lg-4 d-flex justify-content-center justify-content-lg-end align-items-center'>
+            <div className='col-12 col-sm-6 col-lg-4 d-flex justify-content-center justify-content-sm-end align-items-center'>
               {user === 'admin' || user === 'editor' || user === 'registerdClient' ? <RegisterdLinks user={user}/> :
               <UnRegisteredLinks /> }
             </div>
           </div>  
-        </div>
+        </div> 
       </div> 
       {pathName.slice(0,12) === '/admin-panel' ? 
         null
       :
         <div className='lower-nav'>
           <div className={pathName.slice(0,12) === '/admin-panel' ? 
-            'container-fluid justify-content-center justify-content-sm-between' :
-            'container justify-content-center justify-content-sm-between' }>
-            { <VisitorNavLinks />}
-            <SearchBox
-              handleSearchTerm={handleSearchTerm}
-              handleSearchSubmit={handleSearchSubmit} 
-            />
+            'container-fluid' :
+            'container' }>
+              <div className='row'>
+                <div className='col-12 col-md-6 d-flex align-items-center'>
+                  { <VisitorNavLinks />}
+                </div>
+                {
+                // pathName.slice(0,12) === '/admin-panel' ? ''
+                //   :
+                // <div className='col-12 col-md-4'>
+                //   <div className='navbar-social
+                //                   d-flex align-items-center 
+                //                   justify-content-center
+                //                   h-100'>
+                //     <a href='#'><Facebook fontSize='large' /></a>
+                //     <a href='#'><Twitter fontSize='large' /></a>
+                //     <a href='#'><Instagram fontSize='large' /></a>
+                //     <a href='#'><YouTube fontSize='large' /></a>
+                //   </div>
+                // </div>
+                }
+                <div className='col-12 col-md-6'>
+                  <SearchBox
+                    handleSearchTerm={handleSearchTerm}
+                    handleSearchSubmit={handleSearchSubmit} 
+                  />
+                </div>
+              </div>
             {/* <div className='search-box d-flex h-100 align-items-center'>
                 <div className='d-flex w-100'>
                   <div className='d-flex search-box-icon text-center'>
