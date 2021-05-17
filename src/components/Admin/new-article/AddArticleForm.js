@@ -6,7 +6,7 @@ import AddArticleFormPreview from './AddArticleFormPreview';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
 import { addArticle as addNewArticle } from '../../../store/actions/actions';
-// import Button from '@material-ui/core/Button';
+import { showFlashMessage } from '../../../components/layout/FlashMessage';
 import { process } from 'uniqid';
 
 const  AddArticleForm = (props) => {
@@ -24,13 +24,13 @@ const  AddArticleForm = (props) => {
         newTag: '',
         urlToImage: '',
     });
-    const [articleImage , setArticleImage] = useState('')
-    const [date,setDate]                   = useState(new Date())
-    const [titleError,setTitleError]       = useState(false);
-    const [authorError,setAuthorError]     = useState(false); 
-    const [contentError,setContentError]   = useState(false);
-    const [errorMessage,setErrorMessage]   = useState(null); 
-    const history = useHistory();  
+    const [articleImage , setArticleImage]    = useState('')
+    const [date,setDate]                      = useState(new Date())
+    const [titleError,setTitleError]          = useState(false);
+    const [authorError,setAuthorError]        = useState(false); 
+    const [contentError,setContentError]      = useState(false);
+    const [errorMessage,setErrorMessage]      = useState(null); 
+    const history                             = useHistory();  
 
     const handleAddCategory = e => {
         e.preventDefault();
@@ -158,16 +158,15 @@ const  AddArticleForm = (props) => {
                 isPublished: action === 'publish' ? true : false
             }
             props.addNewArticle(newArticle);
-            history.push('/admin-panel/all-articles');
+            action === 'publish' ?
+                showFlashMessage('Article Has Been Published Successfuly') :
+                showFlashMessage('Article Has Been Saved Successfuly');
+            history.push('/admin-panel/all-articles'); 
         }
     }
 
     return(
         <div className='add-article-form pt-4 pb-4'>
-            {/* <div className='add-article-options d-flex justify-content-end pt-1 pb-1'>
-                <Button variant='contained' color='primary' size='large'>Preview</Button>
-                <Button variant='contained' color='primary' size='large'>Publish</Button>
-            </div> */}
             <div className='container-fluid'>
                 <Typography variant='h4'>Add a new article</Typography>
                 <div className='row'>

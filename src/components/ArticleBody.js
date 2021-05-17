@@ -11,7 +11,7 @@ const ArticleBody = ({articleProps}) => {
                 <div className='article-categories position-absolute'>
                     {
                         articleProps.categories.map(category => {
-                            if(category === 'uncategorized'){
+                            if(category.toLowerCase() === 'uncategorized'){
                                 return null
                             } 
                             return <span>{category}</span>

@@ -20,7 +20,7 @@ const Header = ({user}) => {
 
   return(
     <nav className='navbar d-block'>
-      <div className='upper-nav d-flex pb-2 pt-2'>
+      <div className='upper-nav d-flex pb-1 pt-1'>
         <div className={ pathName.slice(0,12) === '/admin-panel' ? 'container-fluid' : 'container'}>
           <div className='row justify-content-between'>
             <div className='col-12 col-sm-6 d-flex align-items-center'>

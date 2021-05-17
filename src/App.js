@@ -18,46 +18,45 @@ import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
 import NotFound404 from './components/404/404';
 
-
-
 const App = () => {
 
   const [user,setUser] = useState('admin');
+  const [flashMessage,setFlashMessage] = useState(null);
 
     return(
       <BrowserRouter>
-        <Header user={user}/>
-        <main>
-          {
-            user === 'admin' || user === 'editor' ?
-            <Switch>
-              <Route exact path='/' component={Landing} />
-              <Route path='/home' component={Landing} />
-              <Route path='/admin-panel' component={AdminPanel} />
-              <Route exact path='/articles' component={Articles} />
-              <Route exact path='/articles/page/:page?' component={Articles} />
-              <Route exact path='/articles/:id' component={ArticleView} />
-              <Route exact path='/favorite-articles' component={FavoriteArticles} />
-              <Route path='/contact-us' component={ContactUs} />
-              <Route path='*' component={NotFound404} />
-            </Switch>
-            :
-            <Switch>
-              <Route exact path='/' component={Landing} />
-              <Route path='/home' component={Landing} />
-              <Route path='/signin' component={SignInForm} />
-              <Route path='/signup' component={SignUpForm} />
-              {/* <Route path='/admin-panel' component={SignInForm} /> */}
-              <Route exact path='/articles' component={Articles} />
-              <Route exact path='/articles/page/:page?' component={Articles} />
-              <Route exact path='/articles/:id' component={ArticleView} />
-              <Route exact path='/favorite-articles' component={FavoriteArticles} />
-              <Route path='/contact-us' component={ContactUs} />
-              <Route path='*' component={NotFound404} />
-            </Switch>
-          }
-        </main>
-        <Footer />
+          <Header user={user}/>
+          <main>
+            {
+              user === 'admin' || user === 'editor' ?
+              <Switch>
+                <Route exact path='/' component={Landing} />
+                <Route path='/home' component={Landing} />
+                <Route path='/admin-panel' component={AdminPanel} />
+                <Route exact path='/articles' component={Articles} />
+                <Route exact path='/articles/page/:page?' component={Articles} />
+                <Route exact path='/articles/:id' component={ArticleView} />
+                <Route exact path='/favorite-articles' component={FavoriteArticles} />
+                <Route path='/contact-us' component={ContactUs} />
+                <Route path='*' component={NotFound404} />
+              </Switch>
+              :
+              <Switch>
+                <Route exact path='/' component={Landing} />
+                <Route path='/home' component={Landing} />
+                <Route path='/signin' component={SignInForm} />
+                <Route path='/signup' component={SignUpForm} />
+                {/* <Route path='/admin-panel' component={SignInForm} /> */}
+                <Route exact path='/articles' component={Articles} />
+                <Route exact path='/articles/page/:page?' component={Articles} />
+                <Route exact path='/articles/:id' component={ArticleView} />
+                <Route exact path='/favorite-articles' component={FavoriteArticles} />
+                <Route path='/contact-us' component={ContactUs} />
+                <Route path='*' component={NotFound404} />
+              </Switch>
+            }
+          </main>
+          <Footer />
       </BrowserRouter> 
     )
   }

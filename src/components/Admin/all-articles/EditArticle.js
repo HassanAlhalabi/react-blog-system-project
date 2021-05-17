@@ -6,7 +6,8 @@ import AddArticleFormPreview from '../new-article/AddArticleFormPreview';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
 import { updateArticle } from '../../../store/actions/actions';
-import Alert from '@material-ui/lab/Alert';
+import { showFlashMessage } from '../../../components/layout/FlashMessage';
+
 
 const EditArticle = ({ updateArticle , articles }) => {
 
@@ -39,7 +40,6 @@ const EditArticle = ({ updateArticle , articles }) => {
     const [authorError,setAuthorError]       = useState(false) 
     const [contentError,setContentError]     = useState(false)  
     const [errorMessage,setErrorMessage]     = useState(null) 
-    const [successMessage,setSuccessMessage] = useState(null) 
 
     const handleAddCategory = e => {
         e.preventDefault()
@@ -129,7 +129,6 @@ const EditArticle = ({ updateArticle , articles }) => {
         if(inputs.title === '') {
             setTitleError(true);
             setErrorMessage('Required Fields are Missing');
-            setSuccessMessage(null);
             return null;
         } else {
             setTitleError(false);
@@ -137,7 +136,6 @@ const EditArticle = ({ updateArticle , articles }) => {
         if(inputs.author === '') {
             setAuthorError(true);
             setErrorMessage('Required Fields are Missing');
-            setSuccessMessage(null);
             return null;
         } else {
             setAuthorError(false);
@@ -145,7 +143,6 @@ const EditArticle = ({ updateArticle , articles }) => {
         if(inputs.content === '') {
             setContentError(true);
             setErrorMessage('Required Fields are Missing');
-            setSuccessMessage(null);
             return null;
         } else {
             setContentError(false);
@@ -164,9 +161,8 @@ const EditArticle = ({ updateArticle , articles }) => {
             tags: inputs.tags,
             isPublished: action === 'publish' ? true : inputs.isPublished
         }
-        console.log(updatedArticle);
         updateArticle(updatedArticle);
-        setSuccessMessage('Article Has Been Updated Succesfully');
+        showFlashMessage('Article Has Been Updated Succesfully');
     }  
 
     return(
@@ -186,7 +182,6 @@ const EditArticle = ({ updateArticle , articles }) => {
                                 authorError,
                                 contentError,
                                 errorMessage,
-                                successMessage,
                                 handleFormSubmit,   
                             }
                         }/>

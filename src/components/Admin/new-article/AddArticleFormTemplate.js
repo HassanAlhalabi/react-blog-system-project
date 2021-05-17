@@ -21,7 +21,8 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
             onChange={formTemplateProps.handleChange}
             autoComplete='off'
             required
-            error={formTemplateProps.titleError} />
+            error={formTemplateProps.titleError} 
+        />
         <TextField
             type='text' 
             name='author'
@@ -32,7 +33,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
             onChange={formTemplateProps.handleChange}
             required
             error={formTemplateProps.authorError}
-            />
+        />
         <TextField    
             type='text' 
             name='content'
@@ -46,7 +47,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
             rows='20'
             required
             error={formTemplateProps.contentError}
-            />    
+        />    
         <div className='form-group'>
             <label htmlFor='article-category'>Categories:</label><br />  
             <div className='categories-input'> 
@@ -73,7 +74,8 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                     label='Add New Category' 
                     className='w-100 mb-2'
                     value={formTemplateProps.inputs.newCategory}
-                    onChange={formTemplateProps.handleChange}/>
+                    onChange={formTemplateProps.handleChange}
+                />
                 <Button 
                     variant='contained'
                     color='primary'
@@ -111,7 +113,8 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                         label='Add Article Tags' 
                         className='w-100 mb-2'
                         value={formTemplateProps.inputs.newTag}
-                        onChange={formTemplateProps.handleChange}/>
+                        onChange={formTemplateProps.handleChange}
+                    />
                     <Button 
                         id='add-tag-btn'
                         variant='contained'
@@ -156,13 +159,6 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
             </div>            
         </div>
         <div className='mb-3'>
-            {formTemplateProps.successMessage && 
-                <Alert 
-                    severity='success' 
-                    variant='filled'
-                    className='shaking-message'>
-                        {formTemplateProps.successMessage}
-                </Alert>}
             {formTemplateProps.errorMessage && 
                 <Alert 
                     variant='filled' 
