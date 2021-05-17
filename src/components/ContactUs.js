@@ -7,10 +7,10 @@ import Button from '@material-ui/core/Button';
 const ContactUs = () => {
     
     const [inputs , setInputs] = useState({
-        name:    null,
-        email:   null,
-        phone:   null,
-        message: null
+        name:    '',
+        email:   '',
+        phone:   '',
+        message: ''
     })
     
     const handleFormChange = e => {

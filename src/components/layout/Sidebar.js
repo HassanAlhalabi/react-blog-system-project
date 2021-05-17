@@ -3,9 +3,8 @@ import Typography from '@material-ui/core/Typography';
 import LatestArticleCard from '../LatestArticleCard';
 import {connect} from 'react-redux';
 
-const Sidebar = ({articles}) => {
-    const latestArticles = articles.slice(-5).reverse();
-    console.log(latestArticles)
+const Sidebar = ({articles,latestArticlesNumber = 4}) => {
+    const latestArticles = articles.slice(-latestArticlesNumber).reverse();
     return ( 
         <div className='sidebar h-100'>
             <div className='p-2 p-md-4'>

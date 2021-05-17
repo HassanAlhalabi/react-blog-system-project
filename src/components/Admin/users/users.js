@@ -19,7 +19,7 @@ const useStyle = makeStyles({
 })
 
 const Users = () => {
-    const [users , setUsers ] = useState(store.getState().users);
+    const users = useState(store.getState().users);
     const classes = useStyle();
     return ( 
         <div className='users'>

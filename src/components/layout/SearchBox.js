@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Search from '@material-ui/icons/Search';
 
-const SearchBox = ({handleSearchTerm,handleSearchSubmit}) => {
+const SearchBox = ({searchTerm,handleSearchTerm,handleSearchSubmit}) => {
     return ( 
         <div className='search-box d-flex h-100 align-items-center'>
             <div className='d-flex w-100'>
@@ -18,6 +18,7 @@ const SearchBox = ({handleSearchTerm,handleSearchSubmit}) => {
                 />
                 </div>
                 <TextField 
+                    value={searchTerm}
                     variant='filled'
                     type='search' 
                     size='small'

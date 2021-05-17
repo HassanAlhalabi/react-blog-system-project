@@ -24,13 +24,13 @@ const  AddArticleForm = (props) => {
         newTag: '',
         urlToImage: '',
     });
-    const [articleImage , setArticleImage]    = useState('')
-    const [date,setDate]                      = useState(new Date())
+    const [articleImage , setArticleImage]    = useState('');
     const [titleError,setTitleError]          = useState(false);
     const [authorError,setAuthorError]        = useState(false); 
     const [contentError,setContentError]      = useState(false);
     const [errorMessage,setErrorMessage]      = useState(null); 
     const history                             = useHistory();  
+    const date                                = new Date();
 
     const handleAddCategory = e => {
         e.preventDefault();

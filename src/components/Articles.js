@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams,useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PageHeader from './layout/PageHeader';
@@ -11,17 +11,10 @@ const Articles = ({articles,favorites}) => {
 
     let page = useParams('page').page;
     page = page === undefined ? 1 : page * 1;
-    
-    const [selectedPage , setSelectedPage] = useState(page);
 
     const handlePagination = (event, value) => {
-        console.log('value: ',value)
-        setSelectedPage(value);
         history.push(`/articles/page/${value}`);
     };
-
-    console.log('page: ',page)
-    console.log('selectedPage: ',selectedPage)
     
     const pageSize = 12;
     
@@ -35,9 +28,9 @@ const Articles = ({articles,favorites}) => {
                     {
                         slicedArticles.map(article => {
                             if(favorites.includes(article.id) === true) {
-                                return <ArticleCard isFavorite={true} articleCardProps={article}/>    
+                                return <ArticleCard key={article.id} isFavorite={true} articleCardProps={article}/>    
                             } else {
-                                return <ArticleCard isFavorite={false} articleCardProps={article}/>
+                                return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
                             }
                         })
                     }

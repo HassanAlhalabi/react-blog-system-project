@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import VisitorNavLinks from './VisitorNavLinks';
 import RegisterdLinks from './RegisteredLinks';
 import UnRegisteredLinks from './UnRegisterdLinks';
-import Facebook from '@material-ui/icons/Facebook';
-import Twitter from '@material-ui/icons/Twitter';
-import Instagram from '@material-ui/icons/Instagram';
-import YouTube from '@material-ui/icons/YouTube';
 import SearchBox from '../../components/layout/SearchBox';
 import { useLocation } from 'react-router-dom';
 
@@ -15,9 +11,9 @@ const Header = ({user}) => {
 
   const pathName = useLocation().pathname;
   const [searchTerm,setSearchTerm] = useState('')
-  const handleSearchTerm = e => console.log(setSearchTerm(e.target.value));
+  const handleSearchTerm = e => setSearchTerm(e.target.value);
   const handleSearchSubmit = () => console.log('Searcb submit');
-
+  
   return(
     <nav className='navbar d-block'>
       <div className='upper-nav d-flex pb-1 pt-1'>
@@ -50,45 +46,14 @@ const Header = ({user}) => {
                 <div className='col-12 col-md-6 d-flex align-items-center'>
                   { <VisitorNavLinks />}
                 </div>
-                {
-                // pathName.slice(0,12) === '/admin-panel' ? ''
-                //   :
-                // <div className='col-12 col-md-4'>
-                //   <div className='navbar-social
-                //                   d-flex align-items-center 
-                //                   justify-content-center
-                //                   h-100'>
-                //     <a href='#'><Facebook fontSize='large' /></a>
-                //     <a href='#'><Twitter fontSize='large' /></a>
-                //     <a href='#'><Instagram fontSize='large' /></a>
-                //     <a href='#'><YouTube fontSize='large' /></a>
-                //   </div>
-                // </div>
-                }
                 <div className='col-12 col-md-6'>
                   <SearchBox
+                    searchTerm={searchTerm}
                     handleSearchTerm={handleSearchTerm}
                     handleSearchSubmit={handleSearchSubmit} 
                   />
                 </div>
               </div>
-            {/* <div className='search-box d-flex h-100 align-items-center'>
-                <div className='d-flex w-100'>
-                  <div className='d-flex search-box-icon text-center'>
-                    <Button
-                      color='primary'
-                      variant='contained'
-                      startIcon={<Search />}
-                    />
-                  </div>
-                  <TextField 
-                        variant='filled'
-                        type='search' 
-                        className=' h-auto pt-2'
-                        placeholder='Search Articles...' 
-                  />
-                </div>  
-              </div> */}
           </div>  
         </div>
       }     

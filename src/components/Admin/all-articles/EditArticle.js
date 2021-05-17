@@ -34,12 +34,11 @@ const EditArticle = ({ updateArticle , articles }) => {
         newTag:      '',
         urlToImage: article.urlToImage,
         isPublished: article.isPublished,
-    })
-    const [date,setDate]                     = useState(null)
-    const [titleError,setTitleError]         = useState(false)
-    const [authorError,setAuthorError]       = useState(false) 
-    const [contentError,setContentError]     = useState(false)  
-    const [errorMessage,setErrorMessage]     = useState(null) 
+    });
+    const [titleError,setTitleError]         = useState(false);
+    const [authorError,setAuthorError]       = useState(false); 
+    const [contentError,setContentError]     = useState(false);  
+    const [errorMessage,setErrorMessage]     = useState(null);
 
     const handleAddCategory = e => {
         e.preventDefault()

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { deleteArticle, publishUpdate } from '../../../store/actions/actions';
 import { useParams , Link , useHistory } from 'react-router-dom';
@@ -9,7 +9,6 @@ import Edit from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PublishRounded from '@material-ui/icons/PublishRounded';
 import ArticleBody from '../../ArticleBody';
-import Alert from '@material-ui/lab/Alert';
 
 const useStyle = makeStyles({
     articleOptions: {
@@ -23,7 +22,7 @@ const ArticleOptions = ({articles,deleteArticle,publishUpdate}) => {
     
     const classes   = useStyle();
     const articleId = useParams('id').id;
-    const article   = articles.filter(article => article.id == articleId )[0] 
+    const article   = articles.filter(article => article.id === articleId )[0] 
     const history   = useHistory();
 
     const handleArticleDelete = index => {   

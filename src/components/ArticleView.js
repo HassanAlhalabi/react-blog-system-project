@@ -25,7 +25,7 @@ const ArticleView = ({articles}) => {
                         }
                     </div>
                     <div className='col-12 col-lg-4'>
-                        <Sidebar />
+                        <Sidebar latestArticlesNumber={3} />
                     </div>
                 </div>
             </div>

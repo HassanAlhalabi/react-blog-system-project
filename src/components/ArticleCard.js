@@ -5,14 +5,13 @@ import { toggleFavoriteArticle } from '../store/actions/actions';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import Favorite from '@material-ui/icons/Favorite';
 import Share from '@material-ui/icons/Share';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import articleImage from './imgs/article-image-placeholder.png';
+import { showFlashMessage } from '../components/layout/FlashMessage';
 
 const useStyle = makeStyles({
     favoriteArticle: {
@@ -23,7 +22,12 @@ const useStyle = makeStyles({
 
 const Article = ({articleCardProps,toggleFavoriteArticle,isFavorite}) => {
 
-    const handleToggleFavorite = id => toggleFavoriteArticle(id);
+    const handleToggleFavorite = id => {
+        toggleFavoriteArticle(id);
+        isFavorite === true ?
+            showFlashMessage('Article Has Been Removed From Favorates') :
+            showFlashMessage('Article Has Been Added To Favorates')
+    };
     const classes = useStyle();
 
     return ( 

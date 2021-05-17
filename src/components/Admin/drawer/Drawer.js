@@ -21,7 +21,7 @@ const useStyle = makeStyles({
 
 const Drawer = ({drawerIsClosed , handleDrawerClose}) => {
 
-    const [user,setUser] = useState('admin');
+    // const [user,setUser] = useState('admin');
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const classes = useStyle();

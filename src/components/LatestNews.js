@@ -3,9 +3,9 @@ import ArticleCard from './ArticleCard';
 
 const LatestNews = () => {
     
-    const [articles,setArticles] = useState([]) 
-    const [isLoading , setIsLoading ] = useState(true)
-    const [connectionError ,setConnectionError] = useState(false)
+    const [articles,setArticles] = useState([]);
+    const [isLoading , setIsLoading ] = useState(true);
+    const [connectionError ,setConnectionError] = useState(false);
     // const { id } = useParams()
     const [APIParams,setAPIParams] = useState({
         APIKey      : '3b54875dae4b44999ae09e5eee0f098c',
@@ -39,12 +39,12 @@ const LatestNews = () => {
         })
         .catch(error => { 
             console.log('here:',error);
-            // setConnectionError(true);
+            setConnectionError(true);
             setIsLoading(false) ;
         })
         
         return () => abortCont.abort()
-    })
+    },[])
 
     let articlesTemplate =
         <div className='row'>

@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React from 'react';
 import { deleteArticle } from '../../../store/actions/actions';
 import { connect } from 'react-redux';
 import { Link , useParams , useHistory } from 'react-router-dom';
@@ -40,8 +40,6 @@ const AllArticles = ({articles, deleteArticle}) => {
 
     let page = useParams('page').page;
     page = page === undefined ? 1 : page * 1 ;
-
-    const [selectedPage,setSelectedPage] = useState(page);
     
     const pageSize = 10;
     
@@ -50,7 +48,6 @@ const AllArticles = ({articles, deleteArticle}) => {
     const history = useHistory();
 
     const handlePagination = (event, value) => {
-        setSelectedPage(value);
         history.push(`/admin-panel/all-articles/page/${value}`)
     };
 

@@ -1,6 +1,6 @@
 
 // Required Packages and Libraries
-import React ,{useState} from 'react';
+import React ,{useEffect, useState} from 'react';
 import { BrowserRouter , Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -21,7 +21,10 @@ import NotFound404 from './components/404/404';
 const App = () => {
 
   const [user,setUser] = useState('admin');
-  const [flashMessage,setFlashMessage] = useState(null);
+
+  useEffect(() => {
+    setUser('admin')
+  },[])
 
     return(
       <BrowserRouter>
@@ -46,7 +49,7 @@ const App = () => {
                 <Route path='/home' component={Landing} />
                 <Route path='/signin' component={SignInForm} />
                 <Route path='/signup' component={SignUpForm} />
-                {/* <Route path='/admin-panel' component={SignInForm} /> */}
+                <Route path='/admin-panel' component={SignInForm} />
                 <Route exact path='/articles' component={Articles} />
                 <Route exact path='/articles/page/:page?' component={Articles} />
                 <Route exact path='/articles/:id' component={ArticleView} />
