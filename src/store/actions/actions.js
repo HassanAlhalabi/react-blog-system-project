@@ -2,6 +2,20 @@ import * as actionsTypes from './actionsTypes';
 
 // Article Actions
 
+export const articlesInit = () => {
+    return (dispatch,getState) => {
+        fetch("http://localhost:8000/articles")
+            .then(response => response.json())
+            .then(data => {
+                console.log('data: ',data)
+                dispatch({
+                    type: actionsTypes.INITIALIZE_ARTICLE,
+                    articles: data
+                })
+            })
+    }   
+}
+
 export const addArticle = article => (
     {
         type: actionsTypes.ADD_ARTICLE,

@@ -20,7 +20,7 @@ const useStyle = makeStyles({
     }
 });
 
-const ArticleCard = ({articleCardProps,toggleFavoriteArticle,isFavorite}) => {
+const NewsCard = ({newsCardProps,toggleFavoriteArticle,isFavorite}) => {
 
     const handleToggleFavorite = id => {
         toggleFavoriteArticle(id);
@@ -33,31 +33,31 @@ const ArticleCard = ({articleCardProps,toggleFavoriteArticle,isFavorite}) => {
     return ( 
         <div className='col-12 col-sm-6 col-lg-4 mb-3'>
             <Card className='article-card'>
-                <Link to={`/articles/${articleCardProps.id}`}>
+                <a href={newsCardProps.url} target='_blank'>
                     <CardMedia>
                         <div className='article-image'>
                             {
-                                articleCardProps.urlToImage === '' ?
+                                newsCardProps.urlToImage === '' ?
                                 <img src={articleImage} alt='article-img' className='img-fluid'/> :
-                                <img src={articleCardProps.urlToImage} alt='article-img' className='img-fluid'/>
+                                <img src={newsCardProps.urlToImage} alt='article-img' className='img-fluid'/>
                             }
                         </div>
                     </CardMedia> 
-                    <CardHeader title={articleCardProps.title} 
-                                subheader={articleCardProps.date}
+                    <CardHeader title={newsCardProps.title} 
+                                subheader={newsCardProps.date}
                     /> 
-                </Link>    
+                </a>    
                 <CardActions>
                     {isFavorite === true ?
                         <IconButton 
-                            onClick={() => handleToggleFavorite(articleCardProps.id)}
+                            onClick={() => handleToggleFavorite(newsCardProps.id)}
                             className={classes.favoriteArticle}
                         >
                             <Favorite  />
                         </IconButton>
                     :  
                         <IconButton 
-                            onClick={() => handleToggleFavorite(articleCardProps.id)}
+                            onClick={() => handleToggleFavorite(newsCardProps.id)}
                         >
                             <Favorite  />
                         </IconButton>
@@ -71,10 +71,5 @@ const ArticleCard = ({articleCardProps,toggleFavoriteArticle,isFavorite}) => {
      );
 }
 
-const mapDispatchToProps = dispatch => ({
-            toggleFavoriteArticle: id => {
-                dispatch(toggleFavoriteArticle(id))
-            }
-        });
  
-export default connect(null,mapDispatchToProps)(ArticleCard);
+export default NewsCard;

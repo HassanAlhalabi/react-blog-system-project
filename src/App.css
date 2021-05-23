@@ -102,6 +102,33 @@ button:focus {
     border-radius: 0;
 }
 
+.add-form {
+    background-color: var(--second-color);
+}
+
+.add-form .MuiFilledInput-input {
+    background-color: #FFF !important;
+    color: var(--second-color) 
+}
+
+.add-form .MuiInputLabel-filled,
+.add-form .MuiFormLabel-root.Mui-focused {
+    color: #d3b48e 
+}
+
+.add-form .MuiFilledInput-underline:before {
+    border-bottom-color: var(--third-color) 
+}
+
+.add-form .MuiFilledInput-underline:after {
+    border-bottom-color: var(--third-color)
+}
+
+.add-form .MuiFilledInput-multiline {
+    background-color: #FFF !important;
+    border-radius: 0;
+}
+
 .shaking-message {
     position: relative;
     animation-name: shaking-message;
@@ -577,33 +604,6 @@ nav.navbar .lower-nav a:focus {
 }
 
 /* add article form */
-
-.add-article-form {
-    background-color: var(--second-color);
-}
-
-.add-article-form .MuiFilledInput-input {
-    background-color: #FFF !important;
-    color: var(--second-color) 
-}
-
-.add-article-form .MuiInputLabel-filled,
-.add-article-form .MuiFormLabel-root.Mui-focused {
-    color: #d3b48e 
-}
-
-.add-article-form .MuiFilledInput-underline:before {
-    border-bottom-color: var(--third-color) 
-}
-
-.add-article-form .MuiFilledInput-underline:after {
-    border-bottom-color: var(--third-color)
-}
-
-.add-article-form .MuiFilledInput-multiline {
-    background-color: #FFF !important;
-    border-radius: 0;
-}
 
 .categories-input {
     display: grid;

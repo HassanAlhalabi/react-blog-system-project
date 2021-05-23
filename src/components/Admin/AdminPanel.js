@@ -4,7 +4,8 @@ import Dashboard from './Dashboard';
 import AllArticels from './all-articles/AllArticles';
 import ArticleOptions from './all-articles/ArticleOptions';
 import NewArticle from './new-article/NewArticle';
-import Users from './users/users';
+import Users from './users/Users';
+import NewUser from './users/NewUser';
 import NotFound404 from '../404/404';
 import Drawer from './drawer/Drawer';
 import EditArticle from './all-articles/EditArticle';
@@ -36,6 +37,7 @@ const AdminPanel = () => {
                                 <Route exact path='/admin-panel/all-articles/:id' component={ArticleOptions} />
                                 <Route exact path='/admin-panel/edit-article/:id' component={EditArticle} />
                                 <Route exact path='/admin-panel/users' component={Users} />
+                                <Route exact path='/admin-panel/add-user' component={NewUser} />
                                 <Route exact path='/admin-panel/trash' component={Trash} />
                                 <Route path='*' component={NotFound404} />
                             </Switch>   

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ArticleCard from './ArticleCard';
+import PageHeader from './../components/layout/PageHeader';
+import NewsCard from './NewsCard';
+import Alert from '@material-ui/lab/Alert';
 
 const LatestNews = () => {
     
-    const [articles,setArticles] = useState([]);
+    const [news,setNews] = useState([]);
     const [isLoading , setIsLoading ] = useState(true);
     const [connectionError ,setConnectionError] = useState(false);
     // const { id } = useParams()
@@ -11,7 +13,7 @@ const LatestNews = () => {
         APIKey      : '3b54875dae4b44999ae09e5eee0f098c',
         APICountry  : 'us',
         APICategory : 'general',
-        APISearch   : 'syria',
+        APISearch   : 'video games',
         APISortBy   : 'popularity',
     })
     
@@ -35,7 +37,8 @@ const LatestNews = () => {
             }
         })
         .then(data => {
-            setArticles(data.articles);
+            setNews(data.articles);
+            console.log(data)
         })
         .catch(error => { 
             console.log('here:',error);
@@ -48,15 +51,16 @@ const LatestNews = () => {
 
     let articlesTemplate =
         <div className='row'>
-            {articles.map(article => 
-                <ArticleCard articleCardProps={article}/>
+            {news.map(article => 
+                <NewsCard newsCardProps={article}/>
             )}
         </div>
          
         return(
-            <div className='articles'>
+            <div className='news pt-5 pb-5'>
                 <div className='container'>
-                    {connectionError && <div><span className='alert alert-warning'>Unable to connect to the server !! Check your internet connection</span></div>}
+                    <PageHeader title='Latest News' />
+                    {connectionError && <div><Alert severity='info'>Unable to connect to the server !! Check your internet connection</Alert></div>}
                     {isLoading && <div className='text-center'>Loading....</div> }
                     {articlesTemplate}
                 </div>

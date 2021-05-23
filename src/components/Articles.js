@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams,useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PageHeader from './layout/PageHeader';
 import ArticleCard from './ArticleCard';
 import Pagination from '@material-ui/lab/Pagination';
 
-const Articles = ({articles,favorites}) => {
+const Articles = ({articles, favorites}) => {
+
+    // const [articles,setArticles] = useState([]);
+
+    // fetch("http://localhost:8000/articles")
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         setArticles(data);
+    // })
 
     const history = useHistory();
 
@@ -42,7 +50,7 @@ const Articles = ({articles,favorites}) => {
                     count={Math.ceil(articles.length / 12)}
                     onChange={handlePagination}
                     size='large'
-                    />
+                />
             </div>
         </div>
      );
@@ -54,5 +62,6 @@ const mapStateToProps = state => {
         favorites: state.favorites
     })
 }
- 
+
+
 export default connect(mapStateToProps)(Articles);

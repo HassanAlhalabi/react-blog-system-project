@@ -14,6 +14,8 @@ import AdminPanel from './components/Admin/AdminPanel';
 import Articles from './components/Articles';
 import ArticleView from './components/ArticleView';
 import FavoriteArticles from './components/FavoriteArticles';
+import LatestNews from './components/LatestNews';
+import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
 import NotFound404 from './components/404/404';
@@ -39,8 +41,10 @@ const App = () => {
                 <Route exact path='/articles' component={Articles} />
                 <Route exact path='/articles/page/:page?' component={Articles} />
                 <Route exact path='/articles/:id' component={ArticleView} />
+                <Route exact path='/news' component={LatestNews} />
                 <Route exact path='/favorite-articles' component={FavoriteArticles} />
                 <Route path='/contact-us' component={ContactUs} />
+                <Route path='/about-us' component={AboutUs} />
                 <Route path='*' component={NotFound404} />
               </Switch>
               :
@@ -53,7 +57,9 @@ const App = () => {
                 <Route exact path='/articles' component={Articles} />
                 <Route exact path='/articles/page/:page?' component={Articles} />
                 <Route exact path='/articles/:id' component={ArticleView} />
+                <Route exact path='/news' component={LatestNews} />
                 <Route exact path='/favorite-articles' component={FavoriteArticles} />
+                <Route path='/about-us' component={AboutUs} />
                 <Route path='/contact-us' component={ContactUs} />
                 <Route path='*' component={NotFound404} />
               </Switch>

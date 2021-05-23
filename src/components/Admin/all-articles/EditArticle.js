@@ -165,7 +165,7 @@ const EditArticle = ({ updateArticle , articles }) => {
     }  
 
     return(
-        <div className='add-article-form pt-4 pb-4'>
+        <div className='add-form pt-4 pb-4'>
             <div className='container-fluid'>
                 <Typography variant='h4'>Edit article</Typography>
                 <div className='row'>

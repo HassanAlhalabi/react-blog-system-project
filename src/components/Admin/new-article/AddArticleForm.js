@@ -11,8 +11,6 @@ import { process } from 'uniqid';
 
 const  AddArticleForm = (props) => {
 
-    console.log(props)
-    
     const [categories , setCategories] = useContext(CategoriesContext);
     const [inputs,setInputs] = useState({
         title: '',
@@ -93,8 +91,9 @@ const  AddArticleForm = (props) => {
         })
     }
 
-    const handleImageUpload = (imageList) => setArticleImage(imageList[0].data_url);
-
+    const handleImageUpload = (imageList) => {
+        setArticleImage(imageList[0].data_url);
+    }
     const handleChange = e =>  { 
         let newCats = [];
         newCats = categories.map(n => {
@@ -166,7 +165,7 @@ const  AddArticleForm = (props) => {
     }
 
     return(
-        <div className='add-article-form pt-4 pb-4'>
+        <div className='add-form pt-4 pb-4'>
             <div className='container-fluid'>
                 <Typography variant='h4'>Add a new article</Typography>
                 <div className='row'>

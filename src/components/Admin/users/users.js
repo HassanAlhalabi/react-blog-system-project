@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import store from '../../../store/store';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,6 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Person from '@material-ui/icons/Person';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Edit from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles({
@@ -18,8 +19,7 @@ const useStyle = makeStyles({
     }
 })
 
-const Users = () => {
-    const users = useState(store.getState().users);
+const Users = ({users}) => {
     const classes = useStyle();
     return ( 
         <div className='users'>
@@ -40,10 +40,18 @@ const Users = () => {
                                             primary={`${user.fName} ${user.lName}`}
                                             secondary={user.status}
                                         />
-                                    </Link>    
+                                    </Link> 
+                                    {
+                                        user.status !== 'admin' &&
+                                        <ListItemSecondaryAction>
+                                            <IconButton edge="end" aria-label="delete">
+                                                <DeleteIcon className={classes.textColor} />
+                                            </IconButton>
+                                        </ListItemSecondaryAction>
+                                    }
                                     <ListItemSecondaryAction>
                                         <IconButton edge="end" aria-label="delete">
-                                            <DeleteIcon className={classes.textColor} />
+                                            <Edit className={classes.textColor} />
                                         </IconButton>
                                     </ListItemSecondaryAction>
                                 </ListItem>
@@ -55,5 +63,11 @@ const Users = () => {
         </div>
     );
 }
+
+const mapStateToProps = state => {
+    return({
+        users: state.users
+    })
+}
  
-export default Users;
+export default connect(mapStateToProps)(Users);

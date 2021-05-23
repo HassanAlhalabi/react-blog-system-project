@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ArticleBody from './ArticleBody';
 import Sidebar from './layout/Sidebar';
 import { useParams } from 'react-router-dom';
@@ -8,7 +8,12 @@ import Alert from '@material-ui/lab/Alert';
 const ArticleView = ({articles}) => {
 
     const articleId = useParams('id').id;
+    // const [article,setArticle] = useState();
     const article = articles.filter(article => article.id === articleId)[0];
+
+    // fetch(`http://localhost:8000/articles/${articleId}`)
+    //     .then(response => response.json())
+    //     .then(article => setArticle(article));
 
     return ( 
         <div className='article-view pt-5 pb-5'>
