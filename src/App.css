@@ -129,6 +129,33 @@ button:focus {
     border-radius: 0;
 }
 
+legend.MuiFormLabel-root {
+    color: #FFF
+}
+
+.user-role {
+    font-size: 1.4rem;
+    vertical-align: middle;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.user-owner {
+    background-color: #e8c05a;
+}
+
+.user-admin {
+    background-color: #292;
+}
+
+.user-editor {
+    background-color: #569484;
+}
+
+.MuiRadio-colorSecondary.Mui-checked {
+    color: var(--third-color) !important;
+}
+
 .shaking-message {
     position: relative;
     animation-name: shaking-message;

@@ -1,11 +1,16 @@
-import React     from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button    from '@material-ui/core/Button';
-import Alert     from '@material-ui/lab/Alert';
+import React      from 'react';
+import TextField  from '@material-ui/core/TextField';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio      from '@material-ui/core/Radio'; 
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel      from '@material-ui/core/FormLabel'; 
+import Button     from '@material-ui/core/Button';
+import Alert      from '@material-ui/lab/Alert';
 
 const AddUserFormTemplate = ({formTemplateProps}) => {
     return ( 
-        <form className='mt-3'>
+        <form className='mt-3' onSubmit={formTemplateProps.handleFormSubmit}>
             <TextField
                 type='text' 
                 name='firstName'
@@ -66,6 +71,17 @@ const AddUserFormTemplate = ({formTemplateProps}) => {
                 required
                 error={formTemplateProps.confirmPasswordError} 
             /> 
+            <FormControl required component="fieldset">
+                <FormLabel component="legend">Role</FormLabel>
+                <RadioGroup 
+                    aria-label="gender" 
+                    name="role" 
+                    value={formTemplateProps.role} 
+                    onChange={formTemplateProps.handleChange}>
+                        <FormControlLabel value="admin" control={<Radio />} label="Admin" />
+                        <FormControlLabel value="editor" control={<Radio />} label="Editor" />
+                </RadioGroup>
+            </FormControl>
             <div className='mb-3'>
                 {formTemplateProps.errorMessage && 
                     <Alert 
@@ -91,7 +107,10 @@ const AddUserFormTemplate = ({formTemplateProps}) => {
                         ||
                         (formTemplateProps.inputs.password === '' || formTemplateProps.inputs.password === undefined)
                         ||
-                        (formTemplateProps.inputs.confirmPassword === '' || formTemplateProps.inputs.confirmPassword === undefined) }>
+                        (formTemplateProps.inputs.confirmPassword === '' || formTemplateProps.inputs.confirmPassword === undefined) 
+                        || 
+                        (formTemplateProps.inputs.role === '' || formTemplateProps.inputs.role === undefined)}
+                    >
                         Add User
                 </Button>   
             </div>

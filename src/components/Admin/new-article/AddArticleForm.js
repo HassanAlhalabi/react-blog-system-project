@@ -154,7 +154,8 @@ const  AddArticleForm = (props) => {
                     category => category.isChecked === true).map(
                         category => category.value),
                 tags: inputs.tags,
-                isPublished: action === 'publish' ? true : false
+                isPublished: action === 'publish' ? true : false,
+                inTrash: false
             }
             props.addNewArticle(newArticle);
             action === 'publish' ?
@@ -167,7 +168,7 @@ const  AddArticleForm = (props) => {
     return(
         <div className='add-form pt-4 pb-4'>
             <div className='container-fluid'>
-                <Typography variant='h4'>Add a new article</Typography>
+                <Typography variant='h4'>Add New Article</Typography>
                 <div className='row'>
                     <div className='col-12 col-md-6'>
                         <AddArticleFormTemplate formTemplateProps={

@@ -1,5 +1,5 @@
 import React from 'react';
-import { removeArticle } from '../../../store/actions/actions';
+import { deleteArticle } from '../../../store/actions/actions';
 import { connect } from 'react-redux';
 import { Link , useParams , useHistory } from 'react-router-dom';
 import List from '@material-ui/core/List';
@@ -30,15 +30,15 @@ const useStyle = makeStyles({
     },
 });
 
-const AllArticles = ({articles, removeArticle}) => {
-    
+const ArticlesTrash = ({articles,deleteArticle}) => {
+
     const classes = useStyle();    
     
-    const handleArticleRemove = index => {   
-        const deleteConfirmation = window.confirm('Are You Sure You Want to Remove Article to Trash!!');   
+    const handleArticleDelete = index => {   
+        const deleteConfirmation = window.confirm('Are You Sure You Want to Delete Article Permenantley!!');   
         if(deleteConfirmation){
-            removeArticle(index);
-            showFlashMessage('Article Has Been Removed to Trash')
+            deleteArticle(index);
+            showFlashMessage('Article Has Been Deleted Successfully')
         }
     }
 
@@ -55,17 +55,17 @@ const AllArticles = ({articles, removeArticle}) => {
         history.push(`/admin-panel/all-articles/page/${value}`)
     };
 
-    return (
-        <div className='all-articles h-100'>
-            <div className='container h-100'>
-                { articlesList.length === 0 ?
-                    <Alert severity='warning'>There is no Articles</Alert>
+    return ( 
+        <div className='articles-trash'>
+             <div className='container h-100'>
+                { articles.length === 0 ?
+                    <Alert severity='info'>There is no Articles</Alert>
                     :
                     <div className='d-flex h-100 flex-column justify-content-between'>
                         <div className='row'>
                             <List className='w-100'>
                                 {
-                                    articlesList.map(article => 
+                                    articles.map(article => 
                                         <ListItem key={article.id} article={article} className={`${classes.listItemStyle} article-item`}>
                                             <ListItemAvatar>
                                                 <Avatar className='overflow-hidden'>
@@ -88,12 +88,7 @@ const AllArticles = ({articles, removeArticle}) => {
                                                 </span>   
                                             </div>  
                                             <ListItemSecondaryAction>
-                                                <IconButton edge="end" aria-label="edit" color='primary'>
-                                                    <Link to={`/admin-panel/edit-article/${article.id}`}>
-                                                        <Edit className={classes.textColor} />
-                                                    </Link>
-                                                </IconButton>
-                                                <IconButton edge="end" aria-label="delete" onClick={(e) => handleArticleRemove(article.id)} color='secondary'>
+                                                <IconButton edge="end" aria-label="delete" onClick={(e) => handleArticleDelete(article.id)} color='secondary'>
                                                     <DeleteIcon className={classes.textColor} color='secondary'/>
                                                 </IconButton>
                                             </ListItemSecondaryAction>
@@ -113,20 +108,21 @@ const AllArticles = ({articles, removeArticle}) => {
                 }          
             </div>
         </div>
-    )
+    );
 }
+
 
 const mapStateToProps = state => {
     return ({
-        articles: state.articles
+        articles: state.articles.filter(article => article.inTrash === true)
     })
 }
 
 const mapDispathToProps = dispatch => {
     return ({
-        removeArticle: index => 
-            dispatch(removeArticle(index))
+        deleteArticle: index => 
+            dispatch(deleteArticle(index))
     })
 }
-
-export default connect(mapStateToProps,mapDispathToProps)(AllArticles);
+ 
+export default connect(mapStateToProps,mapDispathToProps)(ArticlesTrash);

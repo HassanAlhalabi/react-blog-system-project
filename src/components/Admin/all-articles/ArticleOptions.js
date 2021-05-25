@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteArticle, publishUpdate } from '../../../store/actions/actions';
+import { removeArticle, publishUpdate } from '../../../store/actions/actions';
 import { useParams , Link , useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { showFlashMessage } from '../../../components/layout/FlashMessage';
@@ -18,20 +18,19 @@ const useStyle = makeStyles({
     },
 })
 
-const ArticleOptions = ({articles,deleteArticle,publishUpdate}) => {
+const ArticleOptions = ({articles,removeArticle,publishUpdate}) => {
     
     const classes   = useStyle();
     const articleId = useParams('id').id;
     const article   = articles.filter(article => article.id === articleId )[0] 
     const history   = useHistory();
 
-    const handleArticleDelete = index => {   
-        const deleteConfirmation = window.confirm('Are You Sure You Want to Delete The Article!!');   
+    const handleArticleRemove = index => {   
+        const deleteConfirmation = window.confirm('Are You Sure You Want to Remove Article!!');   
         if(deleteConfirmation) {
-            deleteArticle(index);
-            history.push('/admin-panel/all-articles') 
-        } else {
-            console.log('');
+            removeArticle(index);
+            showFlashMessage('Article Has Been Removed to Trash');
+            history.push('/admin-panel/all-articles');
         }
     }
 
@@ -63,7 +62,7 @@ const ArticleOptions = ({articles,deleteArticle,publishUpdate}) => {
                                 variant='contained'
                                 color='secondary'
                                 startIcon={<DeleteIcon />}
-                                onClick={(e) => handleArticleDelete(article.id)}>
+                                onClick={(e) => handleArticleRemove(article.id)}>
                                 Delete Article
                             </Button>
                         </div>
@@ -92,7 +91,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return ({
-        deleteArticle: id => dispatch(deleteArticle(id)),
+        removeArticle: id => dispatch(removeArticle(id)),
         publishUpdate: id => dispatch(publishUpdate(id))     
     })
 }

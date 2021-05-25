@@ -23,17 +23,24 @@ export const addArticle = article => (
     }
 )
 
+export const removeArticle = id => (
+    {
+        type: actionsTypes.REMOVE_ARTICLE,
+        id,
+    }
+);
+
 export const deleteArticle = id => (
     {
         type: actionsTypes.DELETE_ARTICLE,
         id,
     }
-)
+);
 
 export const publishUpdate = id => ({
     type: actionsTypes.PUBLISH_UPDATE,
     id
-})
+});
 
 export const updateArticle = article => (
     {
@@ -58,14 +65,21 @@ export const addUser = user => (
         type: actionsTypes.ADD_USER,
         user
     }
-)
+);
+
+export const removeUser = id => (
+    {
+        type: actionsTypes.REMOVE_USER,
+        id
+    }
+);
 
 export const deleteUser = id => (
     {
         type: actionsTypes.DELETE_USER,
         id
     }
-)
+);
 
 export const updateUser = user => (
     {

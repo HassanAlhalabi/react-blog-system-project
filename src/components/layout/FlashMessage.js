@@ -13,10 +13,9 @@ export const showFlashMessage = message => {
     const messageBody = document.createElement('div');
     messageBody.className = 'flash-message';
     messageBody.textContent = message;
-    console.log(messageBody);
     body.appendChild(messageBody);
     setTimeout(() => {
         messageBody.remove();
-    } , 7000)
+    } , 6500)
 }
 

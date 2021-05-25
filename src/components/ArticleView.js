@@ -9,7 +9,7 @@ const ArticleView = ({articles}) => {
 
     const articleId = useParams('id').id;
     // const [article,setArticle] = useState();
-    const article = articles.filter(article => article.id === articleId)[0];
+    const article = articles.filter(article => article.id === articleId && article.isPublished === true && article.inTrash === false)[0];
 
     // fetch(`http://localhost:8000/articles/${articleId}`)
     //     .then(response => response.json())

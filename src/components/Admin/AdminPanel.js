@@ -5,11 +5,14 @@ import AllArticels from './all-articles/AllArticles';
 import ArticleOptions from './all-articles/ArticleOptions';
 import NewArticle from './new-article/NewArticle';
 import Users from './users/Users';
+import UserDetails from './users/UserDetails';
 import NewUser from './users/NewUser';
 import NotFound404 from '../404/404';
 import Drawer from './drawer/Drawer';
 import EditArticle from './all-articles/EditArticle';
-import Trash from './Trash';
+import Trash from './trash/Trash';
+import ArticlesTrash from './trash/ArticlesTrash';
+import UsersTrash from './trash/UsersTrash';
 import { CategoriesProvider } from '../../contexts/categoriesContext';
 
 const AdminPanel = () => {
@@ -37,8 +40,11 @@ const AdminPanel = () => {
                                 <Route exact path='/admin-panel/all-articles/:id' component={ArticleOptions} />
                                 <Route exact path='/admin-panel/edit-article/:id' component={EditArticle} />
                                 <Route exact path='/admin-panel/users' component={Users} />
+                                <Route exact path='/admin-panel/users/:id' component={UserDetails} />
                                 <Route exact path='/admin-panel/add-user' component={NewUser} />
                                 <Route exact path='/admin-panel/trash' component={Trash} />
+                                <Route exact path='/admin-panel/trash/articles' component={ArticlesTrash} />
+                                <Route exact path='/admin-panel/trash/users' component={UsersTrash} />
                                 <Route path='*' component={NotFound404} />
                             </Switch>   
                         </CategoriesProvider>

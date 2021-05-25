@@ -10,7 +10,8 @@ let articles = [
         "date": "2/12/2020",
         "categories": ["uncategorized","sport"],
         "tags": ["learning","skills"],
-        "isPublished": true
+        "isPublished": true,
+        inTrash: false,
     },
     {
         "id": "2",
@@ -21,7 +22,8 @@ let articles = [
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
-        "isPublished": true
+        "isPublished": true,
+        inTrash: false,
     },
     {
         "id": "3",
@@ -32,7 +34,8 @@ let articles = [
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
-        "isPublished": true
+        "isPublished": true,
+        inTrash: false,
     },
     {
         "id": "4",
@@ -43,7 +46,20 @@ let articles = [
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
-        "isPublished": false
+        "isPublished": false,
+        inTrash: false,
+    },
+    {
+        "id": "5",
+        "title": "Travel the world with james brandon in a caravan !!",
+        "urlToImage": "",
+        "author": "Kame Namek",
+        "content": "You may have owned an iPhone for years and regard yourself as an experienced user. At the same time, you keep removing unwanted characters one at a time while typing by pressing delete. However, one day you find out that a quick shake allows you to delete the whole message in one tap.",
+        "date": "2/12/2020",
+        "categories": ["travel","sport"],
+        "tags": ["james brandon","culture travel"],
+        "isPublished": false,
+        inTrash: true,
     }
 ];
 
@@ -62,9 +78,19 @@ export const articlesReducer = (state = articles, action) => {
                 ...state,
                action.article
             ] 
+
+        case actionsTypes.REMOVE_ARTICLE:
+            console.log('Article Removed')
+            return state.map(article => {
+                if(article.id === action.id){
+                    console.log('Article Removed')
+                    article.inTrash = true;
+                }
+                return article;
+            });
         // Delete Article Permenantly    
         case actionsTypes.DELETE_ARTICLE:
-            console.log('Article Removed')
+            console.log('Article Deleted')
             return state.filter(article => article.id !== action.id)
         // Publish or UnPublish an Article    
         case actionsTypes.PUBLISH_UPDATE:

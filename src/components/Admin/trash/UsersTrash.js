@@ -1,6 +1,6 @@
-import React , { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { removeUser } from '../../../store/actions/actions';
+import { deleteUser } from '../../../store/actions/actions';
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,8 +11,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Person from '@material-ui/icons/Person';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Edit from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 import { showFlashMessage } from '../../layout/FlashMessage';
 
 const useStyle = makeStyles({
@@ -28,21 +28,24 @@ const useStyle = makeStyles({
     },
 });
 
-const Users = ({users,removeUser}) => {
+const UsersTrash = ({users,deleteUser}) => {
 
     const classes = useStyle();
     
-    const handleUserRemove = id => {
-        const removeUserConfirm = window.confirm('Are You Sure You Want to Remove This User to The Trash?')
-        if(removeUserConfirm) {
-            removeUser(id);
-            showFlashMessage('User Has Been Removed Successfully');
+    const handleUserDelete = id => {
+        const deleteUserConfirm = window.confirm('Are You Sure You Want to Delete User Permenantly?')
+        if(deleteUserConfirm) {
+            deleteUser(id);
+            showFlashMessage('User Has Been Deleted Successfully');
         }
     }
 
     return ( 
-        <div className='users'>
+        <div className='articles-trash'>
             <div className='container'>
+            {users.length === 0 ?
+                <Alert severity='info'>There is No Users</Alert>
+                :
                 <div className='row'>
                     <List className='w-100'>
                         {
@@ -61,12 +64,9 @@ const Users = ({users,removeUser}) => {
                                         />
                                     </Link> 
                                     <ListItemSecondaryAction>  
-                                        <IconButton edge="end" aria-label="delete">
-                                            <Edit className={classes.textColor} />
-                                        </IconButton>
                                         {
                                             user.role !== 'owner' &&
-                                            <IconButton edge="end" aria-label="delete" onClick={() => handleUserRemove(user.id)}>
+                                            <IconButton edge="end" aria-label="delete" onClick={() => handleUserDelete(user.id)}>
                                                 <DeleteIcon className={classes.textColor} />
                                             </IconButton>
                                         } 
@@ -76,21 +76,22 @@ const Users = ({users,removeUser}) => {
                         }
                     </List>
                 </div>
-            </div>    
+                }
+            </div>
         </div>
     );
 }
 
 const mapStateToProps = state => {
     return({
-        users: state.users.filter(user => user.role !== 'client' && user.inTrash === false)
+        users: state.users.filter(user => user.inTrash === true)
     })
 }
 
 const mapDispatchToProps = dispatch => {
     return({
-        removeUser: id => dispatch(removeUser(id))
+        deleteUser: id => dispatch(deleteUser(id))
     })
 }
  
-export default connect(mapStateToProps,mapDispatchToProps)(Users);
+export default connect(mapStateToProps,mapDispatchToProps)(UsersTrash);
