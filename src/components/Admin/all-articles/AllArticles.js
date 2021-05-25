@@ -102,13 +102,16 @@ const AllArticles = ({articles, removeArticle}) => {
                                 }
                             </List>
                         </div>
-                        <div className='pagination d-flex justify-content-center'> 
-                            <Pagination 
-                                page={page} 
-                                onChange={handlePagination} 
-                                count={Math.ceil(articles.length/10)} 
-                                size='large'/>
-                        </div>
+                        {
+                            articlesList.length >= pageSize &&
+                            <div className='pagination d-flex justify-content-center'> 
+                                <Pagination 
+                                    page={page} 
+                                    onChange={handlePagination} 
+                                    count={Math.ceil(articles.length/10)} 
+                                    size='large'/>
+                            </div>
+                        }
                     </div>      
                 }          
             </div>

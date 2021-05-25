@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams,useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PageHeader from './layout/PageHeader';
+import PageHeader from '../layout/PageHeader';
 import ArticleCard from './ArticleCard';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -46,14 +46,17 @@ const Articles = ({articles, favorites}) => {
                     }
                 </div>
             </div>
-            <div className='d-flex justify-content-center align-items-center pt-4'>
-                <Pagination
-                    page={page}
-                    count={Math.ceil(articles.length / 12)}
-                    onChange={handlePagination}
-                    size='large'
-                />
-            </div>
+            {
+                articles.length >= pageSize &&
+                <div className='d-flex justify-content-center align-items-center pt-4'>
+                    <Pagination
+                        page={page}
+                        count={Math.ceil(articles.length / 12)}
+                        onChange={handlePagination}
+                        size='large'
+                    />
+                </div>
+            }
         </div>
      );
 }

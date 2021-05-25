@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import articleImg from './imgs/article-image-placeholder.png';
+import articleImg from '../imgs/article-image-placeholder.png';
 
 const ArticleBody = ({articleProps}) => {
     return ( 

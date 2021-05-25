@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleFavoriteArticle } from '../store/actions/actions';
+import { toggleFavoriteArticle } from '../../store/actions/actions';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,8 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Favorite from '@material-ui/icons/Favorite';
 import Share from '@material-ui/icons/Share';
 import { makeStyles } from '@material-ui/core/styles';
-import articleImage from './imgs/article-image-placeholder.png';
-import { showFlashMessage } from '../components/layout/FlashMessage';
+import articleImage from '../imgs/article-image-placeholder.png';
+import { showFlashMessage } from '../layout/FlashMessage';
 
 const useStyle = makeStyles({
     favoriteArticle: {

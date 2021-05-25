@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ArticleBody from './ArticleBody';
-import Sidebar from './layout/Sidebar';
+import Sidebar from '../layout/Sidebar';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Alert from '@material-ui/lab/Alert';

@@ -44,7 +44,7 @@ a {
 
 a:hover,
 a:focus {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 
@@ -305,10 +305,10 @@ nav.navbar .upper-nav {
     /* border-bottom: 1px solid var(--third-color); */
 }
 
-nav.navbar .logo h1 {
+nav.navbar .logo {
     font-weight: bolder;
     font-size: 34px;
-    color: var(--third-color)
+    color: var(--third-color);
 }
 
 nav.navbar .logo h1 {

@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Edit from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PublishRounded from '@material-ui/icons/PublishRounded';
-import ArticleBody from '../../ArticleBody';
+import ArticleBody from '../../articles/ArticleBody';
 
 const useStyle = makeStyles({
     articleOptions: {

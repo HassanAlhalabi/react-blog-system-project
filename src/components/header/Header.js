@@ -15,7 +15,11 @@ const Header = ({user}) => {
   const handleSearchTerm = e => setSearchTerm(e.target.value);
   const handleSearchSubmit = (e,searchTerm) => {
     e.preventDefault();
-    history.push(`/search-results/${searchTerm}`);
+    if(searchTerm === undefined || searchTerm === '') {
+      alert('empty inputs')
+    } else {
+      history.push(`/search-results/${searchTerm}`);
+    }
   };
   
   return(
@@ -25,11 +29,9 @@ const Header = ({user}) => {
           <div className='row justify-content-between'>
             <div className='col-12 col-sm-6 d-flex align-items-center'>
               <div className="logo-holder text-center text-sm-left w-100">
-                <Link to='/' className="logo">
                   <Typorgaphy className='pl-0' variant='h4' component='h1'>
-                    BlogPost
-                  </Typorgaphy>  
-                </Link>
+                    <Link to='/' className="logo">BlogPost</Link>
+                  </Typorgaphy> 
               </div>
             </div>
             <div className='col-12 col-sm-6 col-lg-4 d-flex justify-content-center justify-content-sm-end align-items-center'>

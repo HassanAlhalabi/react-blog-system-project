@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ArticleCard from './ArticleCard';
+import ArticleCard from './articles/ArticleCard';
 import Alert from '@material-ui/lab/Alert';
 
 const FavoriteArticles = ({articles,favorites}) => {
