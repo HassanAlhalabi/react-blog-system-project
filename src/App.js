@@ -1,4 +1,3 @@
-
 // Required Packages and Libraries
 import React ,{useEffect, useState} from 'react';
 import { BrowserRouter , Route , Switch } from 'react-router-dom';
@@ -26,8 +25,8 @@ const App = () => {
   const [user,setUser] = useState('admin');
 
   useEffect(() => {
-    setUser('admin')
-  },[])
+    setUser('admin');
+  },[]);
 
     return(
       <BrowserRouter>
@@ -46,7 +45,7 @@ const App = () => {
                 <Route exact path='/favorite-articles' component={FavoriteArticles} />
                 <Route path='/contact-us' component={ContactUs} />
                 <Route path='/about-us' component={AboutUs} />
-                <Route path='/search-results/:search-term' component={SearchResults} />
+                <Route path='/search-results/:search_term' component={SearchResults} />
                 <Route path='*' component={NotFound404} />
               </Switch>
               :
@@ -63,7 +62,7 @@ const App = () => {
                 <Route exact path='/favorite-articles' component={FavoriteArticles} />
                 <Route path='/about-us' component={AboutUs} />
                 <Route path='/contact-us' component={ContactUs} />
-                <Route exact path='/search-results/:search-term' component={SearchResults} />
+                <Route exact path='/search-results/:search_term' component={SearchResults} />
                 <Route path='*' component={NotFound404} />
               </Switch>
             }
