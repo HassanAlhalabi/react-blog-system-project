@@ -17,6 +17,7 @@ import FavoriteArticles from './components/FavoriteArticles';
 import LatestNews from './components/LatestNews';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
+import SearchResults from './components/SearchResults';
 import Footer from './components/Footer';
 import NotFound404 from './components/404/404';
 
@@ -45,6 +46,7 @@ const App = () => {
                 <Route exact path='/favorite-articles' component={FavoriteArticles} />
                 <Route path='/contact-us' component={ContactUs} />
                 <Route path='/about-us' component={AboutUs} />
+                <Route path='/search-results/:search-term' component={SearchResults} />
                 <Route path='*' component={NotFound404} />
               </Switch>
               :
@@ -61,6 +63,7 @@ const App = () => {
                 <Route exact path='/favorite-articles' component={FavoriteArticles} />
                 <Route path='/about-us' component={AboutUs} />
                 <Route path='/contact-us' component={ContactUs} />
+                <Route exact path='/search-results/:search-term' component={SearchResults} />
                 <Route path='*' component={NotFound404} />
               </Switch>
             }

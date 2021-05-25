@@ -5,14 +5,18 @@ import VisitorNavLinks from './VisitorNavLinks';
 import RegisterdLinks from './RegisteredLinks';
 import UnRegisteredLinks from './UnRegisterdLinks';
 import SearchBox from '../../components/layout/SearchBox';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const Header = ({user}) => {
 
+  const history = useHistory();
   const pathName = useLocation().pathname;
   const [searchTerm,setSearchTerm] = useState('')
   const handleSearchTerm = e => setSearchTerm(e.target.value);
-  const handleSearchSubmit = () => console.log('Searcb submit');
+  const handleSearchSubmit = (e,searchTerm) => {
+    e.preventDefault();
+    history.push(`/search-results/${searchTerm}`);
+  };
   
   return(
     <nav className='navbar d-block'>
