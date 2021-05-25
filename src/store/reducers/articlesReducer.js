@@ -109,7 +109,11 @@ export const articlesReducer = (state = articles, action) => {
                     return action.article
                 } 
                 return article
-            })
+            });
+        // Empty Trash    
+        case actionsTypes.EMPTY_TRASH:
+            console.log('Trash Deleted');
+            return state.filter(article => article.inTrash === false);
         default:
             return state
         }

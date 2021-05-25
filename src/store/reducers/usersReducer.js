@@ -84,6 +84,10 @@ export const usersReducer = (users = usersList , action) => {
                     ...users,
                     action.user
                 ];
+        // Empty Trash    
+        case actionsTypes.EMPTY_TRASH:
+            console.log('Trash Deleted');
+            return users.filter(user => user.inTrash === false);        
         default:
             return users;
     }

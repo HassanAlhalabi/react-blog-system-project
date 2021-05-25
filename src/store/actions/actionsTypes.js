@@ -17,3 +17,6 @@ export const REMOVE_USER  = 'REMOVE_USER';
 export const DELETE_USER  = 'DELETE_USER';
 export const UPDATE_USER  = 'UPDATE_USER';
 export const SUSPEND_USER = 'SUSPEND_USER';
+
+// Trash Actions
+export const EMPTY_TRASH = 'EMPTY_TRASH';

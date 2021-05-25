@@ -86,11 +86,17 @@ export const updateUser = user => (
         type: actionsTypes.UPDATE_USER,
         user
     }
-)
+);
 
 export const suspendUser = id => (
     {
         type: actionsTypes.SUSPEND_USER,
         id
     }
-)
+);
+
+// Trash Actions
+
+export const emptyTrash = () => ({
+    type: actionsTypes.EMPTY_TRASH
+});

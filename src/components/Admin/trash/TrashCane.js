@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
-    trashCane: {
+    trashCaneIcon: {
         color: '#EEE',
         fontSize: '180px'
     },
@@ -47,7 +47,7 @@ const TrashCane = ({itemsNumber, link, title}) => {
                         <span>{itemsNumber}</span>
                     </div>   
                     <span className={classes.title}>{title}</span> 
-                    <DeleteSharp className={classes.trashCane}/>
+                    <DeleteSharp className={classes.trashCaneIcon}/>
                 </div>
             </Link>
         </div>

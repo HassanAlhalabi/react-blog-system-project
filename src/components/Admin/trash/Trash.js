@@ -1,16 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { emptyTrash } from '../../../store/actions/actions';
 import TrashCane from './TrashCane';
 import Button from '@material-ui/core/Button';
-import DeleteForeverRounded from '@material-ui/icons/DeleteForeverRounded'
+import DeleteForeverRounded from '@material-ui/icons/DeleteForeverRounded';
+import { showFlashMessage } from '../../layout/FlashMessage';
 
-const Trash = ({articles,users}) => {
+const Trash = ({articles,users,emptyTrash}) => {
 
-    const handleEmptyTrash = () => console.log('Empty Trash')
+    const handleEmptyTrash = () => {
+        const emptyTrashConfirm = window.confirm('Are You Sure You Want to Empty Trash!');
+        if(emptyTrashConfirm) {
+            emptyTrash();
+            showFlashMessage('Trash Has Been Emptied Successfully');
+        }
+    };
 
     return ( 
         <div className='trash'>
-            <div className='d-flex flex-wrap'>
+            <div className='d-flex justify-content-center justify-content-sm-start flex-wrap'>
                 <TrashCane 
                     title='Articles' 
                     link='/admin-panel/trash/articles' 
@@ -22,13 +30,15 @@ const Trash = ({articles,users}) => {
                     itemsNumber={users.length} 
                 />
             </div>
-            <div className='empty-trash'>
+            <div className='empty-trash text-center text-sm-left'>
                 <Button 
+                    className='m-4'
                     color='secondary' 
                     variant='contained'
                     size='large' 
                     startIcon={<DeleteForeverRounded />}
                     onClick={handleEmptyTrash} 
+                    disabled={users.length <= 0 && articles.length <= 0}
                 >
                     Empty Trash
                 </Button>
@@ -44,4 +54,10 @@ const mapStateToProps = state => {
     })
 }
  
-export default connect(mapStateToProps)(Trash);
+const mapDispatchToProps = dispatch => {
+    return({
+        emptyTrash: () => dispatch(emptyTrash())
+    })
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Trash);
