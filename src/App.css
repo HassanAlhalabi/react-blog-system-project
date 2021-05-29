@@ -60,6 +60,49 @@ button:focus {
     outline: none;
 }
 
+.landing-button,
+.social-button {
+    color: var(--third-color);
+    padding: 8px 25px;
+    border: 1px solid var(--third-color);
+    text-transform: uppercase;
+    margin: 10px 0px;
+    display: inline-block;
+    font-weight: 600;
+    transition: .4s;
+}
+
+.social-button {
+    width: 60px;
+    height: 60px;
+    padding: 15px;
+    margin: 10px;
+}
+
+.landing-button:hover,
+.social-button:hover {
+    color: #FFF;
+    background-color: var(--third-color);
+}
+
+h2 {
+    font-family: serif;
+    position: relative;
+    font-size: 48px;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    color: var(--third-color);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 60px;
+    border: 1px solid #ac752f;
+}
+
 /* ******************** Framework ******************** */
 
 .bg-main {
@@ -353,7 +396,340 @@ nav.navbar .lower-nav a:focus {
     border-bottom: 3px solid var(--third-color);
 }
 
-/* Articles Page Style */
+/********* Landing Page Style ***********/
+
+/* Landing Header */
+
+.landing-header img {
+    width: 100%;
+}
+
+.top-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-73%);
+    text-transform: uppercase;
+    border: 7px solid var(--third-color);
+    padding: 4% 6%;
+    width: max-content;
+    max-width: 90%;
+    z-index: 100;
+}
+
+@media(max-width: 991px) {
+    .top-text {
+        padding: 3% 5%;
+        z-index: 104;
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+@media(max-width: 767px) {
+    .top-text {
+        padding: 15px;
+        transform: translateX(-50%) translateY(-30%);
+        border: none
+    }
+}
+
+.landing-header .forward-header-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+}
+
+span.top-text-slogan {
+    color: #FFF;
+    font-weight: 600;
+    font-size: 14pt;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+@media(max-width: 567px) {
+    span.top-text-slogan {
+        font-size: 14px
+    }
+}
+
+.top-text span.top-text-slogan:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 60px;
+    transform: translateX(-50%);
+    border: 1px solid #FFF;
+}
+
+.landing-page-logo {
+    margin: 0;
+    font-size: 9.7vw;
+    color: #FFF !important;
+    font-family: 'DroidSerif',serif;
+    text-transform: capitalize;
+    line-height: 110px;
+    transform: scaleX(1.1);
+    width: min-content;
+    margin: auto;
+}
+
+@media(max-width: 567px) {
+    .landing-page-logo {
+        font-size: 60px;
+        line-height: 5rem;
+    }
+}
+
+.top-text p {
+    color: #ac752f;
+    font-weight: 600;
+    letter-spacing: -.6px;
+    margin: 0;
+    transform: scaleY(.9);
+    max-width: 100%;
+}
+
+@media(max-width: 567px) {
+    .top-text p {
+        font-size: 14px
+    }
+}
+
+/******* Landing Content *********/
+
+.landing-page-content {
+    height: 100%;
+    background-color: #FFF;
+    background-image: url('./components//imgs/landing/BackgroundLines.png');
+    background-size: 100%;
+    -webkit-background-repeat-x: no-repeat;
+    -webkit-background-repeat-y: repeat;
+    -moz-background-repeat-x: no-repeat;
+    -moz-background-repeat-y: repeat;
+}
+
+/* Landing About Us */
+
+.landing-about-us {
+    padding: 130px 0px;
+}
+
+.about-us {
+    background-color: #373737;
+    color: var(--third-color);
+    padding: 50px;
+}
+
+@media(max-width: 767px) {
+    .about-us {
+        padding: 15px;
+    }
+    
+}
+
+.about-us-text p {
+    color: #FFF;
+    margin-bottom: 35px;
+    font-size: 13px;
+    line-height: 21px;
+}
+
+
+.about-us-image {
+    position: absolute;
+    z-index: 102;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90%;
+    text-align: center;
+}
+
+@media(max-width: 991px) {
+    .about-us-image {
+        position: static;
+        transform: none;
+        margin: 25px auto;
+    }
+}
+
+.about-us-image img {
+    max-width: 500px;
+    margin: auto;
+}
+
+@media(max-width: 991px) {
+    .about-us-image img {
+        max-width: 100%;
+    }
+}
+
+/* Landing Latest Articles Style */
+
+.landing-latest-articles {
+    padding: 100px 0px;
+}
+
+.landing-latest-articles .row > div {
+    max-width: 340px;
+}
+
+.landing-article-card-image {
+    position: relative;
+    max-height: 220px;
+    max-width: 100%;
+    width: 290px;
+    height: 220px;
+    margin: auto;
+}
+
+.card-image-shadow {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background-color: #333;
+    top: 0;
+    left: 0;
+    z-index: 102;
+}
+
+.landing-article-card-image img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 93%;
+    height: 90%;
+    z-index: 103;
+}
+
+@media(min-width: 992px) {
+    .landing-article-card.middle-card {
+        padding-top: 75px;
+    }
+}
+
+
+.landing-card-content > div {
+    padding: 12px 0px;
+}
+
+.landing-card-content h5 {
+    color: var(--third-color);
+    font-family: serif;
+    border-bottom: 1px solid var(--third-color);
+    padding: 15px 0px;
+}
+
+.landing-card-content p {
+    color: #FFF;
+    font-size: 13px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.landing-card-content a {
+    color: var(--third-color);
+    font-weight: bold;
+}
+
+/* Gallery Section Style  */
+
+.landing-gallery {
+    padding: 80px 0px
+}
+
+.gallery-areas img {
+    max-width: 100%;
+}
+
+.gallery-image-1 {
+    width: 260px;
+}
+
+.gallery-image-3 {
+    width: 290px;
+}
+
+.gallery-image-4 {
+    height: 180px;
+    margin-top: auto;
+}
+
+.gallery-image-6 {
+    width: 270px;
+}
+
+.gallery-image-7 {
+    height: 180px;
+}
+
+/* Landing Contact Us Section Style */
+
+.landing-contact-us {
+    padding: 130px 0px;
+}
+
+.contact-us {
+    background-color: #373737;
+    color: var(--third-color);
+    padding: 50px;
+}
+
+@media(max-width: 767px) {
+    .contact-us {
+        padding: 15px;
+    }
+    
+}
+
+.contact-us-text p {
+    color: #FFF;
+    margin-bottom: 35px;
+    font-size: 13px;
+}
+
+
+.contact-us-image {
+    position: absolute;
+    z-index: 102;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90%;
+    text-align: center;
+}
+
+@media(max-width: 991px) {
+    .contact-us-image {
+        position: static;
+        transform: none;
+        margin: 25px auto;
+    }
+}
+
+.contact-us-image img {
+    max-width: 500px;
+    margin: auto;
+}
+
+@media(max-width: 991px) {
+    .contact-us-image img {
+        max-width: 100%;
+    }
+}
+
+/* Landing Soccial Links Style */
+
+.landing-social-links {
+    padding: 120px 0px;
+}
+
+/**************** Articles Page Style *******************/
 
 .article-card {
     border: 1px solid var(--third-color);

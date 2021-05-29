@@ -30,7 +30,7 @@ const Header = ({user}) => {
             <div className='col-12 col-sm-6 d-flex align-items-center'>
               <div className="logo-holder text-center text-sm-left w-100">
                   <Typorgaphy className='pl-0' variant='h4' component='h1'>
-                    <Link to='/' className="logo">BlogPost</Link>
+                    <Link to='/' className="logo">Travel</Link>
                   </Typorgaphy> 
               </div>
             </div>
