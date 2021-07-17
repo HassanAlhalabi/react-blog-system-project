@@ -1,6 +1,6 @@
 // Required Packages and Libraries
 import React ,{useEffect, useState} from 'react';
-import { BrowserRouter , Route , Switch , useLocation} from 'react-router-dom';
+import { BrowserRouter , Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -14,6 +14,7 @@ import Articles from './components/articles/Articles';
 import ArticleView from './components/articles/ArticleView';
 import FavoriteArticles from './components/FavoriteArticles';
 import LatestNews from './components/LatestNews';
+import Gallery from './components/Gallery';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import SearchResults from './components/SearchResults';
@@ -23,21 +24,18 @@ import NotFound404 from './components/404/404';
 const App = () => {
 
   const [user,setUser] = useState('admin');
-  const pathName = window.location.pathname;
-  console.log(pathName)
 
   useEffect(() => {
-    setUser('admin');
+    setUser('advenutrer');
   },[]);
 
     return(
       <BrowserRouter>
+          <Header user={user}/>
           <main>
             {
               user === 'admin' || user === 'editor' ?
               <div>  
-                {/* {pathName !== '/' && <Header user={user}/> } */}
-                <Header user={user}/>
                 <Switch>
                   <Route exact path='/' component={Landing} />
                   <Route path='/home' component={Landing} />
@@ -47,6 +45,7 @@ const App = () => {
                   <Route exact path='/articles/:id' component={ArticleView} />
                   <Route exact path='/news' component={LatestNews} />
                   <Route exact path='/favorite-articles' component={FavoriteArticles} />
+                  <Route path='/gallery' component={Gallery} />
                   <Route path='/contact-us' component={ContactUs} />
                   <Route path='/about-us' component={AboutUs} />
                   <Route path='/search-results/:search_term' component={SearchResults} />
@@ -55,7 +54,6 @@ const App = () => {
               </div>  
               :
               <div>  
-                <Header user={user}/>
                 <Switch>
                   <Route exact path='/' component={Landing} />
                   <Route path='/home' component={Landing} />
@@ -67,6 +65,7 @@ const App = () => {
                   <Route exact path='/articles/:id' component={ArticleView} />
                   <Route exact path='/news' component={LatestNews} />
                   <Route exact path='/favorite-articles' component={FavoriteArticles} />
+                  <Route path='/gallery' component={Gallery} />
                   <Route path='/about-us' component={AboutUs} />
                   <Route path='/contact-us' component={ContactUs} />
                   <Route exact path='/search-results/:search_term' component={SearchResults} />

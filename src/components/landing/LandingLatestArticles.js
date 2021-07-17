@@ -2,6 +2,7 @@ import React from 'react';
 import LatestArticlesImage1 from '../imgs/landing/latestArticles1.png';
 import LatestArticlesImage2 from '../imgs/landing/latestArticles2.png';
 import LatestArticlesImage3 from '../imgs/landing/latestArticles3.png';
+import { Link } from 'react-router-dom';
 
 const LandingLatestArticles = () => {
     return (
@@ -15,7 +16,7 @@ const LandingLatestArticles = () => {
                         <div className="landing-article-card mb-5">
                             <div className="landing-article-card-image">
                                 <div className="card-image-shadow"></div>
-                                <img src={LatestArticlesImage1} />
+                                <img src={LatestArticlesImage1} alt=''/>
                             </div>
                             <div className="landing-card-content">
                                 <div>
@@ -27,7 +28,7 @@ const LandingLatestArticles = () => {
                                     </p>
                                 </div>
                                 <div>
-                                    <a className="landing-card-read-more">Read More &nbsp;</a>
+                                    <Link to='/articles' className="landing-card-read-more">Read More &nbsp;</Link>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +38,7 @@ const LandingLatestArticles = () => {
                             <div className="landing-article-card-image">
                                 <div className="card-image-shadow"></div>
                                 <div>
-                                    <img src={LatestArticlesImage2} />
+                                    <img src={LatestArticlesImage2} alt='' />
                                 </div>
                             </div>
                             <div className="landing-card-content">
@@ -50,7 +51,7 @@ const LandingLatestArticles = () => {
                                     </p>
                                 </div>
                                 <div>
-                                    <a className="landing-card-read-more">Read More &nbsp;</a>
+                                <Link to='/articles' className="landing-card-read-more">Read More &nbsp;</Link>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +61,7 @@ const LandingLatestArticles = () => {
                             <div className="landing-article-card-image">
                                 <div className="card-image-shadow"></div>
                                 <div>
-                                    <img src={LatestArticlesImage3} />
+                                    <img src={LatestArticlesImage3} alt='' />
                                 </div>
                             </div>
                             <div className="landing-card-content">
@@ -73,7 +74,7 @@ const LandingLatestArticles = () => {
                                     </p>
                                 </div>
                                 <div>
-                                    <a className="landing-card-read-more">Read More &nbsp;</a>
+                                <Link to='/articles' className="landing-card-read-more">Read More &nbsp;</Link>
                                 </div>
                             </div>
                         </div>

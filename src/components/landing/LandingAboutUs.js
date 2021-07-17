@@ -1,5 +1,6 @@
 import React from 'react';
 import LandingAboutUsImage from '../imgs/landing/LandingAboutUsImage.png';
+import { Link } from 'react-router-dom';
 
 const LandingAboutUs = () => {
     return ( 
@@ -17,14 +18,14 @@ const LandingAboutUs = () => {
                                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                                     nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                                 </p>
-                                <a href="#" className="landing-button">
-                                    read more
-                                </a>
+                                <Link to='/about-us' className="landing-button">
+                                    Read More
+                                </Link>
                             </div>
                         </div>
                         <div className='col-12 col-lg-7'>
                             <div className="about-us-image">
-                                <img src={LandingAboutUsImage} className="img-fluid" />
+                                <img src={LandingAboutUsImage} className="img-fluid" alt=''/>
                             </div>
                         </div>
                     </div>    
