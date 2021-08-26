@@ -4,7 +4,7 @@ import Dashboard from './Dashboard';
 import AllArticels from './all-articles/AllArticles';
 import ArticleOptions from './all-articles/ArticleOptions';
 import NewArticle from './new-article/NewArticle';
-import Users from './users/Users';
+// import Users from './users/Users';
 import UserDetails from './users/UserDetails';
 import NewUser from './users/NewUser';
 import NotFound404 from '../404/404';
@@ -39,7 +39,7 @@ const AdminPanel = () => {
                                 <Route exact path='/admin-panel/all-articles/page/:page?' component={AllArticels} />
                                 <Route exact path='/admin-panel/all-articles/:id' component={ArticleOptions} />
                                 <Route exact path='/admin-panel/edit-article/:id' component={EditArticle} />
-                                <Route exact path='/admin-panel/users' component={Users} />
+                                {/* <Route exact path='/admin-panel/users' component={Users} /> */}
                                 <Route exact path='/admin-panel/users/:id' component={UserDetails} />
                                 <Route exact path='/admin-panel/add-user' component={NewUser} />
                                 <Route exact path='/admin-panel/trash' component={Trash} />
