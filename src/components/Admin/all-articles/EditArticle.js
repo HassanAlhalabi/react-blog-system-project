@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import AddArticleFormTemplate from '../new-article/AddArticleFormTemplate';
 import AddArticleFormPreview from '../new-article/AddArticleFormPreview';
+import {EditorState,convertToRaw,convertFromRaw} from 'draft-js';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
 import { updateArticle } from '../../../store/actions/actions';
@@ -32,13 +33,18 @@ const EditArticle = ({ updateArticle , articles }) => {
         newCategory: '',
         tags:        article.tags,
         newTag:      '',
-        urlToImage: article.urlToImage,
+        urlToImage:  article.urlToImage,
         isPublished: article.isPublished,
+        inTrash:     article.inTrash
     });
+    const [editorState,setEditorState]       = useState(EditorState.createWithContent(convertFromRaw(inputs.content)));
     const [titleError,setTitleError]         = useState(false);
     const [authorError,setAuthorError]       = useState(false); 
     const [contentError,setContentError]     = useState(false);  
     const [errorMessage,setErrorMessage]     = useState(null);
+
+    console.log(editorState)
+    console.log(inputs.content)
 
     const handleAddCategory = e => {
         e.preventDefault()
@@ -120,8 +126,13 @@ const EditArticle = ({ updateArticle , articles }) => {
                 [e.target.name] : e.target.value})
     }
 
-    console.log('inputs:',inputs)
-    console.log('categories in context:',categories)
+    const handleEditorState = editorState => {
+        setEditorState(editorState);
+        setInputs({
+            ...inputs,
+            content: convertToRaw(editorState.getCurrentContent())
+        });
+    };
 
     const handleFormSubmit = (event , action) => {
         event.preventDefault();
@@ -158,7 +169,8 @@ const EditArticle = ({ updateArticle , articles }) => {
                 category => category.isChecked === true).map(
                     category => category.value),
             tags: inputs.tags,
-            isPublished: action === 'publish' ? true : inputs.isPublished
+            isPublished: action === 'publish' ? true : inputs.isPublished,
+            inTrash: inputs.inTrash
         }
         updateArticle(updatedArticle);
         showFlashMessage('Article Has Been Updated Succesfully');
@@ -173,6 +185,8 @@ const EditArticle = ({ updateArticle , articles }) => {
                         <AddArticleFormTemplate formTemplateProps={
                             {
                                 handleChange,
+                                handleEditorState,
+                                editorState,
                                 inputs,
                                 handleAddCategory,
                                 handleAddTag,
@@ -181,7 +195,7 @@ const EditArticle = ({ updateArticle , articles }) => {
                                 authorError,
                                 contentError,
                                 errorMessage,
-                                handleFormSubmit,   
+                                handleFormSubmit   
                             }
                         }/>
                     </div>

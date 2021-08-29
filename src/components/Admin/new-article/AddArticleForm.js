@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import AddArticleFormTemplate from './AddArticleFormTemplate';
 import AddArticleFormPreview from './AddArticleFormPreview';
+import {EditorState,convertToRaw} from 'draft-js';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
 import { addArticle as addNewArticle } from '../../../store/actions/actions';
@@ -11,12 +12,13 @@ import { process } from 'uniqid';
 
 const  AddArticleForm = (props) => {
 
-    const [categories , setCategories] = useContext(CategoriesContext);
+    const [categories , setCategories]        = useContext(CategoriesContext);
+    const [editorState,setEditorState]        = useState(EditorState.createEmpty());
     const [inputs,setInputs] = useState({
         title: '',
         author: '',
-        content: '',
         categories: categories,
+        content: editorState,
         newCategory: '',
         tags: [],
         newTag: '',
@@ -29,7 +31,7 @@ const  AddArticleForm = (props) => {
     const [errorMessage,setErrorMessage]      = useState(null); 
     const history                             = useHistory();  
     const date                                = new Date();
-
+    
     const handleAddCategory = e => {
         e.preventDefault();
         if(inputs.newCategory !== '' && inputs.newCategory !== undefined) {
@@ -88,12 +90,21 @@ const  AddArticleForm = (props) => {
         setInputs({
             ...inputs,
             tags: newTagsList
-        })
-    }
+        });
+    };
+
+    const handleEditorState = editorState => {
+        setEditorState(editorState);
+        setInputs({
+            ...inputs,
+            content: convertToRaw(editorState.getCurrentContent())
+        });
+    };
 
     const handleImageUpload = (imageList) => {
         setArticleImage(imageList[0].data_url);
-    }
+    };
+
     const handleChange = e =>  { 
         let newCats = [];
         newCats = categories.map(n => {
@@ -113,13 +124,9 @@ const  AddArticleForm = (props) => {
                 [e.target.name] : e.target.value})
     }
 
-    // console.log('inputs:',inputs)
-    // console.log('categories in context:',categories)
-
     const handleFormSubmit = (event , action) => {
         event.preventDefault();
         let noErrors = true;
-        console.log(inputs.title)
         if(inputs.title === '' || inputs.title === undefined ) {
             setTitleError(true);
             setErrorMessage('Required Fields are Missing');
@@ -175,6 +182,8 @@ const  AddArticleForm = (props) => {
                             {
                                 handleChange,
                                 inputs,
+                                editorState,
+                                handleEditorState,
                                 handleAddCategory,
                                 handleAddTag,
                                 handleRemoveTag,

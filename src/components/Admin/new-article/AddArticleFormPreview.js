@@ -1,5 +1,7 @@
 import React from 'react';
 import ArticleImage from '../../imgs/article-image-placeholder.png';
+import {convertToRaw} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 const AddArticleFormPreview = ({previewProps,articleImage}) => {
     return ( 
@@ -17,7 +19,7 @@ const AddArticleFormPreview = ({previewProps,articleImage}) => {
                             return category.isChecked === true && category.value.toLowerCase() !== 'uncategorized';
                         }).map(category => <span>{category.value}</span>)
                     }
-                </div>
+                    </div>
                 </div>
                 { previewProps.title && 
                     <h1 className='mt-3 mb-0'>{previewProps.title}</h1>
@@ -30,9 +32,9 @@ const AddArticleFormPreview = ({previewProps,articleImage}) => {
                         <span className='d-block'>{previewProps.date}</span>
                     </div>
                 </div>
-                {
-                    previewProps.content && 
-                    <pre><p className='mt-3 mb-3'>{previewProps.content}</p></pre>}
+                <div className='mt-3 mb-3 article-content'>
+                     <div dangerouslySetInnerHTML={{__html: draftToHtml(previewProps.content)}}></div>
+                </div>
                 <div className='article-tags'>
                     <div className='pt-2 pb-4'>
                     {

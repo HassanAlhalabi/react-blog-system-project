@@ -1,6 +1,8 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import articleImg from '../imgs/article-image-placeholder.png';
+import { convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 const ArticleBody = ({articleProps}) => {
     return ( 
@@ -33,7 +35,7 @@ const ArticleBody = ({articleProps}) => {
                 </div>
             </div>
             <div className='article-content pt-4 pb-2'>
-                <pre>{articleProps.content}</pre>
+                <div dangerouslySetInnerHTML={{__html: draftToHtml(articleProps.content)}}></div>
             </div>
             <div className='article-tags'>
                 <div className='pt-2 pb-4'>

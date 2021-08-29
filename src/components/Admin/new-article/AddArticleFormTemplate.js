@@ -3,6 +3,7 @@ import ImageUploading from 'react-images-uploading';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import TextEditor from './TextEditor';
 import Checkbox from '@material-ui/core/Checkbox';
 import Alert from '@material-ui/lab/Alert';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -34,20 +35,13 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                 required
                 error={formTemplateProps.authorError}
             />
-            <TextField    
-                type='text' 
-                name='content'
-                variant='filled' 
-                label='Content' 
-                className='w-100 mb-4'
-                value={formTemplateProps.inputs.content}
-                onChange={formTemplateProps.handleChange}
-                autoComplete='off'
-                multiline
-                rows='20'
-                required
+
+            <TextEditor
+                editorState={formTemplateProps.editorState}
+                handleEditorState={formTemplateProps.handleEditorState}
                 error={formTemplateProps.contentError}
-            />    
+            />   
+
             <div className='form-group'>
                 <label htmlFor='article-category'>Categories:</label><br />  
                 <div className='categories-input'> 

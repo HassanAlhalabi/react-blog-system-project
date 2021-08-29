@@ -6,7 +6,7 @@ let articles = [
         "title": "How To learn a new Skills to Keep Up With the century",
         "urlToImage": "",
         "author": "Hassan Alhalabi",
-        "content": "You may have owned an iPhone for years and regard yourself as an experienced user. At the same time, you keep removing unwanted characters one at a time while typing by pressing delete. However, one day you find out that a quick shake allows you to delete the whole message in one tap.",
+        "content": '',
         "date": "2/12/2020",
         "categories": ["uncategorized","sport"],
         "tags": ["learning","skills"],

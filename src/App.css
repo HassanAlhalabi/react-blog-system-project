@@ -176,9 +176,30 @@ button:focus {
     border-bottom-color: var(--third-color)
 }
 
-.add-form .MuiFilledInput-multiline {
+.add-form .text-editor-toolbar {
+    border-radius: 0;
+}
+
+.add-form .rdw-dropdown-selectedtext {
+    color: #d3b48e;
+}
+
+.add-form .MuiFilledInput-multiline,
+.add-form .text-editor-content {
     background-color: #FFF !important;
     border-radius: 0;
+    min-height: 50vh;
+    padding: 12px 10px;
+}
+
+.add-form .text-editor-content h1,
+.add-form .text-editor-content h2,
+.add-form .text-editor-content h3,
+.add-form .text-editor-content h4,
+.add-form .text-editor-content h5,
+.add-form .text-editor-content h6,
+.add-form .text-editor-content p {
+    color: var(--main-color);
 }
 
 legend.MuiFormLabel-root {
@@ -467,7 +488,7 @@ nav.navbar .lower-nav a:focus {
     border-color: transparent;
     position: absolute;
     right: 0px;
-    transition: .4s;
+    transition: .3s;
 }
 
 .landing-menu ul li:before {
@@ -863,11 +884,15 @@ span.top-text-slogan {
 
 /* Article Body Style */
 
+.article-body p {
+    color: var(--main-color);
+}
+
 .article-body .article-categories {
     bottom: 10px;
     left: 10px;
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
 }
 
 .article-body .article-categories span {
@@ -1220,11 +1245,12 @@ span.top-text-slogan {
     padding: 4px
 }
 
-.post-preview-panel pre p {
+.post-preview-panel p {
     font-family: sans-serif;
     font-size: 12px;
     padding: 0px 4px;
-    white-space: pre-line
+    white-space: pre-line;
+    color: var(--main-color);
 }
 
 .article-tag-preview {
