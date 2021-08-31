@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
-
+import Stats from './Stats';
+import WebsiteActivity from './WebsiteActivity';
 import LatestArticels from './LatestArticles';
 
 class Dashboard extends Component {
@@ -9,7 +10,11 @@ class Dashboard extends Component {
             <div className='dashboard'>
                 <div className='dashboard-wrapper'>
                     <div className='container-fluid'>    
-                        <LatestArticels />
+                        <Stats />
+                        <WebsiteActivity />
+                        <div>
+                            <LatestArticels />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -66,11 +66,13 @@ a {
     transition: .6s;
     font-weight: bold;
     letter-spacing: .8px;
+    color: #EEE;
 }
 
 a:hover,
 a:focus {
     text-decoration: none !important;
+    color: var(--third-color);
 }
 
 
@@ -474,30 +476,6 @@ nav.navbar .lower-nav a:focus {
 .landing-menu-button svg:hover,
 .landing-menu-button svg:focus {
     background-color: var(--third-color);
-}
-
-.landing-menu ul li {
-    position: relative;
-}
-
-.landing-menu ul li:before,
-.landing-menu ul li:after {
-    content: '';
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent;
-    position: absolute;
-    right: 0px;
-    transition: .3s;
-}
-
-.landing-menu ul li:before {
-    bottom: 100%;
-}
-
-.landing-menu ul li:after {
-    top: 100%;
-    transform: rotate(-90deg);
 }
 
 .landing-menu ul li a {
@@ -1008,6 +986,78 @@ span.top-text-slogan {
 
 /* Admin Panel Style */
 
+/* Dashaboard */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 36px;
+}
+
+.dashboard-stats .dashboard-stat {
+    background-color: var(--second-color);
+    padding: 25px 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px solid var(--third-color);
+}
+
+.dashboard-stats .dashboard-stat a,
+.dashboard-stats .dashboard-stat h3 {
+    color: var(--third-color)
+}
+
+.dashboard-stats .dashboard-stat > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard-stats .dashboard-stat .stat-number span {
+    font-size: 2.5rem;
+}
+
+
+.dashboard .website-activity {
+    margin-bottom: 36px;
+}
+
+.dashboard .website-activity > div {
+    background-color: var(--second-color);
+    padding: 15px;
+}
+
+@media(max-width: 450px) {
+    .dashboard .website-activity > div {
+        padding: 0;
+    }
+}
+
+.dashboard .website-activity canvas {
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.dashboard-latest-articles > div {
+    background-color: var(--second-color);
+    display: inline-block;
+}
+
+.dashboard-latest-articles .latest-article {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-latest-articles a {
+    color: var(--third-color);
+}
+
+.dashboard-latest-articles .article-date {
+    font-weight: 100;
+}
+
 .admin-panel-content {
     /* left: auto; */
     transition: .8s;
@@ -1074,7 +1124,7 @@ span.top-text-slogan {
     color: var(--third-color)
 }
 
-/* all Artiles  */
+/* all Articles  */
 
 @media(max-width: 767px) {
     .all-articles .article-item {

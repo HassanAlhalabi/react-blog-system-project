@@ -6,7 +6,56 @@ let articles = [
         "title": "How To learn a new Skills to Keep Up With the century",
         "urlToImage": "",
         "author": "Hassan Alhalabi",
-        "content": '',
+        "content": {
+            "blocks": [
+              {
+                "key": "8i090",
+                "text": "Hello CodePulse!",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 16,
+                    "style": "BOLD"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "42ncd",
+                "text": "This text should be underlined.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "UNDERLINE"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "327r6",
+                "text": "And this text should be italic.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "ITALIC"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              }
+            ],
+            "entityMap": {}
+          },
         "date": "2/12/2020",
         "categories": ["uncategorized","sport"],
         "tags": ["learning","skills"],
@@ -18,7 +67,56 @@ let articles = [
         "title": "Travel the world with james brandon in a caravan !!",
         "urlToImage": "",
         "author": "James Brandon",
-        "content": "You may have owned an iPhone for years and regard yourself as an experienced user. At the same time, you keep removing unwanted characters one at a time while typing by pressing delete. However, one day you find out that a quick shake allows you to delete the whole message in one tap.",
+        "content": {
+            "blocks": [
+              {
+                "key": "8i090",
+                "text": "Hello CodePulse!",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 16,
+                    "style": "BOLD"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "42ncd",
+                "text": "This text should be underlined.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "UNDERLINE"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "327r6",
+                "text": "And this text should be italic.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "ITALIC"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              }
+            ],
+            "entityMap": {}
+          },
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
@@ -27,10 +125,59 @@ let articles = [
     },
     {
         "id": "3",
-        "title": "Travel the world with james brandon in a caravan !!",
+        "title": "One Night in a Local Irish Motel",
         "urlToImage": "",
         "author": "James Brandon",
-        "content": "You may have owned an iPhone for years and regard yourself as an experienced user. At the same time, you keep removing unwanted characters one at a time while typing by pressing delete. However, one day you find out that a quick shake allows you to delete the whole message in one tap.",
+        "content": {
+            "blocks": [
+              {
+                "key": "8i090",
+                "text": "Hello CodePulse!",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 16,
+                    "style": "BOLD"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "42ncd",
+                "text": "This text should be underlined.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "UNDERLINE"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "327r6",
+                "text": "And this text should be italic.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "ITALIC"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              }
+            ],
+            "entityMap": {}
+          },
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
@@ -43,7 +190,56 @@ let articles = [
         "title": "Travel the world with james brandon in a caravan !!",
         "urlToImage": "",
         "author": "Kame Namek",
-        "content": "You may have owned an iPhone for years and regard yourself as an experienced user. At the same time, you keep removing unwanted characters one at a time while typing by pressing delete. However, one day you find out that a quick shake allows you to delete the whole message in one tap.",
+        "content": {
+            "blocks": [
+              {
+                "key": "8i090",
+                "text": "Hello CodePulse!",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 16,
+                    "style": "BOLD"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "42ncd",
+                "text": "This text should be underlined.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "UNDERLINE"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "327r6",
+                "text": "And this text should be italic.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "ITALIC"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              }
+            ],
+            "entityMap": {}
+          },
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
@@ -55,7 +251,56 @@ let articles = [
         "title": "Travel the world with james brandon in a caravan !!",
         "urlToImage": "",
         "author": "Kame Namek",
-        "content": "You may have owned an iPhone for years and regard yourself as an experienced user. At the same time, you keep removing unwanted characters one at a time while typing by pressing delete. However, one day you find out that a quick shake allows you to delete the whole message in one tap.",
+        "content": {
+            "blocks": [
+              {
+                "key": "8i090",
+                "text": "Hello CodePulse!",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 16,
+                    "style": "BOLD"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "42ncd",
+                "text": "This text should be underlined.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "UNDERLINE"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              },
+              {
+                "key": "327r6",
+                "text": "And this text should be italic.",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                  {
+                    "offset": 0,
+                    "length": 31,
+                    "style": "ITALIC"
+                  }
+                ],
+                "entityRanges": [],
+                "data": {}
+              }
+            ],
+            "entityMap": {}
+          },
         "date": "2/12/2020",
         "categories": ["travel","sport"],
         "tags": ["james brandon","culture travel"],
@@ -74,24 +319,20 @@ export const articlesReducer = (state = articles, action) => {
             ]
         // Add New Article
         case actionsTypes.ADD_ARTICLE:
-            console.log('New Article Added');
             return [
                 ...state,
                action.article
             ] 
 
         case actionsTypes.REMOVE_ARTICLE:
-            console.log('Article Removed')
             return state.map(article => {
                 if(article.id === action.id){
-                    console.log('Article Removed')
                     article.inTrash = true;
                 }
                 return article;
             });
         // Delete Article Permenantly    
         case actionsTypes.DELETE_ARTICLE:
-            console.log('Article Deleted')
             return state.filter(article => article.id !== action.id)
         // Publish or UnPublish an Article    
         case actionsTypes.PUBLISH_UPDATE:
@@ -104,7 +345,6 @@ export const articlesReducer = (state = articles, action) => {
             });
         // Update an Article    
         case actionsTypes.UPDATE_ARTICLE:
-            console.log('Article Updated')
             return state.map(article => {
                 if(`${article.id}` === `${action.article.id}`){
                     return action.article
@@ -113,7 +353,6 @@ export const articlesReducer = (state = articles, action) => {
             });
         // Empty Trash    
         case actionsTypes.EMPTY_TRASH:
-            console.log('Trash Deleted');
             return state.filter(article => article.inTrash === false);
         default:
             return state

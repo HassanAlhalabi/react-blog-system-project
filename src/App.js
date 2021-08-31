@@ -23,11 +23,7 @@ import NotFound404 from './components/404/404';
 
 const App = () => {
 
-  const [user,setUser] = useState('');
-
-  useEffect(() => {
-    setUser('admin');
-  },[]);
+  const [user,setUser] = useState('admin');
 
     return(
       <BrowserRouter>

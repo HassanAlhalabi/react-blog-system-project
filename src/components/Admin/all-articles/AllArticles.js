@@ -48,8 +48,7 @@ const AllArticles = ({articles, removeArticle}) => {
     const pageSize = 10;
    
     const articlesList = articles.slice( (page * pageSize - pageSize) , (pageSize * page) ).filter(article => article.inTrash === false);
-    console.log(articles)
-    console.log(articlesList)
+
     const history = useHistory();
 
     const handlePagination = (event, value) => {
