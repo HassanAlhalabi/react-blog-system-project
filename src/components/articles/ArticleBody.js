@@ -8,8 +8,11 @@ const ArticleBody = ({articleProps}) => {
     return ( 
         <div className='article-body p-2 p-md-4'>
             <div className='article-image text-center position-relative'>
-                {/* <img src={articleProps.urlToImage} className='img-fluid' alt='article-img'/> */}
-                <img src={articleImg} alt='article-img' className='img-fluid'/>
+                {articleProps.urlToImage === '' ?
+                    <img src={articleImg} alt='article-img' className='img-fluid'/>
+                    :
+                    <img src={articleProps.urlToImage} className='article-image' alt='article-img'/>
+                }
                 <div className='article-categories position-absolute'>
                     {
                         articleProps.categories.map(category => {

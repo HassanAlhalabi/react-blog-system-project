@@ -3,6 +3,8 @@ import PageHeader from '../../components/layout/PageHeader';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PersonAdd from '@material-ui/icons/PersonAdd';
+import FacebookLogin from 'react-facebook-login';
+import { useHistory } from 'react-router-dom';
 
 const SignUpForm = () => {
     
@@ -12,6 +14,8 @@ const SignUpForm = () => {
         email:    null,
         password: null,
     })
+
+    const history = useHistory();
     
     const handleFormChange = e => {
         setInputs({
@@ -23,6 +27,11 @@ const SignUpForm = () => {
     const handleSignup = e => {
         e.preventDefault();
         console.log('sign up ....');
+    }
+
+    const responseFacebook = response => {
+        localStorage.setItem("ACCESS_TOKEN_NAME",response.accessToken);
+        history.push('/');
     }
 
     return ( 
@@ -89,29 +98,13 @@ const SignUpForm = () => {
                                     Sign Up
                                 </Button>
                             </div>    
-                            {/* <div className='divider signin-divider'></div>
-                            <Typography variant='h5' align='center'>
-                                Continue With
-                            </Typography>
-                            <div className='d-flex justify-content-center'>
-                            <ButtonGroup>
-                                <Button
-                                    variant='contained'
-                                    color='primary' 
-                                    size='large'
-                                    startIcon={<Facebook />}>
-                                        Facebook
-                                    </Button>
-                                <Button
-                                    variant='contained'
-                                    color='primary' 
-                                    size='large'
-                                    startIcon={<Twitter />}>
-                                        Twitter
-                                    </Button>
-                            </ButtonGroup>
-                            </div>     */}
                         </form>
+                        <FacebookLogin
+                            appId="1022504948484944"
+                            autoLoad={true}
+                            fields="name,email,picture"
+                            callback={responseFacebook} 
+                        />
                     </div>
                 </div>
             </div>

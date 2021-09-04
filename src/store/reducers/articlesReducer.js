@@ -1,4 +1,6 @@
-import * as actionsTypes from '../actions/actionsTypes' 
+import * as actionsTypes from '../actions/actionsTypes'
+import store from '../store';
+import {getArticles} from '../actions/actions'; 
 
 let articles = [
     {
@@ -309,14 +311,17 @@ let articles = [
     }
 ];
 
+// store.dispatch(getArticles())
+
 export const articlesReducer = (state = articles, action) => {
 
     switch (action.type) {
         case actionsTypes.INITIALIZE_ARTICLE:
-            return [
-                ...state,
-               action.articles
-            ]
+          console.log('in reducer')  
+          return [
+            ...state,
+            action.articles
+          ]
         // Add New Article
         case actionsTypes.ADD_ARTICLE:
             return [

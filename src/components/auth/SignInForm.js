@@ -3,8 +3,12 @@ import PageHeader from '../../components/layout/PageHeader';
 import TextField from '@material-ui/core/TextField';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
+import FacebookLogin from 'react-facebook-login';
+import {useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {addUser as addNewUser} from '../../store/actions/actions'
 
-const SignInForm = () => {
+const SignInForm = ({addNewUser}) => {
     
     const [inputs , setInputs] = useState({
         email: null,
@@ -20,14 +24,22 @@ const SignInForm = () => {
 
     const handleSignin = e => {
         e.preventDefault();
-        console.log('sing in ....')
+        console.log('sign in ....')
+    }
+
+    const history = useHistory();
+
+    const responseFacebook = response => {
+        localStorage.setItem("ACCESS_TOKEN_NAME",response.accessToken);
+        console.log(response)
+        // addNewUser(reponse)
+        history.push('/');
     }
     
-
     return ( 
         <div className='signin pt-5 pb-5'>
             <div className='container mb-5'>
-                <PageHeader title='Sign In' />
+                <PageHeader title='Log In' />
                 <div className='row'>
                     <div className='col-12 col-sm-10 col-md-6 m-auto'>
                         <form className='signin-form'>
@@ -64,33 +76,13 @@ const SignInForm = () => {
                                     Sign In
                                 </Button>
                             </div>    
-                            {/* <div className='divider signin-divider'></div>
-                            <Typography variant='h5' align='center'>
-                                Continue With
-                            </Typography>
-                            <div className='d-flex justify-content-center'>
-                                <ButtonGroup>
-                                    <Button
-                                        variant='contained' 
-                                        color='primary'
-                                        type='submit'
-                                        size='large'
-                                        startIcon={<Facebook />}
-                                    >
-                                        Facebook
-                                    </Button>
-                                    <Button
-                                        variant='contained' 
-                                        color='primary'
-                                        type='submit'
-                                        size='large'
-                                        startIcon={<Twitter />}
-                                    >
-                                        Twitter
-                                    </Button>
-                                </ButtonGroup>
-                            </div>     */}
                         </form>
+                        <FacebookLogin
+                            appId="1022504948484944"
+                            autoLoad={true}
+                            fields="name,email,picture"
+                            callback={responseFacebook} 
+                        />
                     </div>
                 </div>
             </div>
@@ -98,4 +90,12 @@ const SignInForm = () => {
      );
 }
  
-export default SignInForm;
+const mapDispatchToProps = dispatch => {
+    return(
+        {
+            addNewUser: newUser => dispatch(addNewUser(newUser))
+        }
+    )
+}
+
+export default connect(null,mapDispatchToProps)(SignInForm);

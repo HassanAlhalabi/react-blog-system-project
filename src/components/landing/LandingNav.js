@@ -10,7 +10,7 @@ const LandingNav = () => {
                     <div className='m-auto'>
                         <ul className="d-flex list-inline m-0 flex-wrap">
                             <li><Link to='/articles'>Articles</Link></li>
-                            <li><Link to='/news'>News</Link></li>
+                            <li><Link to='/Gallery'>Gallery</Link></li>
                             <li><Link to='/about-us'>About Us</Link></li>
                             <li><Link to='/contact-us'>Contact</Link></li>
                         </ul>

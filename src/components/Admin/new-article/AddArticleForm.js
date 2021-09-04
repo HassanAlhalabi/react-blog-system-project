@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { addArticle as addNewArticle } from '../../../store/actions/actions';
 import { showFlashMessage } from '../../../components/layout/FlashMessage';
 import { process } from 'uniqid';
+import axios from 'axios';
 
 const  AddArticleForm = (props) => {
 
@@ -24,7 +25,8 @@ const  AddArticleForm = (props) => {
         newTag: '',
         urlToImage: '',
     });
-    const [articleImage , setArticleImage]    = useState('');
+    const [articleImage , setArticleImage]    = useState([]);
+    const [articleImagePreview , setArticleImagePreview]    = useState([]);
     const [titleError,setTitleError]          = useState(false);
     const [authorError,setAuthorError]        = useState(false); 
     const [contentError,setContentError]      = useState(false);
@@ -102,7 +104,8 @@ const  AddArticleForm = (props) => {
     };
 
     const handleImageUpload = (imageList) => {
-        setArticleImage(imageList[0].data_url);
+        setArticleImage(imageList[0].file);
+        setArticleImagePreview(imageList[0].data_url)
     };
 
     const handleChange = e =>  { 
@@ -149,26 +152,35 @@ const  AddArticleForm = (props) => {
             setContentError(false);
         }
         if(noErrors) {
-            setErrorMessage(false)
-            const newArticle = {
-                id: process(),
-                title: inputs.title,
-                author: inputs.author,
-                content: inputs.content,
-                urlToImage: '',
-                date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
-                categories: inputs.categories.filter(
-                    category => category.isChecked === true).map(
-                        category => category.value),
-                tags: inputs.tags,
-                isPublished: action === 'publish' ? true : false,
-                inTrash: false
-            }
-            props.addNewArticle(newArticle);
-            action === 'publish' ?
+            setErrorMessage(false);
+            const formData = new FormData();
+            formData.append("file",articleImage);
+            formData.append("upload_preset","exw9o5bw");
+            formData.append("api_key", "183128683352529");
+            axios.post('https://api.cloudinary.com/v1_1/hassanalhalabi/image/upload',formData)
+            .then(response => {
+                const newArticle = {
+                    id: process(),
+                    title: inputs.title,
+                    author: inputs.author,
+                    content: inputs.content,
+                    urlToImage: response.data.url,
+                    date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
+                    categories: inputs.categories.filter(
+                        category => category.isChecked === true).map(
+                            category => category.value),
+                    tags: inputs.tags,
+                    isPublished: action === 'publish' ? true : false,
+                    inTrash: false
+                }
+                console.log(response.data.url)
+                props.addNewArticle(newArticle);
+                action === 'publish' ?
                 showFlashMessage('Article Has Been Published Successfuly') :
                 showFlashMessage('Article Has Been Saved Successfuly');
-            history.push('/admin-panel/all-articles'); 
+                history.push('/admin-panel/all-articles'); 
+            })
+            .catch(error => console.log(error))
         }
     }
 
@@ -197,7 +209,7 @@ const  AddArticleForm = (props) => {
                         }/>
                     </div>
                     <div className='col-12 col-md-6'>
-                        <AddArticleFormPreview previewProps={inputs} articleImage={articleImage} />
+                        <AddArticleFormPreview previewProps={inputs} articleImage={articleImagePreview} />
                     </div>
                 </div>
             </div>    

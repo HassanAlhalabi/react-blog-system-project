@@ -25,7 +25,7 @@ const Articles = ({articles, favorites}) => {
     };
     
     const pageSize = 12;
-    console.log(articles)
+
     const slicedArticles = articles.slice( (page * pageSize - pageSize ) , page * pageSize ).filter(
         article => article.inTrash === false && article.isPublished === true
     );

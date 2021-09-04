@@ -22,7 +22,7 @@ const useStyle = makeStyles({
         color: '#EEE !important'
     },
     listItemStyle: {
-        backgroundColor: '#484e52',
+        backgroundColor: '#26201C',
         marginBottom: '20px',
         paddingRight: '96px',
         paddingTop: '25px',
@@ -30,8 +30,8 @@ const useStyle = makeStyles({
     },
 });
 
-const AllArticles = ({articles, removeArticle}) => {
-    
+const AllArticles = ({articles, removeArticle }) => {
+
     const classes = useStyle();    
     
     const handleArticleRemove = index => {   
@@ -127,8 +127,7 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = dispatch => {
     return ({
-        removeArticle: index => 
-            dispatch(removeArticle(index))
+        removeArticle: index => dispatch(removeArticle(index))
     })
 }
 

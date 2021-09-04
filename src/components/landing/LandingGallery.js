@@ -36,7 +36,7 @@ const LandingGallery = () => {
                         </div>
                     </div>
                     <div className="text-center pt-5 pb-5">
-                        <Link to='/gallery' className="landing-button">Read More</Link>
+                        <Link to='/gallery' className="landing-button">See More</Link>
                     </div>
                 </div>
             </div>

@@ -75,13 +75,15 @@ a:focus {
     color: var(--third-color);
 }
 
-
-
 /* inputs */
 
 label {
     color: var(--third-color);
     font-size: 18px;
+}
+
+button {
+    border-radius: 0 !important;
 }
 
 button:focus {
@@ -112,6 +114,10 @@ button:focus {
 .social-button:hover {
     color: #FFF;
     background-color: var(--third-color);
+}
+
+.page-header {
+    margin-bottom: 48px;
 }
 
 /* ******************** Framework ******************** */
@@ -246,31 +252,6 @@ legend.MuiFormLabel-root {
     cursor: pointer !important
 }
 
-.page-header {
-    font-weight: bold !important;
-    font-size: 44px !important;
-    position: relative;
-    margin-top: 20px !important;
-    margin-bottom: 70px !important;
-    letter-spacing: 1px !important;
-}
-
-@media(max-width: 576px) {
-    .page-header {
-        font-size: 34px !important
-    }
-}
-
-.page-header:after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    border-bottom: 4px solid var(--third-color);
-}
-
 .MuiTypography-root {
     padding-left: 0;
     padding-right: 0;
@@ -356,7 +337,7 @@ button.Mui-disabled {
 /* ****************** App style ****************** */
 
 ::-webkit-scrollbar {
-    width:10px;
+    width:8px;
 }
 
 /* ::-webkit-scrollbar-track { } */
@@ -364,7 +345,6 @@ button.Mui-disabled {
 ::-webkit-scrollbar-thumb { 
     background-color: var(--third-color);
     border-radius: 1px;
-    border-radius: 5px;
     cursor: pointer;
     opacity: .7;
 }
@@ -382,7 +362,7 @@ nav.navbar .upper-nav {
 
 nav.navbar .logo {
     font-weight: bolder;
-    font-size: 34px;
+    font-size: 44px;
     color: var(--third-color);
 }
 
@@ -407,7 +387,7 @@ nav.navbar .logo h1 {
 
 nav.navbar .lower-nav {
     padding: 12px 0px;
-    background-color: #EEE;
+    background-color: #373737;
 }
 
 nav.navbar .lower-nav ul li {
@@ -415,7 +395,6 @@ nav.navbar .lower-nav ul li {
 }
 
 nav.navbar .lower-nav a {
-    color: var(--second-color);
     font-size: 18px;
 }
 
@@ -443,8 +422,8 @@ nav.navbar .lower-nav a:focus {
 }
 
 .landing-menu ul {
-    background-color: #26201c;
-    border-right: 4px solid var(--third-color);
+    background-color: #26201c88;
+    border-right: 3px solid var(--third-color);
     padding-top: 17px
 }
 
@@ -459,17 +438,16 @@ nav.navbar .lower-nav a:focus {
 .landing-menu-button {
     position: absolute;
     left: 100%;
-    top: 20px;
+    top: 0px;
     z-index: 106;
     color: #FFF;
     cursor: pointer;
-    margin-top: 8px;
-    padding: 10px;
+    padding: 8px;
 }
 
 .landing-menu-button svg {
     border: 1px solid var(--third-color);
-    font-size: 48px;
+    font-size: 44px;
     transition: .4s;
 }
 
@@ -512,9 +490,7 @@ nav.navbar .lower-nav a:focus {
     transform: translateX(-50%) translateY(-73%);
     text-transform: uppercase;
     border: 7px solid var(--third-color);
-    padding: 4% 6%;
-    width: max-content;
-    max-width: 90%;
+    padding: 3rem 4rem;
     z-index: 100;
 }
 
@@ -569,7 +545,7 @@ span.top-text-slogan {
 
 .landing-page-logo {
     margin: 0;
-    font-size: 9.7vw;
+    font-size: 6.5rem;
     color: #FFF !important;
     font-family: 'DroidSerif',serif;
     text-transform: capitalize;
@@ -620,7 +596,7 @@ span.top-text-slogan {
     padding: 130px 0px;
 }
 
-.about-us {
+.landing-about-us .about-us {
     background-color: #373737;
     color: var(--third-color);
     padding: 50px;
@@ -706,6 +682,9 @@ span.top-text-slogan {
     }
 }
 
+.landing-card-content {
+    padding: 0px 15px;
+}
 
 .landing-card-content > div {
     padding: 12px 0px;
@@ -752,6 +731,13 @@ span.top-text-slogan {
 
 .gallery-image-7 {
     height: 180px;
+}
+
+@media(max-width: 767px) {
+    .gallery-areas a,
+    .gallery-areas img {
+        width: 100%;
+    }
 }
 
 /* Landing Contact Us Section Style */
@@ -841,26 +827,32 @@ span.top-text-slogan {
 
 /**************** Articles Page Style *******************/
 
-.article-card {
-    border: 1px solid var(--third-color);
-    border-radius: 0 !important;
+.favorite-articles .landing-article-card,
+.articles .landing-article-card {
+    background-color: #d3b48e11;
+    height: 100%;
 }
 
-.MuiCard-root {
-    min-height: 100%
+.favorite-articles .landing-article-card .article-meta span,
+.articles .landing-article-card .article-meta span {
+    color: var(--third-color);
 }
 
-.article-card .MuiCardHeader-title  {
-    color: var(--second-color);
-    padding: 10px 0px;
-    font-weight: bold
+.favorite-articles a.landing-card-read-more,
+.articles a.landing-card-read-more {
+    font-size: 1.3rem;
 }
 
-.article-card .MuiCardHeader-subheader {
-    letter-spacing: 2px;
+.favorite-articles .landing-card-content button,
+.articles .landing-card-content button {
+    color: var(--third-color);
 }
 
 /* Article Body Style */
+
+.article-body .article-image {
+    width: 100%;
+}
 
 .article-body p {
     color: var(--main-color);
@@ -990,7 +982,7 @@ span.top-text-slogan {
 
 .dashboard-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     grid-gap: 10px;
     justify-content: center;
     margin-bottom: 36px;

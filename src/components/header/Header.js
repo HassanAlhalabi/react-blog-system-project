@@ -1,5 +1,4 @@
 import React , { useState } from 'react';
-import Typorgaphy from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import VisitorNavLinks from './VisitorNavLinks';
 import RegisterdLinks from './RegisteredLinks';
@@ -29,9 +28,9 @@ const Header = ({user}) => {
             <div className='row justify-content-between'>
               <div className='col-12 col-sm-6 d-flex align-items-center'>
                 <div className="logo-holder text-center text-sm-left w-100">
-                    <Typorgaphy className='pl-0' variant='h4' component='h1'>
-                      <Link to='/' className="logo">Travel</Link>
-                    </Typorgaphy> 
+                    <h1 className='m-0'>
+                      <Link to='/' className="logo">Travelers</Link>
+                    </h1> 
                 </div>
               </div>
               <div className='col-12 col-sm-6 col-lg-4 d-flex justify-content-center justify-content-sm-end align-items-center'>

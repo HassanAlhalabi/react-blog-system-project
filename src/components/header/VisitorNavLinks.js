@@ -6,7 +6,7 @@ const VisitorNavLinks = () => {
         <ul className="d-flex list-inline m-0 flex-wrap">
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/articles'>Articles</Link></li>
-            <li><Link to='/news'>News</Link></li>
+            <li><Link to='/gallery'>Gallery</Link></li>
             <li><Link to='/about-us'>About Us</Link></li>
             <li><Link to='/contact-us'>Contact</Link></li>
         </ul>

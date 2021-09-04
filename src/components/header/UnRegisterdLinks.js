@@ -14,14 +14,14 @@ const UnRegisteredLinks = () => {
                     color='primary' 
                     size='medium'
                     startIcon={<ExitToAppIcon />}>
-                        <Link to='signin'>Sign In</Link>
+                        <Link to='login'>Sign In</Link>
                     </Button>
                 <Button
                     variant='contained'
                     color='primary' 
                     size='medium'
                     startIcon={<PersonAdd />}>
-                        <Link to='signup'>Sign Up</Link>
+                        <Link to='sign-up'>Sign Up</Link>
                     </Button>
             </ButtonGroup>
         </div>

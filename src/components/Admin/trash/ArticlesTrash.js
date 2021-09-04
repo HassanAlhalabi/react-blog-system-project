@@ -22,7 +22,7 @@ const useStyle = makeStyles({
         color: '#EEE !important'
     },
     listItemStyle: {
-        backgroundColor: '#484e52',
+        backgroundColor: '#26201C',
         marginBottom: '20px',
         paddingRight: '96px',
         paddingTop: '25px',

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ArticleCard from './articles/ArticleCard';
 import Alert from '@material-ui/lab/Alert';
+import PageHeader from './layout/PageHeader';
 
 const FavoriteArticles = ({articles,favorites}) => {
     const favoriteArticles = articles.filter(article => {
@@ -10,6 +11,7 @@ const FavoriteArticles = ({articles,favorites}) => {
     return ( 
         <div className='favorite-articles pt-5 pb-5'>
             <div className='container'>
+                <PageHeader title='Favorite Articles' />
                 {favoriteArticles.length > 0 ?
                     <div className='row'>
                         {
