@@ -1,7 +1,4 @@
 import * as actionsTypes from './actionsTypes';
-import { collection, getDocs } from "firebase/firestore";
-import {firebaseDB} from '../../config/fbConfig';
-import store from '../store';
 
 // Article Actions
 
@@ -11,21 +8,6 @@ export const articlesInit = articles => (
         articles,
     }
 )
-
-export const getArticles = () => {
-    return async function(dispatch) {
-        // const querySnapshot = await getDocs(collection(firebaseDB, "users"));
-        const articles = [];
-        // querySnapshot.forEach((doc) => {
-        //     console.log(`${doc.id} => ${doc.data()}`);
-        //     articles.push(querySnapshot.data());
-        // });
-        console.log(articles);
-        dispatch(articlesInit(articles));
-    }
-}
-
-// store.dispatch(getArticles())
 
 export const addArticle = article => (
     {
@@ -68,6 +50,15 @@ export const toggleFavoriteArticle = id => (
         id
     }
 );
+
+// Gallery Photos Actions
+
+export const addPhoto = url => (
+    {
+        type: actionsTypes.ADD_PHOTO,
+        url
+    }
+)
 
 // Users Actions
 

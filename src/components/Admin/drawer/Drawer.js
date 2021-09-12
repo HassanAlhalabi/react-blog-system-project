@@ -7,6 +7,9 @@ import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
 import DashboardRounded from '@material-ui/icons/DashboardRounded';
 import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+import PhotoAlbum from '@material-ui/icons/PhotoAlbum';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Comment from '@material-ui/icons/Comment';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
@@ -67,12 +70,36 @@ const Drawer = ({drawerIsClosed , handleDrawerClose}) => {
                         index={3}
                         handleListItemClick={handleListItemClick}
                         selectedIndex={selectedIndex}
+                        text={'Gallery'}
+                        icon={<PhotoAlbum />}
+                        to={'/admin-panel/gallery'}
+                    />
+                    <DrawerLink
+                        index={4}
+                        handleListItemClick={handleListItemClick}
+                        selectedIndex={selectedIndex}
+                        text={'New Photos'}
+                        icon={<PhotoCamera />}
+                        to={'/admin-panel/upload-photos'}
+                    />
+                    <DrawerLink
+                        index={5}
+                        handleListItemClick={handleListItemClick}
+                        selectedIndex={selectedIndex}
+                        text={'Comments'}
+                        icon={<Comment />}
+                        to={'/admin-panel/comments'}
+                    />
+                    <DrawerLink
+                        index={6}
+                        handleListItemClick={handleListItemClick}
+                        selectedIndex={selectedIndex}
                         text={'Users'}
                         icon={<GroupRoundedIcon />}
                         to={'/admin-panel/users'}
                     />
                     <DrawerLink
-                        index={4}
+                        index={7}
                         handleListItemClick={handleListItemClick}
                         selectedIndex={selectedIndex}
                         text={'New User'}
@@ -80,7 +107,7 @@ const Drawer = ({drawerIsClosed , handleDrawerClose}) => {
                         to={'/admin-panel/add-user'}
                     /> 
                     <DrawerLink
-                        index={5}
+                        index={8}
                         handleListItemClick={handleListItemClick}
                         selectedIndex={selectedIndex}
                         text={'Trash'}

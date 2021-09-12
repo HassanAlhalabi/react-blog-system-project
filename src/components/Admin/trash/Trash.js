@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import DeleteForeverRounded from '@material-ui/icons/DeleteForeverRounded';
 import { showFlashMessage } from '../../layout/FlashMessage';
 
-const Trash = ({articles,users,emptyTrash}) => {
+const Trash = ({articles,users,comments,emptyTrash}) => {
 
     const handleEmptyTrash = () => {
         const emptyTrashConfirm = window.confirm('Are You Sure You Want to Empty Trash!');
@@ -23,6 +23,11 @@ const Trash = ({articles,users,emptyTrash}) => {
                     title='Articles' 
                     link='/admin-panel/trash/articles' 
                     itemsNumber={articles.length}   
+                />
+                <TrashCane 
+                    title='Comments' 
+                    link='/admin-panel/trash/comments' 
+                    itemsNumber={comments.length} 
                 />
                 <TrashCane 
                     title='Users' 
@@ -50,7 +55,8 @@ const Trash = ({articles,users,emptyTrash}) => {
 const mapStateToProps = state => {
     return({
         articles: state.articles.filter(article => article.inTrash === true),
-        users: state.users.filter(user => user.inTrash === true)
+        users: state.users.filter(user => user.inTrash === true),
+        comments: state.comments.filter(comment => comment.inTrash === true),
     })
 }
  

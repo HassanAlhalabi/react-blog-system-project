@@ -1,5 +1,5 @@
-import React from 'react';
-import { removeArticle } from '../../../store/actions/actions';
+import React , { useEffect, useState } from 'react';
+import { removeArticle , articlesInit } from '../../../store/actions/actions';
 import { connect } from 'react-redux';
 import { Link , useParams , useHistory } from 'react-router-dom';
 import List from '@material-ui/core/List';
@@ -16,22 +16,19 @@ import Pagination from '@material-ui/lab/Pagination';
 import Alert from '@material-ui/lab/Alert';
 import { showFlashMessage } from '../../layout/FlashMessage';
 import { makeStyles } from '@material-ui/core/styles';
+import PageHeader from '../../layout/PageHeader';
+import Loading from '../../layout/Loading';
 
 const useStyle = makeStyles({
     textColor: {
         color: '#EEE !important'
-    },
-    listItemStyle: {
-        backgroundColor: '#26201C',
-        marginBottom: '20px',
-        paddingRight: '96px',
-        paddingTop: '25px',
-        paddingBottom: '25px'
-    },
+    }
 });
 
-const AllArticles = ({articles, removeArticle }) => {
+const AllArticles = ({articles, removeArticle, articlesInit }) => {
 
+    const [loading,setLoading] = useState(true)
+    
     const classes = useStyle();    
     
     const handleArticleRemove = index => {   
@@ -55,64 +52,73 @@ const AllArticles = ({articles, removeArticle }) => {
         history.push(`/admin-panel/all-articles/page/${value}`)
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+            articlesInit([]);
+        }, 5000)
+    },[])
+
     return (
         <div className='all-articles h-100'>
             <div className='container h-100'>
-                { articlesList.length === 0 ?
-                    <Alert severity='warning'>There is no Articles</Alert>
+                <PageHeader title='Articles' />
+                { 
+                loading === true ? <Loading /> :
+                    articlesList.length === 0 ?
+                        <Alert severity='warning'>There is no Articles</Alert>
                     :
-                    <div className='d-flex h-100 flex-column justify-content-between'>
-                        <div className='row'>
-                            <List className='w-100'>
-                                {
-                                    articlesList.map(article => 
-                                        <ListItem key={article.id} article={article} className={`${classes.listItemStyle} article-item`}>
-                                            <ListItemAvatar>
-                                                <Avatar className='overflow-hidden'>
-                                                    <DescriptionRoundedIcon />
-                                                    {/* <img src={articleImg} className='w-100 h-100' alt='article-img'/> */}
-                                                </Avatar>
-                                            </ListItemAvatar>
-                                            <Link to={`/admin-panel/all-articles/${article.id}`}>
-                                                <ListItemText
-                                                    className={classes.textColor}
-                                                    primary={article.title}
-                                                    secondary={`${article.author} - ${article.date}`}
-                                                />
-                                            </Link>  
-                                            <div className='article-is-published mr-auto mr-md-0 ml-md-auto'>
-                                                <span className='text-center'>
-                                                    {article.isPublished ? 
-                                                        <Alert severity='success' variant='filled'>Published</Alert> :
-                                                        <Alert severity='warning' variant='filled'>Not Published</Alert> }    
-                                                </span>   
-                                            </div>  
-                                            <ListItemSecondaryAction>
-                                                <IconButton edge="end" aria-label="edit" color='primary'>
-                                                    <Link to={`/admin-panel/edit-article/${article.id}`}>
-                                                        <Edit className={classes.textColor} />
-                                                    </Link>
-                                                </IconButton>
-                                                <IconButton edge="end" aria-label="delete" onClick={(e) => handleArticleRemove(article.id)} color='secondary'>
-                                                    <DeleteIcon className={classes.textColor} color='secondary'/>
-                                                </IconButton>
-                                            </ListItemSecondaryAction>
-                                        </ListItem>
-                                    )
-                                }
-                            </List>
-                        </div>
-                        {
-                            articlesList.length >= pageSize &&
-                            <div className='pagination d-flex justify-content-center'> 
-                                <Pagination 
-                                    page={page} 
-                                    onChange={handlePagination} 
-                                    count={Math.ceil(articles.length/10)} 
-                                    size='large'/>
+                        <div className='d-flex h-100 flex-column justify-content-between'>
+                            <div className='row'>
+                                <List className='w-100'>
+                                    {
+                                        articlesList.map(article => 
+                                            <ListItem key={article.id} article={article} className={`${classes.listItemStyle} article-item`}>
+                                                <ListItemAvatar>
+                                                    <Avatar className='overflow-hidden'>
+                                                        <DescriptionRoundedIcon />
+                                                    </Avatar>
+                                                </ListItemAvatar>
+                                                <Link to={`/admin-panel/all-articles/${article.id}`}>
+                                                    <ListItemText
+                                                        className={classes.textColor}
+                                                        primary={article.title}
+                                                        secondary={`${article.author} - ${article.date}`}
+                                                    />
+                                                </Link>  
+                                                <div className='article-is-published mr-auto mr-md-0 ml-md-auto'>
+                                                    <span className='text-center'>
+                                                        {article.isPublished ? 
+                                                            <Alert severity='success' variant='filled'>Published</Alert> :
+                                                            <Alert severity='warning' variant='filled'>Not Published</Alert> }    
+                                                    </span>   
+                                                </div>  
+                                                <ListItemSecondaryAction>
+                                                    <IconButton edge="end" aria-label="edit" color='primary'>
+                                                        <Link to={`/admin-panel/edit-article/${article.id}`}>
+                                                            <Edit className={classes.textColor} />
+                                                        </Link>
+                                                    </IconButton>
+                                                    <IconButton edge="end" aria-label="delete" onClick={(e) => handleArticleRemove(article.id)} color='secondary'>
+                                                        <DeleteIcon className={classes.textColor} color='secondary'/>
+                                                    </IconButton>
+                                                </ListItemSecondaryAction>
+                                            </ListItem>
+                                        )
+                                    }
+                                </List>
                             </div>
-                        }
-                    </div>      
+                            {
+                                articlesList.length >= pageSize &&
+                                <div className='pagination d-flex justify-content-center'> 
+                                    <Pagination 
+                                        page={page} 
+                                        onChange={handlePagination} 
+                                        count={Math.ceil(articles.length/10)} 
+                                        size='large'/>
+                                </div>
+                            }
+                        </div>
                 }          
             </div>
         </div>
@@ -127,6 +133,7 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = dispatch => {
     return ({
+        articlesInit: articles => dispatch(articlesInit(articles)),
         removeArticle: index => dispatch(removeArticle(index))
     })
 }

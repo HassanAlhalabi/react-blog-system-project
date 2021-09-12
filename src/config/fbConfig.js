@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore} from 'firebase/firestore';
+import { getStorage, ref } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCgom5b2mPK661EiY5fcnzXCYbPmXYGH4M",
@@ -10,5 +11,8 @@ const firebaseConfig = {
   appId: "1:90392450350:web:237e81b6dc8abca11a56bf"
 };
 
-export const firebaseApp = initializeApp(firebaseConfig);
-export const firebaseDB = getFirestore();
+export const firebaseApp      = initializeApp(firebaseConfig);
+export const firebaseDB       = getFirestore();
+export const firebaseStorage  = getStorage();
+export const storageRef       = ref(firebaseStorage,'images');
+export const listRef          = ref(firebaseStorage);

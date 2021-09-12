@@ -4,6 +4,7 @@ import Dashboard from './dashboard/Dashboard';
 import AllArticels from './all-articles/AllArticles';
 import ArticleOptions from './all-articles/ArticleOptions';
 import NewArticle from './new-article/NewArticle';
+import Comments from './comments/Comments';
 import Users from './users/Users';
 import UserDetails from './users/UserDetails';
 import NewUser from './users/NewUser';
@@ -15,6 +16,7 @@ import ArticlesTrash from './trash/ArticlesTrash';
 import UsersTrash from './trash/UsersTrash';
 import { CategoriesProvider } from '../../contexts/categoriesContext';
 import Gallery from './gallery/Gallery';
+import UploadPhotos from './gallery/UploadPhotos';
 
 const AdminPanel = () => {
 
@@ -24,7 +26,7 @@ const AdminPanel = () => {
 
     return ( 
         <div className='admin-panel'>
-            <div className='admin-panel-holder d-flex flex-column flex-lg-row position-relative'>
+            <div className='admin-panel-holder d-flex flex-row position-relative'>
                 <Drawer 
                     drawerIsClosed={drawerIsClosed}
                     handleDrawerClose={handleDrawerClose}
@@ -41,6 +43,8 @@ const AdminPanel = () => {
                                 <Route exact path='/admin-panel/all-articles/:id' component={ArticleOptions} />
                                 <Route exact path='/admin-panel/edit-article/:id' component={EditArticle} />
                                 <Route exact path='/admin-panel/gallery' component={Gallery}/>
+                                <Route exact path='/admin-panel/upload-photos' component={UploadPhotos}/>
+                                <Route exact path='/admin-panel/comments' component={Comments} />
                                 <Route exact path='/admin-panel/users' component={Users} />
                                 <Route exact path='/admin-panel/users/:id?' component={UserDetails} />
                                 <Route exact path='/admin-panel/add-user' component={NewUser} />

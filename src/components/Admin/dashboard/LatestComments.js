@@ -1,22 +1,25 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert'; 
 
-const LatestComments = ({articles}) => {
+const LatestComments = ({comments}) => {
 
-    const latestArticles = articles.slice(-4).reverse();
+    const latestComments = comments.slice(-4).reverse();
 
     return(
-        <div className='dashboard-latest-articles'>
+        <div className='dashboard-latest-comments'>
             <h3 className='flag mb-0'>Latest Comments</h3>
             <div className='p-2'>    
                 {
-                    latestArticles.map(article => {
+                    latestComments.length === 0 ?
+                        <Alert severity='info'>There is no Comments</Alert>
+                    : latestComments.map(comment => {
                         return(
-                            <Link to={`all-articles/${article.id}`}>
-                                <p className='latest-article m-0 pt-2 pb-2'>
-                                    <span className='article-title pr-2 pr-sm-5'>{article.title}</span>
-                                    <span className='article-date'>{article.date}</span>
+                            <Link to={`comments/${comment.id}`}>
+                                <p className='latest-comment m-0 pt-2 pb-2'>
+                                    <span className='comment-title pr-2 pr-sm-5'>{comment.content}</span>
+                                    <span className='comment-date'>{comment.date}</span>
                                 </p>
                             </Link>     
                         );
@@ -29,7 +32,7 @@ const LatestComments = ({articles}) => {
 
 const mapStateToProps = state => {
     return({
-        articles: state.articles
+        comments: state.comments
     });
 }
 

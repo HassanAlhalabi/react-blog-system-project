@@ -9,7 +9,9 @@ import { connect } from 'react-redux';
 import { addArticle as addNewArticle } from '../../../store/actions/actions';
 import { showFlashMessage } from '../../../components/layout/FlashMessage';
 import { process } from 'uniqid';
-import axios from 'axios';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {firebaseStorage} from '../../../config/fbConfig';
+import PageHeader from '../../layout/PageHeader';
 
 const  AddArticleForm = (props) => {
 
@@ -153,41 +155,62 @@ const  AddArticleForm = (props) => {
         }
         if(noErrors) {
             setErrorMessage(false);
-            const formData = new FormData();
-            formData.append("file",articleImage);
-            formData.append("upload_preset","exw9o5bw");
-            formData.append("api_key", "183128683352529");
-            axios.post('https://api.cloudinary.com/v1_1/hassanalhalabi/image/upload',formData)
-            .then(response => {
-                const newArticle = {
-                    id: process(),
-                    title: inputs.title,
-                    author: inputs.author,
-                    content: inputs.content,
-                    urlToImage: response.data.url,
-                    date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
-                    categories: inputs.categories.filter(
-                        category => category.isChecked === true).map(
-                            category => category.value),
-                    tags: inputs.tags,
-                    isPublished: action === 'publish' ? true : false,
-                    inTrash: false
+
+            const storageRef = ref(firebaseStorage, articleImage.name);
+            const uploadTask = uploadBytesResumable(storageRef, articleImage);
+
+            // Register three observers:
+            // 1. 'state_changed' observer, called any time the state changes
+            // 2. Error observer, called on failure
+            // 3. Completion observer, called on successful completion
+            uploadTask.on('state_changed', 
+            (snapshot) => {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                case 'paused':
+                    console.log('Upload is paused');
+                    break;
+                case 'running':
+                    console.log('Upload is running');
+                    break;
                 }
-                console.log(response.data.url)
-                props.addNewArticle(newArticle);
-                action === 'publish' ?
-                showFlashMessage('Article Has Been Published Successfuly') :
-                showFlashMessage('Article Has Been Saved Successfuly');
-                history.push('/admin-panel/all-articles'); 
-            })
-            .catch(error => console.log(error))
+            }, 
+            (error) => {
+                console.log(error)
+            }, 
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    const newArticle = {
+                        id: process(),
+                        title: inputs.title,
+                        author: inputs.author,
+                        content: inputs.content,
+                        urlToImage: downloadURL,
+                        date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
+                        categories: inputs.categories.filter(
+                            category => category.isChecked === true).map(
+                                category => category.value),
+                        tags: inputs.tags,
+                        isPublished: action === 'publish' ? true : false,
+                        inTrash: false
+                    }
+                    props.addNewArticle(newArticle);
+                    action === 'publish' ?
+                    showFlashMessage('Article Has Been Published Successfuly') :
+                    showFlashMessage('Article Has Been Saved Successfuly');
+                    history.push('/admin-panel/all-articles'); 
+                });
+            });
         }
     }
 
     return(
         <div className='add-form pt-4 pb-4'>
             <div className='container-fluid'>
-                <Typography variant='h4'>Add New Article</Typography>
+                <PageHeader title='Add New Article' />
                 <div className='row'>
                     <div className='col-12 col-md-6'>
                         <AddArticleFormTemplate formTemplateProps={

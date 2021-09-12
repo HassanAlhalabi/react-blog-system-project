@@ -1,6 +1,6 @@
-import React , { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { removeUser } from '../../../store/actions/actions';
+import { deleteComment } from '../../../store/actions/actions';
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,57 +11,62 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Person from '@material-ui/icons/Person';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Edit from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 import { showFlashMessage } from '../../layout/FlashMessage';
-import PageHeader from '../../layout/PageHeader';
 
 const useStyle = makeStyles({
     textColor: {
         color: '#EEE !important'
     },
+    listItemStyle: {
+        backgroundColor: '#26201C',
+        marginBottom: '20px',
+        paddingRight: '96px',
+        paddingTop: '25px',
+        paddingBottom: '25px'
+    },
 });
 
-const Users = ({users,removeUser}) => {
+const CommentsTrash = ({comments,deletecomment}) => {
 
     const classes = useStyle();
     
-    const handleUserRemove = id => {
-        const removeUserConfirm = window.confirm('Are You Sure You Want to Remove This User to The Trash?')
-        if(removeUserConfirm) {
-            removeUser(id);
-            showFlashMessage('User Has Been Removed Successfully');
+    const handleCommentDelete = id => {
+        const deleteCommentConfirm = window.confirm('Are You Sure You Want to Delete Comment Permenantly?')
+        if(deleteCommentConfirm) {
+            deletecomment(id);
+            showFlashMessage('Comment Has Been Deleted Successfully');
         }
     }
 
     return ( 
-        <div className='users'>
+        <div className='articles-trash'>
             <div className='container'>
-                <PageHeader title='Users' />
+            {comments.length === 0 ?
+                <Alert severity='info'>There is No Comments</Alert>
+                :
                 <div className='row'>
                     <List className='w-100'>
                         {
-                            users.map(user => 
-                                <ListItem key={user.id} className={`${classes.listItemStyle} article-item`}>
+                            comments.map(comment => 
+                                <ListItem key={comment.id} className={`${classes.listItemStyle} article-item`}>
                                     <ListItemAvatar>
                                         <Avatar>
                                             <Person />
                                         </Avatar>
                                     </ListItemAvatar>
-                                    <Link to={`/admin-panel/users/${user.id}`}>
+                                    <Link to={`/admin-panel/comments/${comment.id}`}>
                                         <ListItemText
                                             className={classes.textColor}
-                                            primary={`${user.firstName} ${user.lastName}`}
-                                            secondary={user.role}
+                                            primary={`${comment.firstName} ${comment.lastName}`}
+                                            secondary={comment.role}
                                         />
                                     </Link> 
                                     <ListItemSecondaryAction>  
-                                        <IconButton edge="end" aria-label="delete">
-                                            <Edit className={classes.textColor} />
-                                        </IconButton>
                                         {
-                                            user.role !== 'owner' &&
-                                            <IconButton edge="end" aria-label="delete" onClick={() => handleUserRemove(user.id)}>
+                                            comment.role !== 'owner' &&
+                                            <IconButton edge="end" aria-label="delete" onClick={() => handleCommentDelete(comment.id)}>
                                                 <DeleteIcon className={classes.textColor} />
                                             </IconButton>
                                         } 
@@ -71,21 +76,22 @@ const Users = ({users,removeUser}) => {
                         }
                     </List>
                 </div>
-            </div>    
+                }
+            </div>
         </div>
     );
 }
 
 const mapStateToProps = state => {
     return({
-        users: state.users.filter(user => user.role !== 'client' && user.inTrash === false)
+        comments: state.comments.filter(comment => comment.inTrash === true)
     })
 }
 
 const mapDispatchToProps = dispatch => {
     return({
-        removeUser: id => dispatch(removeUser(id))
+        deleteComment: id => dispatch(deleteComment(id))
     })
 }
  
-export default connect(mapStateToProps,mapDispatchToProps)(Users);
+export default connect(mapStateToProps,mapDispatchToProps)(CommentsTrash);
