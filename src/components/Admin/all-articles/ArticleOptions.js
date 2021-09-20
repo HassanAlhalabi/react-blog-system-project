@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState , useEffect}  from 'react';
 import { connect } from 'react-redux';
 import { removeArticle, publishUpdate } from '../../../store/actions/actions';
 import { useParams , Link , useHistory } from 'react-router-dom';
@@ -9,6 +9,7 @@ import Edit from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PublishRounded from '@material-ui/icons/PublishRounded';
 import ArticleBody from '../../articles/ArticleBody';
+import Loading from '../../layout/Loading';
 
 const useStyle = makeStyles({
     articleOptions: {
@@ -18,7 +19,7 @@ const useStyle = makeStyles({
     },
 })
 
-const ArticleOptions = ({articles,removeArticle,publishUpdate}) => {
+const ArticleOptions = ({ articles, articlesLoading, removeArticle, publishUpdate }) => {
     
     const classes   = useStyle();
     const articleId = useParams('id').id;
@@ -42,7 +43,7 @@ const ArticleOptions = ({articles,removeArticle,publishUpdate}) => {
             showFlashMessage('Article Has Been UnPublished Successfully')
     };
 
-    return ( 
+    return articlesLoading ? <Loading /> : 
         <div>
             <div className='row'>
                 <div className='col-12 col-md-9'>
@@ -80,19 +81,19 @@ const ArticleOptions = ({articles,removeArticle,publishUpdate}) => {
                 </div>
             </div>
         </div> 
-    );
 }
  
 const mapStateToProps = state => {
     return({
-        articles: state.articles
+        articles: state.articles.articles,
+        articlesLoading: state.articles.articlesLoading
     })
 }
 
 const mapDispatchToProps = dispatch => {
     return ({
         removeArticle: id => dispatch(removeArticle(id)),
-        publishUpdate: id => dispatch(publishUpdate(id))     
+        publishUpdate: id => dispatch(publishUpdate(id))
     })
 }
 

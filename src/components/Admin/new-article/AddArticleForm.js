@@ -35,7 +35,7 @@ const  AddArticleForm = (props) => {
     const [errorMessage,setErrorMessage]      = useState(null); 
     const history                             = useHistory();  
     const date                                = new Date();
-    
+    console.log(inputs.content)
     const handleAddCategory = e => {
         e.preventDefault();
         if(inputs.newCategory !== '' && inputs.newCategory !== undefined) {
@@ -187,7 +187,7 @@ const  AddArticleForm = (props) => {
                         id: process(),
                         title: inputs.title,
                         author: inputs.author,
-                        content: inputs.content,
+                        content: JSON.stringify(inputs.content),
                         urlToImage: downloadURL,
                         date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
                         categories: inputs.categories.filter(

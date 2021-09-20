@@ -1,328 +1,36 @@
 import * as actionsTypes from '../actions/actionsTypes'
+import { doc, setDoc } from "firebase/firestore"; 
+import { firebaseDB } from '../../config/fbConfig';
 
-let articles = [
-    {
-        "id": "1",
-        "title": "How To learn a new Skills to Keep Up With the century",
-        "urlToImage": "",
-        "author": "Hassan Alhalabi",
-        "content": {
-            "blocks": [
-              {
-                "key": "8i090",
-                "text": "Hello CodePulse!",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 16,
-                    "style": "BOLD"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "42ncd",
-                "text": "This text should be underlined.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "UNDERLINE"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "327r6",
-                "text": "And this text should be italic.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "ITALIC"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              }
-            ],
-            "entityMap": {}
-          },
-        "date": "2/12/2020",
-        "categories": ["uncategorized","sport"],
-        "tags": ["learning","skills"],
-        "isPublished": true,
-        inTrash: false,
-    },
-    {
-        "id": "2",
-        "title": "Travel the world with james brandon in a caravan !!",
-        "urlToImage": "",
-        "author": "James Brandon",
-        "content": {
-            "blocks": [
-              {
-                "key": "8i090",
-                "text": "Hello CodePulse!",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 16,
-                    "style": "BOLD"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "42ncd",
-                "text": "This text should be underlined.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "UNDERLINE"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "327r6",
-                "text": "And this text should be italic.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "ITALIC"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              }
-            ],
-            "entityMap": {}
-          },
-        "date": "2/12/2020",
-        "categories": ["travel","sport"],
-        "tags": ["james brandon","culture travel"],
-        "isPublished": true,
-        inTrash: false,
-    },
-    {
-        "id": "3",
-        "title": "One Night in a Local Irish Motel",
-        "urlToImage": "",
-        "author": "James Brandon",
-        "content": {
-            "blocks": [
-              {
-                "key": "8i090",
-                "text": "Hello CodePulse!",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 16,
-                    "style": "BOLD"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "42ncd",
-                "text": "This text should be underlined.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "UNDERLINE"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "327r6",
-                "text": "And this text should be italic.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "ITALIC"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              }
-            ],
-            "entityMap": {}
-          },
-        "date": "2/12/2020",
-        "categories": ["travel","sport"],
-        "tags": ["james brandon","culture travel"],
-        "isPublished": true,
-        inTrash: false,
-    },
-    
-    {
-        "id": "4",
-        "title": "Travel the world with james brandon in a caravan !!",
-        "urlToImage": "",
-        "author": "Kame Namek",
-        "content": {
-            "blocks": [
-              {
-                "key": "8i090",
-                "text": "Hello CodePulse!",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 16,
-                    "style": "BOLD"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "42ncd",
-                "text": "This text should be underlined.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "UNDERLINE"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "327r6",
-                "text": "And this text should be italic.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "ITALIC"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              }
-            ],
-            "entityMap": {}
-          },
-        "date": "2/12/2020",
-        "categories": ["travel","sport"],
-        "tags": ["james brandon","culture travel"],
-        "isPublished": false,
-        inTrash: false,
-    },
-    {
-        "id": "5",
-        "title": "Travel the world with james brandon in a caravan !!",
-        "urlToImage": "",
-        "author": "Kame Namek",
-        "content": {
-            "blocks": [
-              {
-                "key": "8i090",
-                "text": "Hello CodePulse!",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 16,
-                    "style": "BOLD"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "42ncd",
-                "text": "This text should be underlined.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "UNDERLINE"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              },
-              {
-                "key": "327r6",
-                "text": "And this text should be italic.",
-                "type": "unstyled",
-                "depth": 0,
-                "inlineStyleRanges": [
-                  {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "ITALIC"
-                  }
-                ],
-                "entityRanges": [],
-                "data": {}
-              }
-            ],
-            "entityMap": {}
-          },
-        "date": "2/12/2020",
-        "categories": ["travel","sport"],
-        "tags": ["james brandon","culture travel"],
-        "isPublished": false,
-        inTrash: true,
-    }
-];
+const initialState = {
+  articles: [],
+  articlesLoading: true,
+  articleUploading: true
+}
 
-export const articlesReducer = (state = [], action) => {
+export const articlesReducer = (state = initialState, action) => {
 
     switch (action.type) {
+      // Initilize Articles 
         case actionsTypes.INITIALIZE_ARTICLE:
           return action.articles.length === 0 ?
-            state :
-            [...action.articles]            
+            {...state} :
+            {
+             ...state, 
+              articles: action.articles,
+              articlesLoading: false
+            }           
         // Add New Article
         case actionsTypes.ADD_ARTICLE:
-            return [
-                ...state,
-               action.article
-            ] 
-
+          async function addDoc(){
+            await setDoc(doc(firebaseDB, "articles",action.article.id), action.article);
+          }
+          addDoc();
+          return {
+            ...state, 
+             articles: [...state.articles,action.article],
+             articleUploading: false
+           }
         case actionsTypes.REMOVE_ARTICLE:
             return state.map(article => {
                 if(article.id === action.id){

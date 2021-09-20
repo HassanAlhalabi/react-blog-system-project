@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import ErrorSharp from '@material-ui/icons/ErrorSharp';
 
 const NotFound404 = () => {
     return ( 
-        <div className='not-found-page'>
+        <div className='page-not-found'>
             <div className='container'>
-                    ooops!!! Page not found please check URL of the required adress
+                <p>Ooops!!! Page not Found</p>
+                <p>Please Check the URL of the Required Page</p>
+                <p><ErrorSharp /></p>
             </div>
         </div>
      );

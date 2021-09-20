@@ -7,8 +7,9 @@ import Pagination from '@material-ui/lab/Pagination';
 import { articlesInit } from '../../store/actions/actions';
 import Alert from '@material-ui/lab/Alert';
 import Loading from '../layout/Loading';
+import { getArticles } from '../../config/fbConfig';
 
-const Articles = ({articles, favorites,articlesInit}) => {
+const Articles = ({articles, favorites, articlesInit}) => {
 
     const history = useHistory();
     const [loading,setLoading] = useState(true);
@@ -27,10 +28,15 @@ const Articles = ({articles, favorites,articlesInit}) => {
     );
 
     useEffect(() => {
-        setTimeout(() => {
+
+        const fetchArticles = async () => {
+            const response = await getArticles();
+            const articles = await response;
+            articlesInit(articles)
             setLoading(false);
-            articlesInit([]);
-        },3000);
+        }
+        fetchArticles();
+
     },[])
     
     return ( 
@@ -47,11 +53,12 @@ const Articles = ({articles, favorites,articlesInit}) => {
                             <div className='row'>
                                 {
                                     slicedArticles.map(article => {
-                                        if(favorites.includes(article.id) === true) {
-                                            return <ArticleCard key={article.id} isFavorite={true} articleCardProps={article}/>    
-                                        } else {
-                                            return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
-                                        }
+                                        // if(favorites.includes(article.id) === true) {
+                                        //     return <ArticleCard key={article.id} isFavorite={true} articleCardProps={article}/>    
+                                        // } else {
+                                        //     return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
+                                        // }
+                                        // return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
                                     })
                                 }
                                 {

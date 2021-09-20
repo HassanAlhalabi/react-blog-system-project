@@ -90,6 +90,7 @@ button {
     display: inline-block;
     font-weight: 600;
     transition: .4s;
+    width: fit-content;
 }
 
 button span {vertical-align: text-top; }
@@ -1456,6 +1457,21 @@ footer {
 footer p {
     color: #FFF;
     margin: 0;
+}
+
+/* 404 Page Style */
+
+.page-not-found {
+    height: 100%;
+    padding: 50px 0px;
+}
+
+.page-not-found p:first-child {
+    font-size: 34px;
+}
+
+.page-not-found p:last-child svg {
+    font-size: 4rem;
 }
 
  /* Flash Message Style */

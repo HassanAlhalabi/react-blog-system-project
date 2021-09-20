@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { removeArticle , articlesInit } from '../../../store/actions/actions';
 import { connect } from 'react-redux';
 import { Link , useParams , useHistory } from 'react-router-dom';
@@ -25,9 +25,10 @@ const useStyle = makeStyles({
     }
 });
 
-const AllArticles = ({articles, removeArticle, articlesInit }) => {
+const AllArticles = ({ articles, removeArticle ,articlesLoading}) => {
 
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(true);
+    console.log(articles)
     
     const classes = useStyle();    
     
@@ -43,8 +44,8 @@ const AllArticles = ({articles, removeArticle, articlesInit }) => {
     page = page === undefined ? 1 : page * 1 ;
     
     const pageSize = 10;
-   
-    const articlesList = articles.slice( (page * pageSize - pageSize) , (pageSize * page) ).filter(article => article.inTrash === false);
+
+    const articlesList = articles.length !== 0 ? articles.slice( (page * pageSize - pageSize) , (pageSize * page) ).filter(article => article.inTrash === false): [];
 
     const history = useHistory();
 
@@ -52,22 +53,15 @@ const AllArticles = ({articles, removeArticle, articlesInit }) => {
         history.push(`/admin-panel/all-articles/page/${value}`)
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-            articlesInit([]);
-        }, 5000)
-    },[])
-
     return (
         <div className='all-articles h-100'>
             <div className='container h-100'>
                 <PageHeader title='Articles' />
                 { 
-                loading === true ? <Loading /> :
-                    articlesList.length === 0 ?
+                articlesLoading === true ? <Loading /> :
+                    articles.length === 0 ?
                         <Alert severity='warning'>There is no Articles</Alert>
-                    :
+                    : 
                         <div className='d-flex h-100 flex-column justify-content-between'>
                             <div className='row'>
                                 <List className='w-100'>
@@ -127,13 +121,13 @@ const AllArticles = ({articles, removeArticle, articlesInit }) => {
 
 const mapStateToProps = state => {
     return ({
-        articles: state.articles
+        articles: state.articles.articles,
+        articlesLoading: state.articles.articlesLoading
     })
 }
 
 const mapDispathToProps = dispatch => {
     return ({
-        articlesInit: articles => dispatch(articlesInit(articles)),
         removeArticle: index => dispatch(removeArticle(index))
     })
 }

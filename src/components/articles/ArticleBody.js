@@ -1,10 +1,10 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import articleImg from '../imgs/article-image-placeholder.png';
-import { convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
 const ArticleBody = ({articleProps}) => {
+    const dateFormat = new Date(articleProps.date.seconds).toLocaleDateString();
     return ( 
         <div className='article-body p-2 p-md-4'>
             <div className='article-image text-center position-relative'>
@@ -34,11 +34,11 @@ const ArticleBody = ({articleProps}) => {
                     <span>Written By: {articleProps.author}</span>
                 </div>
                 <div className='article-date'>
-                    <span>{articleProps.date}</span>
+                    <span>{dateFormat}</span>
                 </div>
             </div>
             <div className='article-content pt-4 pb-2'>
-                <div dangerouslySetInnerHTML={{__html: draftToHtml(articleProps.content)}}></div>
+                <div dangerouslySetInnerHTML={{__html: draftToHtml(JSON.parse(articleProps.content.slice(1,-1)))}}></div>
             </div>
             <div className='article-tags'>
                 <div className='pt-2 pb-4'>
