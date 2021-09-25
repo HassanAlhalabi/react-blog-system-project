@@ -31,6 +31,7 @@ const Drawer = ({drawerIsClosed , handleDrawerClose}) => {
 
     const handleListItemClick = index => {
         setSelectedIndex(index);
+        handleDrawerClose();
     };
 
     return ( 

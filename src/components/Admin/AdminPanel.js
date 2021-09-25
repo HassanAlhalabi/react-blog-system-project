@@ -20,7 +20,7 @@ import UploadPhotos from './gallery/UploadPhotos';
 
 const AdminPanel = () => {
 
-    const [drawerIsClosed, setDrawerClosed] = useState(false); 
+    const [drawerIsClosed, setDrawerClosed] = useState(true); 
 
     const handleDrawerClose = () => setDrawerClosed(!drawerIsClosed);
 

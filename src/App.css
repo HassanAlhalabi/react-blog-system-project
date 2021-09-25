@@ -461,6 +461,10 @@ nav.navbar .logo h1 {
     min-width: 200px
 }
 
+.user-dropdown-menu ul {
+    background-color: var(--main-color);
+}
+
 nav.navbar .lower-nav {
     padding: 0px 0px 10px;
     background-color: #373737;
@@ -502,6 +506,7 @@ nav.navbar .lower-nav a:focus {
     background-color: var(--main-color);
     width: 100%;
     padding: 10px;
+    border-top: 3px solid var(--third-color);
 }
 
 .mobile-nav-links li a {
