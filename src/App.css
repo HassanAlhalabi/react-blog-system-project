@@ -208,6 +208,21 @@ button:hover {
     animation-iteration-count: infinite;
 }
 
+.uploading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 100%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #1D1D1D99;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .add-form {
     background-color: var(--second-color);
 }
@@ -666,8 +681,8 @@ span.top-text-slogan {
 }
 
 @media(max-width: 767px) {
-    .about-us {
-        padding: 15px;
+    .landing-about-us .about-us {
+        padding: 25px;
     }
     
 }
@@ -816,8 +831,8 @@ span.top-text-slogan {
 }
 
 @media(max-width: 767px) {
-    .contact-us {
-        padding: 15px;
+    .landing-contact-us .contact-us {
+        padding: 25px;
     }
     
 }
@@ -939,8 +954,10 @@ span.top-text-slogan {
     color: var(--second-color)
 }
 
+.article-body p span,
 .article-body p {
-    color: #FFF
+    color: #FFF !important;
+    background-color: transparent !important;
 }
 
 .article-body .article-categories {
@@ -1114,10 +1131,11 @@ span.top-text-slogan {
 .dashboard-latest-comments  > div,
 .dashboard-latest-articles > div {
     background-color: var(--second-color);
+    padding: 10px;
 }
 
-.dashboard-latest-comments .latest-comment,
-.dashboard-latest-articles .latest-article {
+.latest-comment,
+.latest-article {
     display: flex;
     justify-content: space-between;
 }

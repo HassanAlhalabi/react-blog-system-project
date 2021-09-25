@@ -6,18 +6,18 @@ import Pinterest from '@material-ui/icons/Pinterest';
 
 const LandingSocialLinks = () => {
     return ( 
-        <div class="landing-social-links">
-            <div class="text-center">
-                <a href="#" class="social-button">
+        <div className="landing-social-links">
+            <div className="text-center">
+                <a href="facebook.com/hassan1997" className="social-button">
                     <Facebook />
                 </a>
-                <a href="#" class="social-button">
+                <a href="twitter.com" className="social-button">
                     <Twitter />
                 </a>
-                <a href="#" class="social-button">
+                <a href="instagram.com" className="social-button">
                     <Instagram />
                 </a>
-                <a href="#" class="social-button">
+                <a href="pinterest.com" className="social-button">
                     <Pinterest />
                 </a>
             </div>

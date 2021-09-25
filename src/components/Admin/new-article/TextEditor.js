@@ -1,8 +1,6 @@
 import React from 'react';
 import { Editor } from "react-draft-wysiwyg";
-import {convertToRaw} from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import draftToHtml from 'draftjs-to-html';
 
 const TextEditor = ({editorState,handleEditorState}) => {
     return(

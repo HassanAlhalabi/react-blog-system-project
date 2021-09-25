@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleImage from '../../imgs/article-image-placeholder.png';
-import {convertToRaw} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import { convertToRaw } from 'draft-js';
 
 const AddArticleFormPreview = ({previewProps,articleImage}) => {
     return ( 
@@ -33,7 +33,7 @@ const AddArticleFormPreview = ({previewProps,articleImage}) => {
                     </div>
                 </div>
                 <div className='mt-3 mb-3 article-content'>
-                     <div dangerouslySetInnerHTML={{__html: draftToHtml(previewProps.content)}}></div>
+                     <div dangerouslySetInnerHTML={{__html: draftToHtml(convertToRaw(previewProps.content))}}></div>
                 </div>
                 <div className='article-tags'>
                     <div className='pt-2 pb-4'>

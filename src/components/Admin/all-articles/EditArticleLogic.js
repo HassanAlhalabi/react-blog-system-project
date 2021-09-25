@@ -1,45 +1,52 @@
 import React , { useContext, useState } from 'react';
-import {useHistory} from 'react-router-dom';
-import AddArticleFormTemplate from './AddArticleFormTemplate';
-import AddArticleFormPreview from './AddArticleFormPreview';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { useHistory } from 'react-router-dom';
+import AddArticleFormTemplate from '../new-article/AddArticleFormTemplate';
+import AddArticleFormPreview from '../new-article/AddArticleFormPreview';
+import { EditorState,convertToRaw,convertFromRaw } from 'draft-js';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
-import { addArticle as addNewArticle } from '../../../store/actions/actions';
+import { updateArticle } from '../../../store/actions/actions';
 import { showFlashMessage } from '../../../components/layout/FlashMessage';
-import { process } from 'uniqid';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { firebaseStorage}  from '../../../config/fbConfig';
-import PageHeader from '../../layout/PageHeader';
-import draftToHtml from 'draftjs-to-html';
-import Uploading from '../../layout/Uploading';
 
-const  AddArticleForm = (props) => {
+const EditArticleLogic = ({ updateArticle , article }) => {
 
-    const [categories , setCategories]        = useContext(CategoriesContext);
-    const [editorState,setEditorState]        = useState(EditorState.createEmpty());
+    const [categories , setCategories] = useContext(CategoriesContext);
+    const initialCategories = categories.map(category => {
+        if(article.categories.includes(category.value.toLowerCase())){
+            return({
+                ...category,
+                isChecked: true
+            })
+        }
+        return category
+    })
     const [inputs,setInputs] = useState({
-        title: '',
-        author: '',
-        categories: categories,
-        content: editorState.getCurrentContent(),
+        title:       article.title,
+        author:      article.author,
+        content:     convertFromRaw(JSON.parse(article.content)),
+        date:        article.date,
+        categories:  initialCategories,
         newCategory: '',
-        tags: [],
-        newTag: '',
-        urlToImage: '',
+        tags:        article.tags,
+        newTag:      '',
+        urlToImage:  article.urlToImage,
+        isPublished: article.isPublished,
+        inTrash:     article.inTrash
     });
 
-    const [articleImage , setArticleImage]    = useState('');
-    const [articleImagePreview , setArticleImagePreview]    = useState([]);
-    const [titleError,setTitleError]          = useState(false);
-    const [authorError,setAuthorError]        = useState(false); 
-    const [contentError,setContentError]      = useState(false);
-    const [errorMessage,setErrorMessage]      = useState(null); 
-    const history                             = useHistory();  
-    const date                                = new Date();
+    const [articleImage , setArticleImage]    = useState([]);
+    const [articleImagePreview , setArticleImagePreview]    = useState(inputs.urlToImage);
+    const [editorState,setEditorState]       = useState(EditorState.createWithContent(inputs.content));
+    const [titleError,setTitleError]         = useState(false);
+    const [authorError,setAuthorError]       = useState(false); 
+    const [contentError,setContentError]     = useState(false);  
+    const [errorMessage,setErrorMessage]     = useState(null);
+    const history                            = useHistory();
 
     const handleAddCategory = e => {
-        e.preventDefault();
+        e.preventDefault()
         if(inputs.newCategory !== '' && inputs.newCategory !== undefined) {
             let categoryIsExisted = false;
             categories.map(category => {
@@ -50,7 +57,7 @@ const  AddArticleForm = (props) => {
             })
             if(!categoryIsExisted) {
                 const newCategories = [
-                    ...categories,
+                    ...inputs.categories,
                     {
                         id: categories.length + 1,
                         value: inputs.newCategory,
@@ -96,25 +103,12 @@ const  AddArticleForm = (props) => {
         setInputs({
             ...inputs,
             tags: newTagsList
-        });
-    };
-
-    const handleEditorState = editorState => {
-        setEditorState(editorState);
-        setInputs({
-            ...inputs,
-            content: editorState.getCurrentContent()
-        });
-    };
-
-    const handleImageUpload = (imageList) => {
-        setArticleImage(imageList[0].file);
-        setArticleImagePreview(imageList[0].data_url)
-    };
+        })
+    }
 
     const handleChange = e =>  { 
         let newCats = [];
-        newCats = categories.map(n => {
+        newCats = inputs.categories.map(n => {
             if(e.target.value === n.value) {
                 n.isChecked = e.target.checked
             }
@@ -131,7 +125,20 @@ const  AddArticleForm = (props) => {
                 [e.target.name] : e.target.value})
     }
 
-    const handleFormSubmit = async (event , action) => {
+    const handleEditorState = editorState => {
+        setEditorState(editorState);
+        setInputs({
+            ...inputs,
+            content: editorState.getCurrentContent()
+        });
+    };
+
+    const handleImageUpload = (imageList) => {
+        setArticleImage(imageList[0].file);
+        setArticleImagePreview(imageList[0].data_url)
+    };
+
+    const handleFormSubmit = (event , action) => {
         event.preventDefault();
         let noErrors = true;
         if(inputs.title === '' || inputs.title === undefined ) {
@@ -158,9 +165,8 @@ const  AddArticleForm = (props) => {
         if(noErrors) {
             setErrorMessage(false);
 
-            if(articleImage !== ''){
-
-                const storageRef = ref(firebaseStorage, articleImage.name);
+            if(articleImage.length !== 0) {
+                const storageRef = ref(firebaseStorage,articleImage.name);
                 const uploadTask = uploadBytesResumable(storageRef, articleImage);
 
                 uploadTask.on('state_changed', 
@@ -183,46 +189,48 @@ const  AddArticleForm = (props) => {
                 }, 
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        const newArticle = {
-                            id: process(),
+                        const updatedArticle = {
+                            id: article.id,
                             title: inputs.title,
                             author: inputs.author,
                             content: JSON.stringify(convertToRaw(inputs.content)),
                             urlToImage: downloadURL,
-                            date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
+                            date: inputs.date,
                             categories: inputs.categories.filter(
                                 category => category.isChecked === true).map(
                                     category => category.value),
                             tags: inputs.tags,
-                            isPublished: action === 'publish' ? true : false,
-                            inTrash: false
+                            isPublished: action === 'publish' ? true : inputs.isPublished,
+                            inTrash: inputs.inTrash
                         }
-                        props.addNewArticle(newArticle);
+                        updateArticle(updatedArticle);
                         action === 'publish' ?
-                        showFlashMessage('Article Has Been Published Successfuly') :
+                        showFlashMessage('Article Has Been Updated Successfuly') :
                         showFlashMessage('Article Has Been Saved Successfuly');
                         history.push('/admin-panel/all-articles'); 
                     });
                 });
-            }
-            if(articleImage === '') {
-                const newArticle = {
-                    id: process(),
+
+            } 
+
+            if( articleImage.length === 0 ) {
+                const updatedArticle = {
+                    id: article.id,
                     title: inputs.title,
                     author: inputs.author,
                     content: JSON.stringify(convertToRaw(inputs.content)),
                     urlToImage: '',
-                    date: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`,
+                    date: inputs.date,
                     categories: inputs.categories.filter(
                         category => category.isChecked === true).map(
                             category => category.value),
                     tags: inputs.tags,
-                    isPublished: action === 'publish' ? true : false,
-                    inTrash: false
+                    isPublished: action === 'publish' ? true : inputs.isPublished,
+                    inTrash: inputs.inTrash
                 }
-                await props.addNewArticle(newArticle);
+                updateArticle(updatedArticle);
                 action === 'publish' ?
-                showFlashMessage('Article Has Been Published Successfuly') :
+                showFlashMessage('Article Has Been Updated Successfuly') :
                 showFlashMessage('Article Has Been Saved Successfuly');
                 history.push('/admin-panel/all-articles'); 
             }
@@ -230,50 +238,38 @@ const  AddArticleForm = (props) => {
     }
 
     return(
-        <div className='add-form pt-4 pb-4'>
-            {props.articleUploading === true ? <Uploading /> : null }
-            <div className='container-fluid'>
-                <PageHeader title='Add New Article' />
-                <div className='row'>
-                    <div className='col-12 col-md-6'>
-                        <AddArticleFormTemplate formTemplateProps={
-                            {
-                                handleChange,
-                                inputs,
-                                editorState,
-                                handleEditorState,
-                                handleAddCategory,
-                                handleAddTag,
-                                handleRemoveTag,
-                                handleImageUpload,
-                                titleError,
-                                authorError,
-                                contentError,
-                                errorMessage,
-                                handleFormSubmit,   
-                            }
-                        }/>
-                    </div>
-                    <div className='col-12 col-md-6'>
-                        <AddArticleFormPreview previewProps={inputs} articleImage={articleImagePreview} />
-                    </div>
-                </div>
-            </div>    
+        <div className='row'>
+            <div className='col-12 col-md-6'>
+                <AddArticleFormTemplate formTemplateProps={
+                    {
+                        handleChange,
+                        handleEditorState,
+                        editorState,
+                        inputs,
+                        handleAddCategory,
+                        handleAddTag,
+                        handleRemoveTag,
+                        handleImageUpload,
+                        titleError,
+                        authorError,
+                        contentError,
+                        errorMessage,
+                        handleFormSubmit   
+                    }
+                }/>
+            </div>
+            <div className='col-12 col-md-6'>
+                <AddArticleFormPreview previewProps={inputs} articleImage={articleImagePreview}/>
+            </div>
         </div>
                 
     );
 }
 
-const mapStateToProps = state => {
-    return({
-        articleUploading: state.articles.articleUploading
-    })
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        addNewArticle: article => dispatch(addNewArticle(article))
+        updateArticle: article => dispatch(updateArticle(article))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddArticleForm);
+export default connect(null,mapDispatchToProps)(EditArticleLogic);

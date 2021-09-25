@@ -174,7 +174,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                             ||
                             (formTemplateProps.inputs.author === '' || formTemplateProps.inputs.author === undefined) 
                             ||
-                            (formTemplateProps.inputs.content === '' || formTemplateProps.inputs.content === undefined) }>
+                            (formTemplateProps.inputs.content.hasText() === false || formTemplateProps.inputs.content === undefined) }>
                             Publish
                     </Button>
                     <Button 
@@ -188,7 +188,7 @@ const AddArticleFormTemplate = ({formTemplateProps}) => {
                             ||
                             (formTemplateProps.inputs.author === '' || formTemplateProps.inputs.author === undefined) 
                             ||
-                            (formTemplateProps.inputs.content === '' || formTemplateProps.inputs.content === undefined) }>
+                            (formTemplateProps.inputs.content.hasText() === false || formTemplateProps.inputs.content === undefined) }>
                             Save
                     </Button>
                 </ButtonGroup>   

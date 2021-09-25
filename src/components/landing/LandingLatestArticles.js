@@ -56,7 +56,7 @@ const LandingLatestArticles = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                         <div className="landing-article-card mb-5">
                             <div className="landing-article-card-image">
                                 <div className="card-image-shadow"></div>

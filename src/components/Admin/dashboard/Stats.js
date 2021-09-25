@@ -6,7 +6,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import CommentIcon from '@material-ui/icons/Comment';
 
-const Stats = ({articles}) => {
+const Stats = ({ articles }) => {
 
     return(
         <div className='dashboard-stats'>
@@ -41,7 +41,7 @@ const Stats = ({articles}) => {
 const mapStateToProps = state => {
     return(
         {
-            articles: state.articles
+            articles: state.articles.articles
         }
     )
 }

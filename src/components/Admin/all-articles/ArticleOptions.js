@@ -1,4 +1,4 @@
-import React , {useState , useEffect}  from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { removeArticle, publishUpdate } from '../../../store/actions/actions';
 import { useParams , Link , useHistory } from 'react-router-dom';
@@ -36,7 +36,7 @@ const ArticleOptions = ({ articles, articlesLoading, removeArticle, publishUpdat
     }
 
     const handlePublish = () => {
-        publishUpdate(articleId);
+        publishUpdate(articleId,article.isPublished);
         article.isPublished === true ?
             showFlashMessage('Article Has Been Published Successfully')
         :
@@ -93,7 +93,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return ({
         removeArticle: id => dispatch(removeArticle(id)),
-        publishUpdate: id => dispatch(publishUpdate(id))
+        publishUpdate: (id,isPublished) => dispatch(publishUpdate(id,isPublished))
     })
 }
 

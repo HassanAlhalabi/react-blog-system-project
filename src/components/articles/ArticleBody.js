@@ -4,7 +4,6 @@ import articleImg from '../imgs/article-image-placeholder.png';
 import draftToHtml from 'draftjs-to-html';
 
 const ArticleBody = ({articleProps}) => {
-    const dateFormat = new Date(articleProps.date.seconds).toLocaleDateString();
     return ( 
         <div className='article-body p-2 p-md-4'>
             <div className='article-image text-center position-relative'>
@@ -34,11 +33,11 @@ const ArticleBody = ({articleProps}) => {
                     <span>Written By: {articleProps.author}</span>
                 </div>
                 <div className='article-date'>
-                    <span>{dateFormat}</span>
+                    <span>{articleProps.date}</span>
                 </div>
             </div>
             <div className='article-content pt-4 pb-2'>
-                <div dangerouslySetInnerHTML={{__html: draftToHtml(JSON.parse(articleProps.content.slice(1,-1)))}}></div>
+                <div dangerouslySetInnerHTML={{__html: draftToHtml(JSON.parse(articleProps.content))}}></div>
             </div>
             <div className='article-tags'>
                 <div className='pt-2 pb-4'>

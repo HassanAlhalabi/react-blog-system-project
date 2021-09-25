@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams,useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PageHeader from '../layout/PageHeader';
-import ArticleCard from './ArticleCard';
 import Pagination from '@material-ui/lab/Pagination';
-import { articlesInit } from '../../store/actions/actions';
 import Alert from '@material-ui/lab/Alert';
 import Loading from '../layout/Loading';
-import { getArticles } from '../../config/fbConfig';
+import ArticleCard from './ArticleCard';
 
-const Articles = ({articles, favorites, articlesInit}) => {
+const Articles = ({ articles, articlesLoading, favorites }) => {
 
     const history = useHistory();
-    const [loading,setLoading] = useState(true);
 
     let page = useParams('page').page;
     page = page === undefined ? 1 : page * 1;
@@ -26,25 +23,13 @@ const Articles = ({articles, favorites, articlesInit}) => {
     const slicedArticles = articles.slice( (page * pageSize - pageSize ) , page * pageSize ).filter(
         article => article.inTrash === false && article.isPublished === true
     );
-
-    useEffect(() => {
-
-        const fetchArticles = async () => {
-            const response = await getArticles();
-            const articles = await response;
-            articlesInit(articles)
-            setLoading(false);
-        }
-        fetchArticles();
-
-    },[])
     
     return ( 
         <div className='articles pt-5 pb-5'>
             <div className='container'>
                 <PageHeader title='Articles' />
                 {
-                    loading === true ?
+                    articlesLoading === true ?
                         <Loading />
                     :
                         slicedArticles.length === 0 ? 
@@ -53,12 +38,12 @@ const Articles = ({articles, favorites, articlesInit}) => {
                             <div className='row'>
                                 {
                                     slicedArticles.map(article => {
-                                        // if(favorites.includes(article.id) === true) {
-                                        //     return <ArticleCard key={article.id} isFavorite={true} articleCardProps={article}/>    
-                                        // } else {
-                                        //     return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
-                                        // }
-                                        // return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
+                                        if(favorites.includes(article.id) === true) {
+                                            return <ArticleCard key={article.id} isFavorite={true} articleCardProps={article}/>    
+                                        } else {
+                                            return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
+                                        }
+                                        return <ArticleCard key={article.id} isFavorite={false} articleCardProps={article}/>
                                     })
                                 }
                                 {
@@ -81,15 +66,10 @@ const Articles = ({articles, favorites, articlesInit}) => {
 
 const mapStateToProps = state => {
     return({
-        articles: state.articles,
+        articles: state.articles.articles,
+        articlesLoading: state.articles.articlesLoading,
         favorites: state.favorites
     })
 }
 
-const mapDispatchToProps = dispatch => {
-    return({
-        articlesInit: articles => dispatch(articlesInit(articles))
-    })
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Articles);
+export default connect(mapStateToProps,null)(Articles);

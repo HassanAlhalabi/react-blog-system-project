@@ -1,5 +1,5 @@
-import React , { useState, useEffect } from 'react';
-import { removeArticle , articlesInit } from '../../../store/actions/actions';
+import React from 'react';
+import { removeArticle } from '../../../store/actions/actions';
 import { connect } from 'react-redux';
 import { Link , useParams , useHistory } from 'react-router-dom';
 import List from '@material-ui/core/List';
@@ -26,9 +26,6 @@ const useStyle = makeStyles({
 });
 
 const AllArticles = ({ articles, removeArticle ,articlesLoading}) => {
-
-    const [loading,setLoading] = useState(true);
-    console.log(articles)
     
     const classes = useStyle();    
     
@@ -62,7 +59,7 @@ const AllArticles = ({ articles, removeArticle ,articlesLoading}) => {
                     articles.length === 0 ?
                         <Alert severity='warning'>There is no Articles</Alert>
                     : 
-                        <div className='d-flex h-100 flex-column justify-content-between'>
+                        <div className='d-flex flex-column justify-content-between'>
                             <div className='row'>
                                 <List className='w-100'>
                                     {
@@ -126,10 +123,10 @@ const mapStateToProps = state => {
     })
 }
 
-const mapDispathToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return ({
-        removeArticle: index => dispatch(removeArticle(index))
+        removeArticle: id => dispatch(removeArticle(id))
     })
 }
 
-export default connect(mapStateToProps,mapDispathToProps)(AllArticles);
+export default connect(mapStateToProps,mapDispatchToProps)(AllArticles);

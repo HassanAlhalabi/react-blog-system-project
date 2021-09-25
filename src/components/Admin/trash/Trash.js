@@ -54,7 +54,7 @@ const Trash = ({articles,users,comments,emptyTrash}) => {
 
 const mapStateToProps = state => {
     return({
-        articles: state.articles.filter(article => article.inTrash === true),
+        articles: state.articles.articles.filter(article => article.inTrash === true),
         users: state.users.filter(user => user.inTrash === true),
         comments: state.comments.filter(comment => comment.inTrash === true),
     })

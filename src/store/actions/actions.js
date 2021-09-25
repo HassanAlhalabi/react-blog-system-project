@@ -1,55 +1,100 @@
 import * as actionsTypes from './actionsTypes';
+import { 
+        getArticles, 
+        uploadArticle, 
+        fireArticleDelete, 
+        fireArticleRemove,
+        fireGetArticle,
+        fireArticleUpdate } from '../../config/fbConfig';
 
 // Article Actions
 
-export const articlesInit = articles => (
-    {
-        type: actionsTypes.INITIALIZE_ARTICLE,
-        articles,
+export const articlesInit = () => {
+    return async function(dispatch) {
+        const response = await getArticles();
+        const articles = await response;
+        dispatch({
+            type: actionsTypes.INITIALIZE_ARTICLES,
+            articles
+        })
     }
-)
+}
 
-export const addArticle = article => (
-    {
-        type: actionsTypes.ADD_ARTICLE,
-        article,
+export const getArticle = id => {
+    return async function(dispatch) {
+        const response = fireGetArticle(id);
+        const article = await response;
+        dispatch({
+            type: actionsTypes.GET_ARTICLE,
+            article
+        })
     }
-)
+}
 
-export const removeArticle = id => (
-    {
-        type: actionsTypes.REMOVE_ARTICLE,
-        id,
+export const addArticle = article => {
+    return async function (dispatch){
+        dispatch({
+            type: 'uploading',
+        })
+        const response = await uploadArticle(article);
+        dispatch({
+            type: actionsTypes.ADD_ARTICLE,
+            article,
+        })
     }
-);
+}
 
-export const deleteArticle = id => (
-    {
-        type: actionsTypes.DELETE_ARTICLE,
-        id,
+export const removeArticle = id => {
+    return async dispatch => {
+        const response = await fireArticleRemove(id)
+        dispatch({
+            type: actionsTypes.REMOVE_ARTICLE,
+            id,
+        })
     }
-);
+};
 
-export const publishUpdate = id => ({
-    type: actionsTypes.PUBLISH_UPDATE,
-    id
-});
-
-export const updateArticle = article => (
-    {
-        type: actionsTypes.UPDATE_ARTICLE,
-        article,
+export const deleteArticle = id => {
+    return async dispatch => {
+        const response = await fireArticleDelete(id);
+        dispatch({
+            type: actionsTypes.DELETE_ARTICLE,
+            id,
+        })
     }
-);
+};
+
+export const publishUpdate = (id,isPublished) => {
+    return async dispatch => {
+        const response = await fireArticleUpdate(id,{'isPublished': !isPublished});
+        dispatch({
+            type: actionsTypes.PUBLISH_UPDATE,
+            id
+        })
+    }
+};
+
+export const updateArticle = article => {
+    return async dispatch => {
+        const response = await fireArticleUpdate(article.id,article);
+        dispatch({
+            type: actionsTypes.UPDATE_ARTICLE,
+            article,
+        })
+    }
+};
 
 // Favorite Articles Actions
 
-export const toggleFavoriteArticle = id => (
-    {
-        type: actionsTypes.TOGGLE_FAVORITE_ARTICLE,
-        id
+export const toggleFavoriteArticle = id => {
+    return async dispatch => {
+        // const response = await fireArticleUpdate(id);
+        dispatch({
+            type: actionsTypes.TOGGLE_FAVORITE_ARTICLE,
+            id
+        })
     }
-);
+};
 
 // Gallery Photos Actions
 

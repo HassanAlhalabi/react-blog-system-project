@@ -31,7 +31,7 @@ const LandingHeader = () => {
                     <Menu fontSize='large' onClick={() => handleLandingMenu()}/>
                 </div>
             </nav>
-            <img src={LandingHeaderImage} className="back-header-image"/>
+            <img src={LandingHeaderImage} className="back-header-image" alt='Landing Page Header Img'/>
             <div className="top-text d-flex justify-content-center flex-column text-center">
                 <div>    
                     <span className='top-text-slogan'>Be Adventurous</span>

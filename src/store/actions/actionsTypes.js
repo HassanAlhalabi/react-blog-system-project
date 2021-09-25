@@ -1,14 +1,15 @@
 
 // Articles Actions
-export const INITIALIZE_ARTICLE = 'INITIALIZE_ARTICLES';
-export const ADD_ARTICLE        = 'ADD_ARTICLE';
-export const REMOVE_ARTICLE     = 'REMOVE_ARTICLE';
-export const DELETE_ARTICLE     = 'DELETE_ARTICLE';
-export const PUBLISH_UPDATE     = 'PUBLISH_UPDATE';
-export const UPDATE_ARTICLE     = 'UPDATE_ARTICLE';
+export const INITIALIZE_ARTICLES = 'INITIALIZE_ARTICLES';
+export const GET_ARTICLE         = 'GET_ARTICLE';
+export const ADD_ARTICLE         = 'ADD_ARTICLE';
+export const REMOVE_ARTICLE      = 'REMOVE_ARTICLE';
+export const DELETE_ARTICLE      = 'DELETE_ARTICLE';
+export const PUBLISH_UPDATE      = 'PUBLISH_UPDATE';
+export const UPDATE_ARTICLE      = 'UPDATE_ARTICLE';
 
 // Favorite Articles Actions
-
+export const INITIALIZE_FAVORITE_ARTICLE    = 'TOGGLE_FAVORITE_ARTICLE';
 export const TOGGLE_FAVORITE_ARTICLE    = 'TOGGLE_FAVORITE_ARTICLE';
 
 // Gallery Photos Action

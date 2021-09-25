@@ -99,6 +99,7 @@ const AddUserForm = ({addNewUser}) => {
                             passwordError,
                             confirmPasswordError,
                             errorMessage,
+                            roleError,
                             handleFormSubmit
                         }} />
                     </div>

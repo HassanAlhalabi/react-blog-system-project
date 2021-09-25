@@ -1,4 +1,3 @@
-import { articlesInit } from '../actions/actions';
 import * as actionsTypes from '../actions/actionsTypes';
 
 const usersList = [

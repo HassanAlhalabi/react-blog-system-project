@@ -11,18 +11,17 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Edit from '@material-ui/icons/Edit';
 import Pagination from '@material-ui/lab/Pagination';
 import Alert from '@material-ui/lab/Alert';
 import { showFlashMessage } from '../../layout/FlashMessage';
 import { makeStyles } from '@material-ui/core/styles';
+import Loading from '../../layout/Loading';
 
 const useStyle = makeStyles({
     textColor: {
         color: '#EEE !important'
     },
     listItemStyle: {
-        backgroundColor: '#26201C',
         marginBottom: '20px',
         paddingRight: '96px',
         paddingTop: '25px',
@@ -30,7 +29,7 @@ const useStyle = makeStyles({
     },
 });
 
-const ArticlesTrash = ({articles,deleteArticle}) => {
+const ArticlesTrash = ({articles,deleteArticle,articlesLoading}) => {
 
     const classes = useStyle();    
     
@@ -55,59 +54,60 @@ const ArticlesTrash = ({articles,deleteArticle}) => {
         history.push(`/admin-panel/all-articles/page/${value}`)
     };
 
+    console.log(articlesLoading)
+
     return ( 
         <div className='articles-trash'>
              <div className='container h-100'>
-                { articles.length === 0 ?
-                    <Alert severity='info'>There is no Articles</Alert>
-                    :
-                    <div className='d-flex h-100 flex-column justify-content-between'>
-                        <div className='row'>
-                            <List className='w-100'>
-                                {
-                                    articles.map(article => 
-                                        <ListItem key={article.id} article={article} className={`${classes.listItemStyle} article-item`}>
-                                            <ListItemAvatar>
-                                                <Avatar className='overflow-hidden'>
-                                                    <DescriptionRoundedIcon />
-                                                    {/* <img src={articleImg} className='w-100 h-100' alt='article-img'/> */}
-                                                </Avatar>
-                                            </ListItemAvatar>
-                                            <Link to={`/admin-panel/all-articles/${article.id}`}>
-                                                <ListItemText
-                                                    className={classes.textColor}
-                                                    primary={article.title}
-                                                    secondary={`${article.author} - ${article.date}`}
-                                                />
-                                            </Link>  
-                                            <div className='article-is-published mr-auto mr-md-0 ml-md-auto'>
-                                                <span className='text-center'>
-                                                    {article.isPublished ? 
-                                                        <Alert severity='success' variant='filled'>Published</Alert> :
-                                                        <Alert severity='warning' variant='filled'>Not Published</Alert> }    
-                                                </span>   
-                                            </div>  
-                                            <ListItemSecondaryAction>
-                                                <IconButton edge="end" aria-label="delete" onClick={(e) => handleArticleDelete(article.id)} color='secondary'>
-                                                    <DeleteIcon className={classes.textColor} color='secondary'/>
-                                                </IconButton>
-                                            </ListItemSecondaryAction>
-                                        </ListItem>
-                                    )
-                                }
-                            </List>
-                        </div>
-                        {
-                            articlesList.length >= pageSize &&
-                            <div className='pagination d-flex justify-content-center'> 
-                                <Pagination 
-                                    page={page} 
-                                    onChange={handlePagination} 
-                                    count={Math.ceil(articles.length/10)} 
-                                    size='large'/>
+                {articlesLoading === true ? <Loading /> :
+                    articles.length === 0 ?
+                        <Alert severity='info'>There is no Articles</Alert>
+                        :
+                        <div className='d-flex h-100 flex-column justify-content-between'>
+                            <div className='row'>
+                                <List className='w-100'>
+                                    {
+                                        articles.map(article => 
+                                            <ListItem key={article.id} article={article} className={`${classes.listItemStyle} article-item`}>
+                                                <ListItemAvatar>
+                                                    <Avatar className='overflow-hidden'>
+                                                        <DescriptionRoundedIcon />                                                    </Avatar>
+                                                </ListItemAvatar>
+                                                <Link to={`/admin-panel/all-articles/${article.id}`}>
+                                                    <ListItemText
+                                                        className={classes.textColor}
+                                                        primary={article.title}
+                                                        secondary={`${article.author} - ${article.date}`}
+                                                    />
+                                                </Link>  
+                                                <div className='article-is-published mr-auto mr-md-0 ml-md-auto'>
+                                                    <span className='text-center'>
+                                                        {article.isPublished ? 
+                                                            <Alert severity='success' variant='filled'>Published</Alert> :
+                                                            <Alert severity='warning' variant='filled'>Not Published</Alert> }    
+                                                    </span>   
+                                                </div>  
+                                                <ListItemSecondaryAction>
+                                                    <IconButton edge="end" aria-label="delete" onClick={(e) => handleArticleDelete(article.id)} color='secondary'>
+                                                        <DeleteIcon className={classes.textColor} color='secondary'/>
+                                                    </IconButton>
+                                                </ListItemSecondaryAction>
+                                            </ListItem>
+                                        )
+                                    }
+                                </List>
                             </div>
-                        }
-                    </div>      
+                            {
+                                articlesList.length >= pageSize &&
+                                <div className='pagination d-flex justify-content-center'> 
+                                    <Pagination 
+                                        page={page} 
+                                        onChange={handlePagination} 
+                                        count={Math.ceil(articles.length/10)} 
+                                        size='large'/>
+                                </div>
+                            }
+                        </div>      
                 }          
             </div>
         </div>
@@ -117,7 +117,8 @@ const ArticlesTrash = ({articles,deleteArticle}) => {
 
 const mapStateToProps = state => {
     return ({
-        articles: state.articles.filter(article => article.inTrash === true)
+        articles: state.articles.articles.filter(article => article.inTrash === true),
+        articlesLoading: state.articles.articlesLoading
     })
 }
 

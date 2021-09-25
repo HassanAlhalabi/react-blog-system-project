@@ -1,9 +1,8 @@
 // Required Packages and Libraries
-import React ,{useState , useEffect} from 'react';
-import { BrowserRouter,HashRouter , Route , Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { HashRouter , Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { getArticles } from  './config/fbConfig';
 import { connect } from 'react-redux';
 import { articlesInit } from './store/actions/actions';
 
@@ -25,20 +24,13 @@ import NotFound404 from './components/404/404';
 import PrivateRoute from './components/utils/PrivateRoute';
 
 const App = ({articlesInit}) => {
- 
-  const [user,setUser] = useState('');
 
   useEffect(() => {
-    
-    //Initialize Articles in REDUX
-    const fetchArticles = async () => {
-        const response = await getArticles();
-        const articles = await response;
-        articlesInit(articles)
-    }
-    fetchArticles();
-
-  },[])
+    articlesInit()
+  })
+ 
+  // const [user,setUser] = useState('');
+  const user = '';
 
     return(
       <HashRouter>
@@ -70,10 +62,11 @@ const App = ({articlesInit}) => {
     )
   }
 
-  const mapDispathToProps = dispatch => {
-    return ({
-        articlesInit: articles => dispatch(articlesInit(articles))
+  const mapDispatchToProps = dispatch => {
+    return({
+      articlesInit: () => dispatch(articlesInit()),
     })
-}
+  }
 
-export default connect(null,mapDispathToProps)(App);
+
+export default connect(null,mapDispatchToProps)(App);

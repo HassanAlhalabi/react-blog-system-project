@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import Stats from './Stats';
 import WebsiteTraffic from './WebsiteTraffic';
-import LatestArticels from './LatestArticles';
+import DashboardLatestArticles from './DashboardLatestArticles';
 import LatestComments from './LatestComments';
 
 class Dashboard extends Component {
@@ -15,7 +15,7 @@ class Dashboard extends Component {
                         <WebsiteTraffic />
                         <div className='row'>
                             <div className='col-12 col-md-6'>
-                                <LatestArticels />
+                                <DashboardLatestArticles />
                             </div>
                             <div className='col-12 col-md-6'>
                                 <LatestComments />
