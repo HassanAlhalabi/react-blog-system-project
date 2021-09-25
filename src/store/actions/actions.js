@@ -35,12 +35,12 @@ export const addArticle = article => {
     return async function (dispatch){
         dispatch({
             type: 'uploading',
-        })
-        const response = await uploadArticle(article);
+        });
+        await uploadArticle(article);
         dispatch({
             type: actionsTypes.ADD_ARTICLE,
             article,
-        })
+        });
     }
 }
 

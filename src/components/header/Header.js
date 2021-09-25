@@ -28,7 +28,7 @@ const Header = ({user}) => {
             <div className='row justify-content-between'>
               <div className='col-12 col-sm-6 d-flex align-items-center'>
                 <div className="logo-holder text-center text-sm-left w-100">
-                    <h1 className='m-0'>
+                    <h1 className='m-0 pb-0'>
                       <Link to='/' className="logo">Travelers</Link>
                     </h1> 
                 </div>

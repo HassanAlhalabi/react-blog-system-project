@@ -30,7 +30,7 @@ const FavoriteArticles = ({articles,favorites}) => {
 
 const mapStateToProps = state => {
     return({
-        articles: state.articles,
+        articles: state.articles.articles,
         favorites: state.favorites
     })
 }

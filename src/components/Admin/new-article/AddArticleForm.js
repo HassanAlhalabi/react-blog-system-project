@@ -30,7 +30,7 @@ const  AddArticleForm = (props) => {
     });
 
     const [articleImage , setArticleImage]    = useState('');
-    const [articleImagePreview , setArticleImagePreview]    = useState([]);
+    const [articleImagePreview , setArticleImagePreview]    = useState('');
     const [titleError,setTitleError]          = useState(false);
     const [authorError,setAuthorError]        = useState(false); 
     const [contentError,setContentError]      = useState(false);
@@ -205,6 +205,7 @@ const  AddArticleForm = (props) => {
                     });
                 });
             }
+            
             if(articleImage === '') {
                 const newArticle = {
                     id: process(),

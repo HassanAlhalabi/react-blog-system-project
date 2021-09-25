@@ -366,7 +366,6 @@ button.Mui-disabled {
 .search-box .MuiInputBase-multiline,
 .search-box .MuiFilledInput-root:hover,
 .search-box .MuiTextField-root {
-    background-color: var(--second-color);
     color: #FFF;
     border-radius: 0;
     width: -webkit-fill-available;
@@ -463,7 +462,7 @@ nav.navbar .logo h1 {
 }
 
 nav.navbar .lower-nav {
-    padding: 12px 0px;
+    padding: 0px 0px 10px;
     background-color: #373737;
 }
 
@@ -472,7 +471,7 @@ nav.navbar .lower-nav ul li {
 }
 
 nav.navbar .lower-nav a {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 nav.navbar .lower-nav a:hover,
@@ -481,7 +480,44 @@ nav.navbar .lower-nav a:focus {
 }
 
 .nav-bottom-border {
-    border-bottom: 3px solid var(--third-color);
+    border-bottom: 1px solid var(--third-color);
+}
+
+.mobile-menu {
+    position: relative;
+    padding-bottom: 10px;
+    margin: 10px 0px;
+}
+
+.mobile-menu > span {
+    color: var(--third-color) !important;
+    border: 1px solid var(--third-color);
+}
+
+.mobile-nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 99999;
+    background-color: var(--main-color);
+    width: 100%;
+    padding: 10px;
+}
+
+.mobile-nav-links li a {
+    padding: 8px 16px;
+    display: block;
+    border-bottom: 1px solid var(--third-color);
+}
+
+nav.navbar .lower-nav .mobile-nav-links li a:hover,
+nav.navbar .lower-nav .mobile-nav-links li a:focus {
+    background-color: var(--third-color);
+    color: var(--main-color) !important;
+}
+
+.mobile-nav-links li:last-child a {
+    border: none;
 }
 
 /********* Landing Page Style ***********/
@@ -1468,7 +1504,7 @@ span.top-text-slogan {
 
 footer {
     background-color: var(--second-color);
-    border-top: 3px solid var(--third-color);
+    border-top: 1px solid var(--third-color);
     padding: 15px 0px;
 }
 

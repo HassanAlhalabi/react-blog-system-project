@@ -4,6 +4,7 @@ import draftToHtml from 'draftjs-to-html';
 import { convertToRaw } from 'draft-js';
 
 const AddArticleFormPreview = ({previewProps,articleImage}) => {
+    console.log(articleImage)
     return ( 
         <div>
             <h3 className=''>Article Preview</h3>

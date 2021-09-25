@@ -35,7 +35,6 @@ export const articlesReducer = (state = initialState, action) => {
             }           
         // Add New Article
         case 'uploading':
-            console.log('yyyuyuyuy')
           return {
               ...state,
              articleUploading: true

@@ -30,7 +30,7 @@ const App = ({articlesInit}) => {
   })
  
   // const [user,setUser] = useState('');
-  const user = '';
+  const user = 'admin';
 
     return(
       <HashRouter>
