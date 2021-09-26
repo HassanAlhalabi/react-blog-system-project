@@ -1,6 +1,6 @@
 // Required Packages and Libraries
 import React, { useEffect } from 'react';
-import { HashRouter , Route , Switch } from 'react-router-dom';
+import { BrowserRouter , Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { connect } from 'react-redux';
@@ -33,7 +33,7 @@ const App = ({articlesInit}) => {
   const user = 'admin';
 
     return(
-      <HashRouter>
+      <BrowserRouter>
           <Header user={user}/>
           <main>
               <div>  
@@ -58,7 +58,7 @@ const App = ({articlesInit}) => {
               </div>  
           </main>
           <Footer />
-      </HashRouter> 
+      </BrowserRouter> 
     )
   }
 
