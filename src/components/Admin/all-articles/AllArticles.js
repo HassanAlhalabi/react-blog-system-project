@@ -18,6 +18,7 @@ import { showFlashMessage } from '../../layout/FlashMessage';
 import { makeStyles } from '@material-ui/core/styles';
 import PageHeader from '../../layout/PageHeader';
 import Loading from '../../layout/Loading';
+import Uploading from '../../layout/Uploading';
 
 const useStyle = makeStyles({
     textColor: {
@@ -25,14 +26,14 @@ const useStyle = makeStyles({
     }
 });
 
-const AllArticles = ({ articles, removeArticle ,articlesLoading}) => {
+const AllArticles = ({ articles, removeArticle ,articlesLoading, articleUploading}) => {
     
     const classes = useStyle();    
     
-    const handleArticleRemove = index => {   
+    const handleArticleRemove = async index => {   
         const deleteConfirmation = window.confirm('Are You Sure You Want to Remove Article to Trash!!');   
         if(deleteConfirmation){
-            removeArticle(index);
+            await removeArticle(index);
             showFlashMessage('Article Has Been Removed to Trash')
         }
     }
@@ -52,6 +53,7 @@ const AllArticles = ({ articles, removeArticle ,articlesLoading}) => {
 
     return (
         <div className='all-articles h-100'>
+            {articleUploading === true ? <Uploading /> : null }
             <div className='container h-100'>
                 <PageHeader title='Articles' />
                 { 
@@ -119,7 +121,8 @@ const AllArticles = ({ articles, removeArticle ,articlesLoading}) => {
 const mapStateToProps = state => {
     return ({
         articles: state.articles.articles,
-        articlesLoading: state.articles.articlesLoading
+        articlesLoading: state.articles.articlesLoading,
+        articleUploading: state.articles.articleUploading
     })
 }
 

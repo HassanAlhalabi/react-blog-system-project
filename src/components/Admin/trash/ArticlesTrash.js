@@ -16,6 +16,7 @@ import Alert from '@material-ui/lab/Alert';
 import { showFlashMessage } from '../../layout/FlashMessage';
 import { makeStyles } from '@material-ui/core/styles';
 import Loading from '../../layout/Loading';
+import Uploading from '../../layout/Uploading';
 
 const useStyle = makeStyles({
     textColor: {
@@ -29,14 +30,14 @@ const useStyle = makeStyles({
     },
 });
 
-const ArticlesTrash = ({articles,deleteArticle,articlesLoading}) => {
+const ArticlesTrash = ({articles, deleteArticle, articlesLoading, articleUploading}) => {
 
     const classes = useStyle();    
     
-    const handleArticleDelete = index => {   
+    const handleArticleDelete = async index => {   
         const deleteConfirmation = window.confirm('Are You Sure You Want to Delete Article Permenantley!!');   
         if(deleteConfirmation){
-            deleteArticle(index);
+            await deleteArticle(index);
             showFlashMessage('Article Has Been Deleted Successfully')
         }
     }
@@ -58,6 +59,7 @@ const ArticlesTrash = ({articles,deleteArticle,articlesLoading}) => {
 
     return ( 
         <div className='articles-trash'>
+            {articleUploading === true ? <Uploading /> : null }
              <div className='container h-100'>
                 {articlesLoading === true ? <Loading /> :
                     articles.length === 0 ?
@@ -118,14 +120,14 @@ const ArticlesTrash = ({articles,deleteArticle,articlesLoading}) => {
 const mapStateToProps = state => {
     return ({
         articles: state.articles.articles.filter(article => article.inTrash === true),
-        articlesLoading: state.articles.articlesLoading
+        articlesLoading: state.articles.articlesLoading,
+        articleUploading: state.articles.articleUploading
     })
 }
 
 const mapDispathToProps = dispatch => {
     return ({
-        deleteArticle: index => 
-            dispatch(deleteArticle(index))
+        deleteArticle: index => dispatch(deleteArticle(index))
     })
 }
  

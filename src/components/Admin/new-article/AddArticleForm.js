@@ -2,7 +2,7 @@ import React , { useContext, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import AddArticleFormTemplate from './AddArticleFormTemplate';
 import AddArticleFormPreview from './AddArticleFormPreview';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import { CategoriesContext } from '../../../contexts/categoriesContext';
 import { connect } from 'react-redux';
 import { addArticle as addNewArticle } from '../../../store/actions/actions';
@@ -11,7 +11,6 @@ import { process } from 'uniqid';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { firebaseStorage}  from '../../../config/fbConfig';
 import PageHeader from '../../layout/PageHeader';
-import draftToHtml from 'draftjs-to-html';
 import Uploading from '../../layout/Uploading';
 
 const  AddArticleForm = (props) => {

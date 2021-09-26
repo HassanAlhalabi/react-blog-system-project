@@ -6,8 +6,6 @@ const initialState = {
   articlesLoading: true,
   articleLoading: true,
   articleUploading: false,
-  articleRemoving: false,
-  articleDeleting: false,
 }
 
 export const articlesReducer = (state = initialState, action) => {
@@ -32,13 +30,14 @@ export const articlesReducer = (state = initialState, action) => {
              ...state, 
               article: action.article,
               articleLoading: false
-            }           
-        // Add New Article
+            } 
+        // When Uploading Process          
         case 'uploading':
           return {
               ...state,
              articleUploading: true
            }
+        // Add New Article
         case actionsTypes.ADD_ARTICLE:
           return {
             ...state, 
@@ -55,14 +54,14 @@ export const articlesReducer = (state = initialState, action) => {
                     }
                     return article;
                 }),
-                articleRemoving: false,
+                articleUploading: false,
             }
         // Delete Article Permenantly    
         case actionsTypes.DELETE_ARTICLE:
             return {
                 ...state,
                 articles: state.articles.filter(article => article.id !== action.id),
-                articleDeleting: false
+                articleUploading: false
             }
             // Publish or UnPublish an Article    
         case actionsTypes.PUBLISH_UPDATE:
@@ -73,7 +72,8 @@ export const articlesReducer = (state = initialState, action) => {
                         article.isPublished = !article.isPublished
                     } 
                     return article
-                }) 
+                }),
+                articleUploading: false
             }
         // Update an Article    
         case actionsTypes.UPDATE_ARTICLE:
@@ -84,7 +84,8 @@ export const articlesReducer = (state = initialState, action) => {
                         return action.article
                     } 
                     return article
-                }) 
+                }),
+                articleUploading: false
             }
         // Empty Trash    
         case actionsTypes.EMPTY_TRASH:

@@ -9,8 +9,9 @@ import { updateArticle } from '../../../store/actions/actions';
 import { showFlashMessage } from '../../../components/layout/FlashMessage';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { firebaseStorage}  from '../../../config/fbConfig';
+import Uploading from '../../layout/Uploading';
 
-const EditArticleLogic = ({ updateArticle , article }) => {
+const EditArticleLogic = ({ updateArticle , article, articleUploading }) => {
 
     const [categories , setCategories] = useContext(CategoriesContext);
     const initialCategories = categories.map(category => {
@@ -138,7 +139,7 @@ const EditArticleLogic = ({ updateArticle , article }) => {
         setArticleImagePreview(imageList[0].data_url)
     };
 
-    const handleFormSubmit = (event , action) => {
+    const handleFormSubmit = async (event , action) => {
         event.preventDefault();
         let noErrors = true;
         if(inputs.title === '' || inputs.title === undefined ) {
@@ -228,7 +229,7 @@ const EditArticleLogic = ({ updateArticle , article }) => {
                     isPublished: action === 'publish' ? true : inputs.isPublished,
                     inTrash: inputs.inTrash
                 }
-                updateArticle(updatedArticle);
+                await updateArticle(updatedArticle);
                 action === 'publish' ?
                 showFlashMessage('Article Has Been Updated Successfuly') :
                 showFlashMessage('Article Has Been Saved Successfuly');
@@ -239,6 +240,7 @@ const EditArticleLogic = ({ updateArticle , article }) => {
 
     return(
         <div className='row'>
+            {articleUploading === true ? <Uploading /> : null }
             <div className='col-12 col-md-6'>
                 <AddArticleFormTemplate formTemplateProps={
                     {
@@ -266,10 +268,16 @@ const EditArticleLogic = ({ updateArticle , article }) => {
     );
 }
 
+const mapStateToProps = state => {
+    return({
+        articleUploading: state.articles.articleUploading
+    })
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         updateArticle: article => dispatch(updateArticle(article))
     }
 }
 
-export default connect(null,mapDispatchToProps)(EditArticleLogic);
+export default connect(mapStateToProps,mapDispatchToProps)(EditArticleLogic);

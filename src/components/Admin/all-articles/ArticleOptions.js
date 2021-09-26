@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PublishRounded from '@material-ui/icons/PublishRounded';
 import ArticleBody from '../../articles/ArticleBody';
 import Loading from '../../layout/Loading';
+import Uploading from '../../layout/Uploading';
 
 const useStyle = makeStyles({
     articleOptions: {
@@ -19,32 +20,35 @@ const useStyle = makeStyles({
     },
 })
 
-const ArticleOptions = ({ articles, articlesLoading, removeArticle, publishUpdate }) => {
+const ArticleOptions = ({ articles, articlesLoading, articleUploading, removeArticle, publishUpdate }) => {
     
     const classes   = useStyle();
     const articleId = useParams('id').id;
     const article   = articles.filter(article => article.id === articleId )[0] 
     const history   = useHistory();
 
-    const handleArticleRemove = index => {   
+    const handleArticleRemove = async index => {   
         const deleteConfirmation = window.confirm('Are You Sure You Want to Remove Article!!');   
         if(deleteConfirmation) {
-            removeArticle(index);
+            await removeArticle(index);
             showFlashMessage('Article Has Been Removed to Trash');
             history.push('/admin-panel/all-articles');
         }
     }
 
-    const handlePublish = () => {
-        publishUpdate(articleId,article.isPublished);
+    const handlePublish = async () => {
+        await publishUpdate(articleId,article.isPublished);
         article.isPublished === true ?
             showFlashMessage('Article Has Been Published Successfully')
         :
             showFlashMessage('Article Has Been UnPublished Successfully')
     };
 
+    console.log(articleUploading)
+
     return articlesLoading ? <Loading /> : 
         <div>
+            {articleUploading === true ? <Uploading /> : null }
             <div className='row'>
                 <div className='col-12 col-md-9'>
                         <ArticleBody articleProps={article} />
@@ -86,7 +90,8 @@ const ArticleOptions = ({ articles, articlesLoading, removeArticle, publishUpdat
 const mapStateToProps = state => {
     return({
         articles: state.articles.articles,
-        articlesLoading: state.articles.articlesLoading
+        articlesLoading: state.articles.articlesLoading,
+        articleUploading: state.articles.articleUploading
     })
 }
 

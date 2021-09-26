@@ -46,7 +46,10 @@ export const addArticle = article => {
 
 export const removeArticle = id => {
     return async dispatch => {
-        const response = await fireArticleRemove(id)
+        dispatch({
+            type: 'uploading',
+        });
+        await fireArticleRemove(id)
         dispatch({
             type: actionsTypes.REMOVE_ARTICLE,
             id,
@@ -56,7 +59,10 @@ export const removeArticle = id => {
 
 export const deleteArticle = id => {
     return async dispatch => {
-        const response = await fireArticleDelete(id);
+        dispatch({
+            type: 'uploading',
+        });
+        await fireArticleDelete(id);
         dispatch({
             type: actionsTypes.DELETE_ARTICLE,
             id,
@@ -66,6 +72,9 @@ export const deleteArticle = id => {
 
 export const publishUpdate = (id,isPublished) => {
     return async dispatch => {
+        dispatch({
+            type: 'uploading',
+        });
         const response = await fireArticleUpdate(id,{'isPublished': !isPublished});
         dispatch({
             type: actionsTypes.PUBLISH_UPDATE,
@@ -76,6 +85,9 @@ export const publishUpdate = (id,isPublished) => {
 
 export const updateArticle = article => {
     return async dispatch => {
+        dispatch({
+            type: 'uploading',
+        });
         const response = await fireArticleUpdate(article.id,article);
         dispatch({
             type: actionsTypes.UPDATE_ARTICLE,
